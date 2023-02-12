@@ -36,17 +36,20 @@ public class GeneralController {
 
 	public void exportarArquivo() throws IOException {
 
-		FileWriter arquivo = new FileWriter("file.csv");
+		FileWriter arquivo = new FileWriter("file.txt");
 		PrintWriter escritor = new PrintWriter(arquivo);
-		
-		//Valida e atualiza algumas informações da fita.
+
+		// Valida e atualiza algumas informações da fita.
 		validador.validate(fita);
 
-		//Registrando dados no arquivo.
+		// Registrando dados no arquivo.
 		escritor.print(fita.getConstante());
 		escritor.print(fita.getNome());
 		escritor.print(fita.getCodigo());
 		escritor.print(fita.getSigla());
+		escritor.print(fita.getMes());
+		escritor.print(fita.getAno());
+		escritor.print(fita.getFiller1());
 
 		arquivo.close();
 	}
