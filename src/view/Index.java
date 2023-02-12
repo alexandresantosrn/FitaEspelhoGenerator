@@ -2,14 +2,14 @@ package view;
 
 import java.util.Scanner;
 
-import controller.ControladorPrincipal;
+import controller.MainController;
 
 public class Index {
 
 	public static void main(String[] args) {
 
 		int option = 10;
-		ControladorPrincipal controlador = new ControladorPrincipal();
+		MainController controlador = new MainController();
 
 		try (Scanner input = new Scanner(System.in)) {
 			while (option != 0) {
@@ -25,7 +25,7 @@ public class Index {
 
 			case 1: {
 				System.out.println("Apresentando informações...");
-				controlador.informarDadosInstituicao();
+				controlador.carregar();
 			}
 
 			default:
