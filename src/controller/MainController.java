@@ -3,18 +3,13 @@ package controller;
 import java.io.IOException;
 
 public class MainController {
-	
+
 	GeneralController controlador = new GeneralController();
 
 	public void carregar() throws IOException {
-		
 		controlador.informarDadosInstituicao();
-		controlador.carregarDadosServidores();
+		controlador.carregarDadosPessoaisServidores();
 		controlador.exportarArquivo();
 	}
-
-	
-
-	
 
 }

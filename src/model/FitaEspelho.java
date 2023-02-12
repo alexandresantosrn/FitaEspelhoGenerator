@@ -1,11 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FitaEspelho {
 
 	final String constante = "000000000000000000";
 	final String nome = "SIAPEFITAESP";
 	String filler1 = " ";
 	String codigo, sigla, mes, ano, uniPagadora;
+
+	List<Servidor> servidores = new ArrayList<>();
 
 	public String getCodigo() {
 		return codigo;
@@ -61,6 +66,14 @@ public class FitaEspelho {
 
 	public void setUniPagadora(String uniPagadora) {
 		this.uniPagadora = uniPagadora;
+	}
+
+	public List<Servidor> getServidores() {
+		return servidores;
+	}
+
+	public void addServidores(Servidor servidor) {
+		servidores.add(servidor);
 	}
 
 }
