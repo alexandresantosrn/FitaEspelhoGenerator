@@ -2,11 +2,14 @@ package view;
 
 import java.util.Scanner;
 
+import controller.ControladorPrincipal;
+
 public class Index {
 
 	public static void main(String[] args) {
 
 		int option = 10;
+		ControladorPrincipal controlador = new ControladorPrincipal();
 
 		try (Scanner input = new Scanner(System.in)) {
 			while (option != 0) {
@@ -21,7 +24,8 @@ public class Index {
 			switch (option) {
 
 			case 1: {
-				System.out.println("xxx");
+				System.out.println("Apresentando informações...");
+				controlador.informarDadosInstituicao();
 			}
 
 			default:
