@@ -1,15 +1,20 @@
 package controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import model.FitaEspelho;
 
 public class GeneralController {
 
+	FitaEspelho fita = new FitaEspelho();
+	Validator validador = new Validator();
+
 	public void informarDadosInstituicao() {
-		
-		String codigo, sigla, mes, ano;		
-		FitaEspelho fita = new FitaEspelho();
+
+		String codigo, sigla, mes, ano;
 
 		try (Scanner input = new Scanner(System.in)) {
 			System.out.print("Informe o código da instuição: ");
@@ -18,26 +23,30 @@ public class GeneralController {
 			sigla = input.next();
 			System.out.print("Informe o mês desejado: ");
 			mes = input.next();
-			System.out.println("Informe o ano desejado: ");
+			System.out.print("Informe o ano desejado: ");
 			ano = input.next();
-			
+
 			fita.setCodigo(codigo);
 			fita.setSigla(sigla);
 			fita.setMes(mes);
 			fita.setAno(ano);
 		}
-		
-		
+
 	}
 
-	public void exportarArquivo() {
-		
-		
-		
+	public void exportarArquivo() throws IOException {
+
+		FileWriter arquivo = new FileWriter("file.csv");
+		PrintWriter escritor = new PrintWriter(arquivo);
+		validador.validate(fita);
+
+		// Registrando dados
+		escritor.print(fita.getConstante());
+		escritor.print(fita.getNome());
+		escritor.print(fita.getCodigo());
+		escritor.print(fita.getSigla());
+
+		arquivo.close();
 	}
-
-	
-
-	
 
 }

@@ -2,7 +2,12 @@ package model;
 
 public class FitaEspelho {
 
+	final String constante = "000000000000000000";
+	final String nome = "SIAPEFITAESP";
+	final String filler1 = "";
 	String codigo, sigla, mes, ano;
+	
+	
 
 	public String getCodigo() {
 		return codigo;
@@ -34,6 +39,18 @@ public class FitaEspelho {
 
 	public void setAno(String ano) {
 		this.ano = ano;
+	}
+
+	public String getConstante() {
+		return constante;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getFiller1() {
+		return filler1;
 	}
 
 }
