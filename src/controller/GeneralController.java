@@ -14,7 +14,7 @@ public class GeneralController {
 
 	public void informarDadosInstituicao() {
 
-		String codigo, sigla, mes, ano;
+		String codigo, sigla, mes, ano, uniPagadora;
 
 		try (Scanner input = new Scanner(System.in)) {
 			System.out.print("Informe o código da instuição: ");
@@ -25,11 +25,14 @@ public class GeneralController {
 			mes = input.next();
 			System.out.print("Informe o ano desejado: ");
 			ano = input.next();
-
+			System.out.print("Informe o código SIAPECAD da unidade pagadora: ");
+			uniPagadora = input.next();
+			
 			fita.setCodigo(codigo);
 			fita.setSigla(sigla);
 			fita.setMes(mes);
 			fita.setAno(ano);
+			fita.setUniPagadora(uniPagadora);
 		}
 
 	}
@@ -42,7 +45,7 @@ public class GeneralController {
 		// Valida e atualiza algumas informações da fita.
 		validador.validate(fita);
 
-		// Registrando dados no arquivo.
+		// Registrando dados da instituição no arquivo.
 		escritor.print(fita.getConstante());
 		escritor.print(fita.getNome());
 		escritor.print(fita.getCodigo());
@@ -50,6 +53,10 @@ public class GeneralController {
 		escritor.print(fita.getMes());
 		escritor.print(fita.getAno());
 		escritor.print(fita.getFiller1());
+		escritor.print("\n");
+		
+		//Registrando dados pessoais na segunda linha;
+		escritor.print(fita.getUniPagadora());
 
 		arquivo.close();
 	}

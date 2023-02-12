@@ -21,13 +21,21 @@ public class Validator {
 
 			fita.setSigla(sigla);
 		}
-		
+
 		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à direita).
 		while (fita.getFiller1().length() < 719) {
 			String brancos = " ";
 			String filler1 = fita.getFiller1() + brancos;
-			
+
 			fita.setFiller1(filler1);
+		}
+
+		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à direita).
+		while (fita.getUniPagadora().length() < 9) {
+			String zeros = "0";
+			String uniPagadora = zeros + fita.getUniPagadora();
+
+			fita.setUniPagadora(uniPagadora);
 		}
 
 	}

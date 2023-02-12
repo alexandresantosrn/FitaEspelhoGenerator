@@ -5,7 +5,7 @@ public class FitaEspelho {
 	final String constante = "000000000000000000";
 	final String nome = "SIAPEFITAESP";
 	String filler1 = " ";
-	String codigo, sigla, mes, ano;
+	String codigo, sigla, mes, ano, uniPagadora;
 
 	public String getCodigo() {
 		return codigo;
@@ -53,6 +53,14 @@ public class FitaEspelho {
 
 	public void setFiller1(String filler1) {
 		this.filler1 = filler1;
+	}
+
+	public String getUniPagadora() {
+		return uniPagadora;
+	}
+
+	public void setUniPagadora(String uniPagadora) {
+		this.uniPagadora = uniPagadora;
 	}
 
 }
