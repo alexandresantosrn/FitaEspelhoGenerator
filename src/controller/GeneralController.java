@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -55,10 +58,35 @@ public class GeneralController {
 		escritor.print(fita.getFiller1());
 		escritor.print("\n");
 		
-		//Registrando dados pessoais na segunda linha;
+		//Registrando dados pessoais do servidor na segunda linha;
 		escritor.print(fita.getUniPagadora());
 
 		arquivo.close();
+	}
+
+	public void carregarDadosServidores() throws IOException {
+		
+		// Caminho de localização do arquivo de servidores.
+		final String path = "/home/bzaum/servidores.txt"; 	
+		
+		FileReader file = new FileReader(path);
+		BufferedReader leitor = new BufferedReader(file);
+		
+		// Variável de leitura da linha.
+		String linha = leitor.readLine();
+		
+		while (linha != null) {
+			
+			String vector[] = linha.split(";");
+			
+			
+			
+			linha = leitor.readLine();
+			
+		}
+		
+		
+		
 	}
 
 }
