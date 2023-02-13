@@ -66,8 +66,9 @@ public class GeneralController {
 		escritor.print(fita.getFiller1());
 		escritor.print("\n");
 
-		// Registrando dados pessoais dos servidores na segunda linha;
+		// Registrando dados pessoais dos servidores nas próximas linhas
 		for (Servidor servidor : servidores) {
+			// Registro dos dados pessoais dos servidores (Linha 2).
 			escritor.print(fita.getUniPagadora());
 			escritor.print(servidor.getSiape());
 			escritor.print(servidor.getDigitoSIAPE());
@@ -85,7 +86,7 @@ public class GeneralController {
 			escritor.print(servidor.getFiller2());
 			escritor.print(servidor.getNacionalidade());
 			escritor.print(servidor.getSiglaNaturalidade());
-			escritor.print("000");
+			escritor.print("000"); //Dados do país (Em geral vem com valor 0)
 			escritor.print(servidor.getFiller3());
 			escritor.print(servidor.getEndereco());
 			escritor.print(servidor.getNumero());
@@ -99,6 +100,21 @@ public class GeneralController {
 			escritor.print(servidor.getDataExpedicao());
 			escritor.print(servidor.getUfIdentidade());
 			escritor.print(servidor.getTituloEleitor());
+			escritor.print(servidor.getFiller4());
+			escritor.print("\n");
+			
+			// Registro dos dados funcionais dos servidores (Linha 3).
+			escritor.print(fita.getUniPagadora());
+			escritor.print(servidor.getSiape());
+			escritor.print(servidor.getDigitoSIAPE());
+			escritor.print("2");
+			escritor.print(fita.getUf());
+			escritor.print(servidor.getSiglaRegime());
+			escritor.print(servidor.getSituacaoServidor());
+			escritor.print("000000"); //Carteira de trabalho
+			escritor.print("       "); //Dados complementares da carteira
+			
+			
 		}
 
 		arquivo.close();
@@ -145,6 +161,8 @@ public class GeneralController {
 				String dataExpedicao = vector[22];
 				String ufIdentidade = vector[23];
 				String tituloEleitor = vector[24];
+				String siglaRegime = vector[25];
+				String situacaoServidor = vector[24];
 
 				// Armazenando atributos do servidor.
 				servidor.setSiape(siape);
@@ -172,6 +190,8 @@ public class GeneralController {
 				servidor.setDataExpedicao(dataExpedicao);
 				servidor.setUfIdentidade(ufIdentidade);
 				servidor.setTituloEleitor(tituloEleitor);
+				servidor.setSiglaRegime(siglaRegime);
+				servidor.setSituacaoServidor(situacaoServidor);
 
 				// Adicionando servidor a lista de servidores.
 				fita.addServidores(servidor);

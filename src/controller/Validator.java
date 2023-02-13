@@ -67,7 +67,7 @@ public class Validator {
 			servidor.setNomeMae(nomeMae);
 		}
 
-		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do Filler2 (Adiciona espaços à direita).
 		while (servidor.getFiller2().length() < 5) {
 			String brancos = " ";
 			String filler2 = servidor.getFiller2() + brancos;
@@ -75,7 +75,7 @@ public class Validator {
 			servidor.setFiller2(filler2);
 		}
 
-		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do Filler3 (Adiciona zeros à direita).
 		while (servidor.getFiller3().length() < 25) {
 			String zeros = "0";
 			String filler3 = servidor.getFiller3() + zeros;
@@ -115,7 +115,7 @@ public class Validator {
 			servidor.setBairro(bairro);
 		}
 
-		// Valida e atualiza tamanho do bairro (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do município (Adiciona espaços à direita).
 		while (servidor.getMunicipio().length() < 30) {
 			String brancos = " ";
 			String municipio = servidor.getMunicipio() + brancos;
@@ -131,14 +131,13 @@ public class Validator {
 			servidor.setRg(rg);
 		}
 
-		// Valida e atualiza tamanho do RG (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do órgão expedidor do RG (Adiciona espaços à direita).
 		while (servidor.getOrgaoExpedidor().length() < 5) {
 			String brancos = " ";
 			String orgaoExpedidor = servidor.getOrgaoExpedidor() + brancos;
 
 			servidor.setOrgaoExpedidor(orgaoExpedidor);
 		}
-		
 
 		// Valida e atualiza tamanho do título do eleitor (Adiciona espaços à direita).
 		while (servidor.getTituloEleitor().length() < 13) {
@@ -146,6 +145,14 @@ public class Validator {
 			String tituloEleitor = servidor.getTituloEleitor() + brancos;
 
 			servidor.setTituloEleitor(tituloEleitor);
+		}
+
+		// Valida e atualiza tamanho do Filler4 (Adiciona zeros à direita).
+		while (servidor.getFiller4().length() < 395) {
+			String brancos = " ";
+			String filler4 = servidor.getFiller4() + brancos;
+
+			servidor.setFiller4(filler4);
 		}
 
 	}

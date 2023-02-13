@@ -4,10 +4,11 @@ public class Servidor {
 
 	String siape, digitoSIAPE, nome, cpf, pis, nomeMae, sexo, dataNascimento, estadoCivil, escolaridade, codigoFormacao,
 			nacionalidade, siglaNaturalidade, endereco, numero, complemento, bairro, municipio, cep, uf, rg,
-			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor;
+			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor, siglaRegime, situacaoServidor;
 
 	String filler2 = " ";
 	String filler3 = "0";
+	String filler4 = " ";	
 
 	public String getSiape() {
 		return siape;
@@ -223,6 +224,30 @@ public class Servidor {
 
 	public void setTituloEleitor(String tituloEleitor) {
 		this.tituloEleitor = tituloEleitor;
+	}
+
+	public String getFiller4() {
+		return filler4;
+	}
+
+	public void setFiller4(String filler4) {
+		this.filler4 = filler4;
+	}
+
+	public String getSiglaRegime() {
+		return siglaRegime;
+	}
+
+	public void setSiglaRegime(String siglaRegime) {
+		this.siglaRegime = siglaRegime;
+	}
+
+	public String getSituacaoServidor() {
+		return situacaoServidor;
+	}
+
+	public void setSituacaoServidor(String situacaoServidor) {
+		this.situacaoServidor = situacaoServidor;
 	}
 
 }
