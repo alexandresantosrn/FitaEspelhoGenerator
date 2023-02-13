@@ -83,6 +83,71 @@ public class Validator {
 			servidor.setFiller3(filler3);
 		}
 
+		// Valida e atualiza tamanho do Endereço (Adiciona espaços à direita).
+		while (servidor.getEndereco().length() < 40) {
+			String brancos = " ";
+			String endereco = servidor.getEndereco() + brancos;
+
+			servidor.setEndereco(endereco);
+		}
+
+		// Valida e atualiza tamanho do número (Adiciona espaços à direita).
+		while (servidor.getNumero().length() < 6) {
+			String brancos = " ";
+			String numero = servidor.getNumero() + brancos;
+
+			servidor.setNumero(numero);
+		}
+
+		// Valida e atualiza tamanho do complemento (Adiciona espaços à direita).
+		while (servidor.getComplemento().length() < 21) {
+			String brancos = " ";
+			String complemento = servidor.getComplemento() + brancos;
+
+			servidor.setComplemento(complemento);
+		}
+
+		// Valida e atualiza tamanho do bairro (Adiciona espaços à direita).
+		while (servidor.getBairro().length() < 25) {
+			String brancos = " ";
+			String bairro = servidor.getBairro() + brancos;
+
+			servidor.setBairro(bairro);
+		}
+
+		// Valida e atualiza tamanho do bairro (Adiciona espaços à direita).
+		while (servidor.getMunicipio().length() < 30) {
+			String brancos = " ";
+			String municipio = servidor.getMunicipio() + brancos;
+
+			servidor.setMunicipio(municipio);
+		}
+
+		// Valida e atualiza tamanho do RG (Adiciona espaços à direita).
+		while (servidor.getRg().length() < 14) {
+			String brancos = " ";
+			String rg = servidor.getRg() + brancos;
+
+			servidor.setRg(rg);
+		}
+
+		// Valida e atualiza tamanho do RG (Adiciona espaços à direita).
+		while (servidor.getOrgaoExpedidor().length() < 5) {
+			String brancos = " ";
+			String orgaoExpedidor = servidor.getOrgaoExpedidor() + brancos;
+
+			servidor.setOrgaoExpedidor(orgaoExpedidor);
+		}
+		
+
+		// Valida e atualiza tamanho do título do eleitor (Adiciona espaços à direita).
+		while (servidor.getTituloEleitor().length() < 13) {
+			String brancos = " ";
+			String tituloEleitor = servidor.getTituloEleitor() + brancos;
+
+			servidor.setTituloEleitor(tituloEleitor);
+		}
+
 	}
 
 }

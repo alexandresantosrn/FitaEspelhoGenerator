@@ -3,7 +3,8 @@ package model;
 public class Servidor {
 
 	String siape, digitoSIAPE, nome, cpf, pis, nomeMae, sexo, dataNascimento, estadoCivil, escolaridade, codigoFormacao,
-			nacionalidade, siglaNaturalidade;
+			nacionalidade, siglaNaturalidade, endereco, numero, complemento, bairro, municipio, cep, uf, rg,
+			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor;
 
 	String filler2 = " ";
 	String filler3 = "0";
@@ -126,6 +127,102 @@ public class Servidor {
 
 	public void setFiller3(String filler3) {
 		this.filler3 = filler3;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(String municipio) {
+		this.municipio = municipio;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getOrgaoExpedidor() {
+		return orgaoExpedidor;
+	}
+
+	public void setOrgaoExpedidor(String orgaoExpedidor) {
+		this.orgaoExpedidor = orgaoExpedidor;
+	}
+
+	public String getDataExpedicao() {
+		return dataExpedicao;
+	}
+
+	public void setDataExpedicao(String dataExpedicao) {
+		this.dataExpedicao = dataExpedicao;
+	}
+
+	public String getUfIdentidade() {
+		return ufIdentidade;
+	}
+
+	public void setUfIdentidade(String ufIdentidade) {
+		this.ufIdentidade = ufIdentidade;
+	}
+
+	public String getTituloEleitor() {
+		return tituloEleitor;
+	}
+
+	public void setTituloEleitor(String tituloEleitor) {
+		this.tituloEleitor = tituloEleitor;
 	}
 
 }

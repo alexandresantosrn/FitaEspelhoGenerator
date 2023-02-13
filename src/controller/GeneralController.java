@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -88,6 +87,18 @@ public class GeneralController {
 			escritor.print(servidor.getSiglaNaturalidade());
 			escritor.print("000");
 			escritor.print(servidor.getFiller3());
+			escritor.print(servidor.getEndereco());
+			escritor.print(servidor.getNumero());
+			escritor.print(servidor.getComplemento());
+			escritor.print(servidor.getBairro());
+			escritor.print(servidor.getMunicipio());
+			escritor.print(servidor.getCep());
+			escritor.print(servidor.getUf());
+			escritor.print(servidor.getRg());
+			escritor.print(servidor.getOrgaoExpedidor());
+			escritor.print(servidor.getDataExpedicao());
+			escritor.print(servidor.getUfIdentidade());
+			escritor.print(servidor.getTituloEleitor());
 		}
 
 		arquivo.close();
@@ -122,6 +133,18 @@ public class GeneralController {
 				String codigoFormacao = vector[10];
 				String nacionalidade = vector[11];
 				String siglaNaturalidade = vector[12];
+				String endereco = vector[13];
+				String numero = vector[14];
+				String complemento = vector[15];
+				String bairro = vector[16];
+				String municipio = vector[17];
+				String cep = vector[18];
+				String uf = vector[19];
+				String rg = vector[20];
+				String orgaoExpedidor = vector[21];
+				String dataExpedicao = vector[22];
+				String ufIdentidade = vector[23];
+				String tituloEleitor = vector[24];
 
 				// Armazenando atributos do servidor.
 				servidor.setSiape(siape);
@@ -137,6 +160,18 @@ public class GeneralController {
 				servidor.setCodigoFormacao(codigoFormacao);
 				servidor.setNacionalidade(nacionalidade);
 				servidor.setSiglaNaturalidade(siglaNaturalidade);
+				servidor.setEndereco(endereco);
+				servidor.setNumero(numero);
+				servidor.setComplemento(complemento);
+				servidor.setBairro(bairro);
+				servidor.setMunicipio(municipio);
+				servidor.setCep(cep);
+				servidor.setUf(uf);
+				servidor.setRg(rg);
+				servidor.setOrgaoExpedidor(orgaoExpedidor);
+				servidor.setDataExpedicao(dataExpedicao);
+				servidor.setUfIdentidade(ufIdentidade);
+				servidor.setTituloEleitor(tituloEleitor);
 
 				// Adicionando servidor a lista de servidores.
 				fita.addServidores(servidor);
