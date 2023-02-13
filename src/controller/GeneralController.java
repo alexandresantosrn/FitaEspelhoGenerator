@@ -20,7 +20,7 @@ public class GeneralController {
 
 	public void informarDadosInstituicao() {
 
-		String codigo, sigla, mes, ano, uniPagadora;
+		String codigo, sigla, mes, ano, uniPagadora, uf;
 
 		try (Scanner input = new Scanner(System.in)) {
 			System.out.print("Informe o código da instuição: ");
@@ -33,16 +33,19 @@ public class GeneralController {
 			ano = input.next();
 			System.out.print("Informe o código SIAPECAD da unidade pagadora: ");
 			uniPagadora = input.next();
+			System.out.print("Informe a UF da unidade pagadora: ");
+			uf = input.next();
 
 			fita.setCodigo(codigo);
 			fita.setSigla(sigla);
 			fita.setMes(mes);
 			fita.setAno(ano);
 			fita.setUniPagadora(uniPagadora);
+			fita.setUf(uf);
 		}
 
 		// Valida e atualiza algumas informações da fita.
-		validador.validate(fita);
+		validador.validateDadosInstitucionais(fita);
 	}
 
 	public void exportarArquivo() throws IOException {
@@ -50,6 +53,7 @@ public class GeneralController {
 		FileWriter arquivo = new FileWriter("file.txt");
 		PrintWriter escritor = new PrintWriter(arquivo);
 
+		// Recuperando servidores da lista de servidores.
 		List<Servidor> servidores = new ArrayList<>();
 		servidores = fita.getServidores();
 
@@ -66,9 +70,10 @@ public class GeneralController {
 		// Registrando dados pessoais dos servidores na segunda linha;
 		for (Servidor servidor : servidores) {
 			escritor.print(fita.getUniPagadora());
-			escritor.print(servidor.getSIAPE());
+			escritor.print(servidor.getSiape());
 			escritor.print(servidor.getDigitoSIAPE());
 			escritor.print("1");
+			escritor.print(fita.getUf());
 			escritor.print(servidor.getNome());
 			escritor.print(servidor.getCpf());
 			escritor.print(servidor.getPis());
@@ -78,6 +83,11 @@ public class GeneralController {
 			escritor.print(servidor.getEstadoCivil());
 			escritor.print(servidor.getEscolaridade());
 			escritor.print(servidor.getCodigoFormacao());
+			escritor.print(servidor.getFiller2());
+			escritor.print(servidor.getNacionalidade());
+			escritor.print(servidor.getSiglaNaturalidade());
+			escritor.print("000");
+			escritor.print(servidor.getFiller3());
 		}
 
 		arquivo.close();
@@ -89,46 +99,53 @@ public class GeneralController {
 		final String path = "/home/bzaum/servidores.txt";
 
 		FileReader file = new FileReader(path);
-		BufferedReader leitor = new BufferedReader(file);
+		try (BufferedReader leitor = new BufferedReader(file)) {
+			// Variável de leitura da linha.
+			String linha = leitor.readLine();
 
-		// Variável de leitura da linha.
-		String linha = leitor.readLine();
+			while (linha != null) {
 
-		while (linha != null) {
+				Servidor servidor = new Servidor();
 
-			Servidor servidor = new Servidor();
+				String vector[] = linha.split(";");
 
-			String vector[] = linha.split(";");
+				String siape = vector[0];
+				String digitoSIAPE = vector[1];
+				String nome = vector[2];
+				String cpf = vector[3];
+				String pis = vector[4];
+				String nomeMae = vector[5];
+				String sexo = vector[6];
+				String dataNascimento = vector[7];
+				String estadoCivil = vector[8];
+				String escolaridade = vector[9];
+				String codigoFormacao = vector[10];
+				String nacionalidade = vector[11];
+				String siglaNaturalidade = vector[12];
 
-			String siape = vector[0];
-			String digitoSIAPE = vector[1];
-			String nome = vector[2];
-			String cpf = vector[3];
-			String pis = vector[4];
-			String nomeMae = vector[5];
-			String sexo = vector[6];
-			String dataNascimento = vector[7];
-			String estadoCivil = vector[8];
-			String escolaridade = vector[9];
-			String codigoFormacao = vector[10];
+				// Armazenando atributos do servidor.
+				servidor.setSiape(siape);
+				servidor.setDigitoSIAPE(digitoSIAPE);
+				servidor.setNome(nome);
+				servidor.setCpf(cpf);
+				servidor.setPis(pis);
+				servidor.setNomeMae(nomeMae);
+				servidor.setSexo(sexo);
+				servidor.setDataNascimento(dataNascimento);
+				servidor.setEstadoCivil(estadoCivil);
+				servidor.setEscolaridade(escolaridade);
+				servidor.setCodigoFormacao(codigoFormacao);
+				servidor.setNacionalidade(nacionalidade);
+				servidor.setSiglaNaturalidade(siglaNaturalidade);
 
-			// Armazenando atributos do servidor.
-			servidor.setSIAPE(siape);
-			servidor.setDigitoSIAPE(digitoSIAPE);
-			servidor.setNome(nome);
-			servidor.setCpf(cpf);
-			servidor.setPIS(pis);
-			servidor.setNomeMae(nomeMae);
-			servidor.setSexo(sexo);
-			servidor.setDataNascimento(dataNascimento);
-			servidor.setEstadoCivil(estadoCivil);
-			servidor.setEscolaridade(escolaridade);
-			servidor.setCodigoFormacao(codigoFormacao);
+				// Adicionando servidor a lista de servidores.
+				fita.addServidores(servidor);
 
-			// Adicionando servidor a lista de servidores.
-			fita.addServidores(servidor);
+				// Valida e atualiza dados pessoais dos servidores.
+				validador.validateDadosPessoais(servidor);
 
-			linha = leitor.readLine();
+				linha = leitor.readLine();
+			}
 		}
 
 	}

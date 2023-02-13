@@ -8,7 +8,7 @@ public class FitaEspelho {
 	final String constante = "000000000000000000";
 	final String nome = "SIAPEFITAESP";
 	String filler1 = " ";
-	String codigo, sigla, mes, ano, uniPagadora;
+	String codigo, sigla, mes, ano, uniPagadora, uf;
 
 	List<Servidor> servidores = new ArrayList<>();
 
@@ -74,6 +74,14 @@ public class FitaEspelho {
 
 	public void addServidores(Servidor servidor) {
 		servidores.add(servidor);
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 }

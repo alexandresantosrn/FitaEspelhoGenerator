@@ -3,13 +3,16 @@ package model;
 public class Servidor {
 
 	String siape, digitoSIAPE, nome, cpf, pis, nomeMae, sexo, dataNascimento, estadoCivil, escolaridade, codigoFormacao,
-			filler2;
+			nacionalidade, siglaNaturalidade;
 
-	public String getSIAPE() {
+	String filler2 = " ";
+	String filler3 = "0";
+
+	public String getSiape() {
 		return siape;
 	}
 
-	public void setSIAPE(String siape) {
+	public void setSiape(String siape) {
 		this.siape = siape;
 	}
 
@@ -41,7 +44,7 @@ public class Servidor {
 		return pis;
 	}
 
-	public void setPIS(String pis) {
+	public void setPis(String pis) {
 		this.pis = pis;
 	}
 
@@ -99,6 +102,30 @@ public class Servidor {
 
 	public void setFiller2(String filler2) {
 		this.filler2 = filler2;
+	}
+
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
+
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
+
+	public String getSiglaNaturalidade() {
+		return siglaNaturalidade;
+	}
+
+	public void setSiglaNaturalidade(String siglaNaturalidade) {
+		this.siglaNaturalidade = siglaNaturalidade;
+	}
+
+	public String getFiller3() {
+		return filler3;
+	}
+
+	public void setFiller3(String filler3) {
+		this.filler3 = filler3;
 	}
 
 }
