@@ -4,11 +4,12 @@ public class Servidor {
 
 	String siape, digitoSIAPE, nome, cpf, pis, nomeMae, sexo, dataNascimento, estadoCivil, escolaridade, codigoFormacao,
 			nacionalidade, siglaNaturalidade, endereco, numero, complemento, bairro, municipio, cep, uf, rg,
-			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor, siglaRegime, situacaoServidor;
+			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor, siglaRegime, situacaoServidor, banco, agencia,
+			contaBancaria, jornada;
 
 	String filler2 = " ";
 	String filler3 = "0";
-	String filler4 = " ";	
+	String filler4 = " ";
 
 	public String getSiape() {
 		return siape;
@@ -248,6 +249,38 @@ public class Servidor {
 
 	public void setSituacaoServidor(String situacaoServidor) {
 		this.situacaoServidor = situacaoServidor;
+	}
+
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
+	}
+
+	public String getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
+	}
+
+	public String getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(String contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public String getJornada() {
+		return jornada;
+	}
+
+	public void setJornada(String jornada) {
+		this.jornada = jornada;
 	}
 
 }

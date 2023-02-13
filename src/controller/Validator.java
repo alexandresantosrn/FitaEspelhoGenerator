@@ -31,7 +31,7 @@ public class Validator {
 			fita.setFiller1(filler1);
 		}
 
-		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à esquerda).
 		while (fita.getUniPagadora().length() < 9) {
 			String zeros = "0";
 			String uniPagadora = zeros + fita.getUniPagadora();
@@ -131,7 +131,8 @@ public class Validator {
 			servidor.setRg(rg);
 		}
 
-		// Valida e atualiza tamanho do órgão expedidor do RG (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do órgão expedidor do RG (Adiciona espaços à
+		// direita).
 		while (servidor.getOrgaoExpedidor().length() < 5) {
 			String brancos = " ";
 			String orgaoExpedidor = servidor.getOrgaoExpedidor() + brancos;
@@ -153,6 +154,22 @@ public class Validator {
 			String filler4 = servidor.getFiller4() + brancos;
 
 			servidor.setFiller4(filler4);
+		}
+
+		// Valida e atualiza tamanho do Agência Bancária (Adiciona espaços à esquerda).
+		while (servidor.getAgencia().length() < 6) {
+			String zeros = "0";
+			String agencia = zeros + servidor.getAgencia();
+
+			servidor.setAgencia(agencia);
+		}
+
+		// Valida e atualiza tamanho da conta bancária (Adiciona espaços à esquerda).
+		while (servidor.getContaBancaria().length() < 13) {
+			String zeros = "0";
+			String contaBancaria = zeros + servidor.getContaBancaria();
+
+			servidor.setContaBancaria(contaBancaria);
 		}
 
 	}

@@ -8,7 +8,7 @@ public class MainController {
 
 	public void carregar() throws IOException {
 		controlador.informarDadosInstituicao();
-		controlador.carregarDadosPessoaisServidores();
+		controlador.carregarDadosServidores();
 		controlador.exportarArquivo();
 	}
 

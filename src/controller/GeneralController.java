@@ -86,7 +86,7 @@ public class GeneralController {
 			escritor.print(servidor.getFiller2());
 			escritor.print(servidor.getNacionalidade());
 			escritor.print(servidor.getSiglaNaturalidade());
-			escritor.print("000"); //Dados do país (Em geral vem com valor 0)
+			escritor.print("000"); // Dados do país (Em geral vem com valor 0)
 			escritor.print(servidor.getFiller3());
 			escritor.print(servidor.getEndereco());
 			escritor.print(servidor.getNumero());
@@ -102,7 +102,7 @@ public class GeneralController {
 			escritor.print(servidor.getTituloEleitor());
 			escritor.print(servidor.getFiller4());
 			escritor.print("\n");
-			
+
 			// Registro dos dados funcionais dos servidores (Linha 3).
 			escritor.print(fita.getUniPagadora());
 			escritor.print(servidor.getSiape());
@@ -111,16 +111,18 @@ public class GeneralController {
 			escritor.print(fita.getUf());
 			escritor.print(servidor.getSiglaRegime());
 			escritor.print(servidor.getSituacaoServidor());
-			escritor.print("000000"); //Carteira de trabalho
-			escritor.print("       "); //Dados complementares da carteira
-			
-			
+			escritor.print("000000"); // Carteira de trabalho
+			escritor.print("       "); // Dados complementares da carteira
+			escritor.print(servidor.getBanco());
+			escritor.print(servidor.getAgencia());
+			escritor.print(servidor.getContaBancaria());
+			escritor.print(servidor.getJornada());
 		}
 
 		arquivo.close();
 	}
 
-	public void carregarDadosPessoaisServidores() throws IOException {
+	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
 		final String path = "/home/bzaum/servidores.txt";
@@ -163,8 +165,12 @@ public class GeneralController {
 				String tituloEleitor = vector[24];
 				String siglaRegime = vector[25];
 				String situacaoServidor = vector[24];
+				String banco = vector[25];
+				String agencia = vector[26];
+				String contaBancaria = vector[27];
+				String jornada = vector[28];
 
-				// Armazenando atributos do servidor.
+				// Armazenando atributos pessoais do servidor.
 				servidor.setSiape(siape);
 				servidor.setDigitoSIAPE(digitoSIAPE);
 				servidor.setNome(nome);
@@ -190,8 +196,14 @@ public class GeneralController {
 				servidor.setDataExpedicao(dataExpedicao);
 				servidor.setUfIdentidade(ufIdentidade);
 				servidor.setTituloEleitor(tituloEleitor);
+
+				// Armazenando atributos funcionais do servidor.
 				servidor.setSiglaRegime(siglaRegime);
 				servidor.setSituacaoServidor(situacaoServidor);
+				servidor.setBanco(banco);
+				servidor.setAgencia(agencia);
+				servidor.setContaBancaria(contaBancaria);
+				servidor.setJornada(jornada);
 
 				// Adicionando servidor a lista de servidores.
 				fita.addServidores(servidor);
