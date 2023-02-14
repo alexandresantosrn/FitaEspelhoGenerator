@@ -116,7 +116,31 @@ public class GeneralController {
 			escritor.print(servidor.getBanco());
 			escritor.print(servidor.getAgencia());
 			escritor.print(servidor.getContaBancaria());
+			escritor.print("00000000000"); // Dados de FGTS
+			escritor.print("                   "); // Dados complementares do FGTS
 			escritor.print(servidor.getJornada());
+			escritor.print("00"); // Percentual de tempo de serviço
+			escritor.print(servidor.getDataCadastro());
+			escritor.print(" "); // Supressão de pagamento
+			escritor.print("0000000000000000"); // Dados de pagamento e proporcionalidade
+			escritor.print(servidor.getGrupoCargo());
+			escritor.print(servidor.getCargo());
+			escritor.print(servidor.getClasseCargo());
+			escritor.print(servidor.getNivelCargo());
+			escritor.print(servidor.getDataEntrada());
+			escritor.print(servidor.getDataSaida());
+			escritor.print("   "); // Sigla Função
+			escritor.print("00000"); // Código Função
+			escritor.print("   "); // Escolaridade Função
+			escritor.print("0000000000000000000000000"); // Dados complementares da função
+			escritor.print("   "); // Sigla Nova Função
+			escritor.print("00000"); // Código Nova Função
+			escritor.print("   "); // Escolaridade Nova Função
+			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
+			escritor.print(servidor.getUnidadeLotacao());
+			escritor.print(servidor.getDataIngressoUnidade());
+
+			escritor.print("\n");
 		}
 
 		arquivo.close();
@@ -164,11 +188,20 @@ public class GeneralController {
 				String ufIdentidade = vector[23];
 				String tituloEleitor = vector[24];
 				String siglaRegime = vector[25];
-				String situacaoServidor = vector[24];
-				String banco = vector[25];
-				String agencia = vector[26];
-				String contaBancaria = vector[27];
-				String jornada = vector[28];
+				String situacaoServidor = vector[26];
+				String banco = vector[27];
+				String agencia = vector[28];
+				String contaBancaria = vector[29];
+				String jornada = vector[30];
+				String dataCadastro = vector[31];
+				String grupoCargo = vector[32];
+				String cargo = vector[33];
+				String classeCargo = vector[34];
+				String nivelCargo = vector[35];
+				String dataEntrada = vector[36];
+				String dataSaida = vector[37];
+				String unidadeLotacao = vector[38];
+				String dataIngressoUnidade = vector[39];
 
 				// Armazenando atributos pessoais do servidor.
 				servidor.setSiape(siape);
@@ -204,6 +237,15 @@ public class GeneralController {
 				servidor.setAgencia(agencia);
 				servidor.setContaBancaria(contaBancaria);
 				servidor.setJornada(jornada);
+				servidor.setDataCadastro(dataCadastro);
+				servidor.setGrupoCargo(grupoCargo);
+				servidor.setCargo(cargo);
+				servidor.setClasseCargo(classeCargo);
+				servidor.setNivelCargo(nivelCargo);
+				servidor.setDataEntrada(dataEntrada);
+				servidor.setDataSaida(dataSaida);
+				servidor.setUnidadeLotacao(unidadeLotacao);
+				servidor.setDataIngressoUnidade(dataIngressoUnidade);
 
 				// Adicionando servidor a lista de servidores.
 				fita.addServidores(servidor);

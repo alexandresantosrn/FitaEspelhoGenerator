@@ -172,6 +172,32 @@ public class Validator {
 			servidor.setContaBancaria(contaBancaria);
 		}
 
+		// Valida e atualiza tamanho da conta bancária (Adiciona espaços à esquerda).
+		while (servidor.getContaBancaria().length() < 13) {
+			String zeros = "0";
+			String contaBancaria = zeros + servidor.getContaBancaria();
+
+			servidor.setContaBancaria(contaBancaria);
+		}
+
+		// Valida e atualiza data de desligamento do servidor (Adiciona zeros à
+		// esquerda).
+		while (servidor.getDataSaida().length() < 8) {
+			String zeros = "0";
+			String dataSaida = zeros + servidor.getDataSaida();
+
+			servidor.setDataSaida(dataSaida);
+		}
+
+		// Valida e atualiza unidade de lotação do servidor (Adiciona zeros à
+		// esquerda).
+		while (servidor.getUnidadeLotacao().length() < 9) {
+			String zeros = "0";
+			String unidadeLotacao = zeros + servidor.getUnidadeLotacao();
+
+			servidor.setUnidadeLotacao(unidadeLotacao);
+		}
+
 	}
 
 }

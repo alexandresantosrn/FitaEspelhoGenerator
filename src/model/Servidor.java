@@ -5,7 +5,8 @@ public class Servidor {
 	String siape, digitoSIAPE, nome, cpf, pis, nomeMae, sexo, dataNascimento, estadoCivil, escolaridade, codigoFormacao,
 			nacionalidade, siglaNaturalidade, endereco, numero, complemento, bairro, municipio, cep, uf, rg,
 			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor, siglaRegime, situacaoServidor, banco, agencia,
-			contaBancaria, jornada;
+			contaBancaria, jornada, dataCadastro, grupoCargo, cargo, classeCargo, nivelCargo, dataEntrada, dataSaida,
+			unidadeLotacao, dataIngressoUnidade;
 
 	String filler2 = " ";
 	String filler3 = "0";
@@ -281,6 +282,78 @@ public class Servidor {
 
 	public void setJornada(String jornada) {
 		this.jornada = jornada;
+	}
+
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public String getGrupoCargo() {
+		return grupoCargo;
+	}
+
+	public void setGrupoCargo(String grupoCargo) {
+		this.grupoCargo = grupoCargo;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getClasseCargo() {
+		return classeCargo;
+	}
+
+	public void setClasseCargo(String classeCargo) {
+		this.classeCargo = classeCargo;
+	}
+
+	public String getNivelCargo() {
+		return nivelCargo;
+	}
+
+	public void setNivelCargo(String nivelCargo) {
+		this.nivelCargo = nivelCargo;
+	}
+
+	public String getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(String dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+
+	public String getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(String dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
+	public String getUnidadeLotacao() {
+		return unidadeLotacao;
+	}
+
+	public void setUnidadeLotacao(String unidadeLotacao) {
+		this.unidadeLotacao = unidadeLotacao;
+	}
+
+	public String getDataIngressoUnidade() {
+		return dataIngressoUnidade;
+	}
+
+	public void setDataIngressoUnidade(String dataIngressoUnidade) {
+		this.dataIngressoUnidade = dataIngressoUnidade;
 	}
 
 }
