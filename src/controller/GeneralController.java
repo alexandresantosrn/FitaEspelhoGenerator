@@ -139,7 +139,7 @@ public class GeneralController {
 			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
 			escritor.print(servidor.getUnidadeLotacao());
 			escritor.print(servidor.getDataIngressoUnidade());
-
+			escritor.print("00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
 			escritor.print("\n");
 		}
 
