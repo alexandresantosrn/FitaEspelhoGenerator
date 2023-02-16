@@ -139,9 +139,14 @@ public class GeneralController {
 			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
 			escritor.print(servidor.getUnidadeLotacao());
 			escritor.print(servidor.getDataIngressoUnidade());
-			escritor.print("00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
+			escritor.print(
+					"00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
 			escritor.print("\n");
 		}
+
+		escritor.print("999999999999999999");
+		escritor.print("000000002"); // Quantidade de servidores
+		escritor.print(fita.getFillerFim());
 
 		arquivo.close();
 	}
@@ -202,6 +207,8 @@ public class GeneralController {
 				String dataSaida = vector[37];
 				String unidadeLotacao = vector[38];
 				String dataIngressoUnidade = vector[39];
+				String admissaoOrgao = vector[40];
+				String admissaoServicoPublico = vector[41];
 
 				// Armazenando atributos pessoais do servidor.
 				servidor.setSiape(siape);
@@ -246,6 +253,8 @@ public class GeneralController {
 				servidor.setDataSaida(dataSaida);
 				servidor.setUnidadeLotacao(unidadeLotacao);
 				servidor.setDataIngressoUnidade(dataIngressoUnidade);
+				servidor.setAdmissaoOrgao(admissaoOrgao);
+				servidor.setAdmissaoServicoPublico(admissaoServicoPublico);
 
 				// Adicionando servidor a lista de servidores.
 				fita.addServidores(servidor);

@@ -9,6 +9,7 @@ public class FitaEspelho {
 	final String nome = "SIAPEFITAESP";
 	String filler1 = " ";
 	String codigo, sigla, mes, ano, uniPagadora, uf;
+	String fillerFim = " ";
 
 	List<Servidor> servidores = new ArrayList<>();
 
@@ -82,6 +83,18 @@ public class FitaEspelho {
 
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+
+	public String getFillerFim() {
+		return fillerFim;
+	}
+
+	public void setFillerFim(String fillerFim) {
+		this.fillerFim = fillerFim;
+	}
+
+	public void setServidores(List<Servidor> servidores) {
+		this.servidores = servidores;
 	}
 
 }

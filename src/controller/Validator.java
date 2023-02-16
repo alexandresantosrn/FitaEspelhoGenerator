@@ -31,12 +31,20 @@ public class Validator {
 			fita.setFiller1(filler1);
 		}
 
-		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à esquerda).
+		// Valida e atualiza tamanho da unidade pagadora (Adiciona espaços à esquerda).
 		while (fita.getUniPagadora().length() < 9) {
 			String zeros = "0";
 			String uniPagadora = zeros + fita.getUniPagadora();
 
 			fita.setUniPagadora(uniPagadora);
+		}
+		
+		// Valida e atualiza tamanho do Filler final (Adiciona espaços à direita).
+		while (fita.getFillerFim().length() < 743) {
+			String brancos = " ";
+			String fillerFim = fita.getFillerFim() + brancos;
+
+			fita.setFillerFim(fillerFim);
 		}
 
 	}
@@ -76,7 +84,7 @@ public class Validator {
 		}
 
 		// Valida e atualiza tamanho do Filler3 (Adiciona zeros à direita).
-		while (servidor.getFiller3().length() < 25) {
+		while (servidor.getFiller3().length() < 24) {
 			String zeros = "0";
 			String filler3 = servidor.getFiller3() + zeros;
 
@@ -140,10 +148,10 @@ public class Validator {
 			servidor.setOrgaoExpedidor(orgaoExpedidor);
 		}
 
-		// Valida e atualiza tamanho do título do eleitor (Adiciona espaços à direita).
+		// Valida e atualiza tamanho do título do eleitor (Adiciona zeros à esquerda).
 		while (servidor.getTituloEleitor().length() < 13) {
-			String brancos = " ";
-			String tituloEleitor = servidor.getTituloEleitor() + brancos;
+			String zeros = "0";
+			String tituloEleitor = zeros + servidor.getTituloEleitor();
 
 			servidor.setTituloEleitor(tituloEleitor);
 		}

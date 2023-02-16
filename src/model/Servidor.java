@@ -6,11 +6,11 @@ public class Servidor {
 			nacionalidade, siglaNaturalidade, endereco, numero, complemento, bairro, municipio, cep, uf, rg,
 			orgaoExpedidor, dataExpedicao, ufIdentidade, tituloEleitor, siglaRegime, situacaoServidor, banco, agencia,
 			contaBancaria, jornada, dataCadastro, grupoCargo, cargo, classeCargo, nivelCargo, dataEntrada, dataSaida,
-			unidadeLotacao, dataIngressoUnidade;
+			unidadeLotacao, dataIngressoUnidade, admissaoOrgao, admissaoServicoPublico;
 
 	String filler2 = " ";
 	String filler3 = "0";
-	String filler4 = " ";
+	String filler4 = "00000";
 
 	public String getSiape() {
 		return siape;
@@ -354,6 +354,22 @@ public class Servidor {
 
 	public void setDataIngressoUnidade(String dataIngressoUnidade) {
 		this.dataIngressoUnidade = dataIngressoUnidade;
+	}
+
+	public String getAdmissaoOrgao() {
+		return admissaoOrgao;
+	}
+
+	public void setAdmissaoOrgao(String admissaoOrgao) {
+		this.admissaoOrgao = admissaoOrgao;
+	}
+
+	public String getAdmissaoServicoPublico() {
+		return admissaoServicoPublico;
+	}
+
+	public void setAdmissaoServicoPublico(String admissaoServicoPublico) {
+		this.admissaoServicoPublico = admissaoServicoPublico;
 	}
 
 }
