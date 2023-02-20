@@ -139,8 +139,15 @@ public class GeneralController {
 			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
 			escritor.print(servidor.getUnidadeLotacao());
 			escritor.print(servidor.getDataIngressoUnidade());
-			escritor.print(
-					"00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
+			//escritor.print(
+			//		"00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
+			escritor.print("0000000000000000000");
+			escritor.print(servidor.getAdmissaoOrgao());
+			escritor.print("00000");
+			escritor.print("      ");
+			escritor.print("0000000000000");
+			escritor.print(servidor.getAdmissaoServicoPublico());
+			escritor.print("000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
 			escritor.print("\n");
 		}
 
@@ -160,6 +167,8 @@ public class GeneralController {
 		try (BufferedReader leitor = new BufferedReader(file)) {
 			// Variável de leitura da linha.
 			String linha = leitor.readLine();
+			// Salta linha do cabeçalho.
+			//linha = leitor.readLine();
 
 			while (linha != null) {
 
