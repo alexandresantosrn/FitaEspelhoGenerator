@@ -57,13 +57,13 @@ public class GeneralController {
 		servidores = fita.getServidores();
 
 		// Registrando dados da instituição no arquivo.
-		escritor.print(fita.getConstante());
-		escritor.print(fita.getNome());
-		escritor.print(fita.getCodigo());
-		escritor.print(fita.getSigla());
-		escritor.print(fita.getMes());
-		escritor.print(fita.getAno());
-		escritor.print(fita.getFiller1());
+		escritor.print(fita.getConstante()); // Constantes com zeros.
+		escritor.print(fita.getNome()); // Nome: SIAPEFITAESP.
+		escritor.print(fita.getCodigo()); // Código da instituição
+		escritor.print(fita.getSigla()); // Sigla da instituição
+		escritor.print(fita.getMes()); // Mês de referência
+		escritor.print(fita.getAno()); // Ano de referência
+		escritor.print(fita.getFiller1()); // Filler do Header0.
 		escritor.print("\n");
 
 		// Registrando dados pessoais dos servidores nas próximas linhas
@@ -142,7 +142,7 @@ public class GeneralController {
 			//escritor.print(
 			//		"00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
 			escritor.print("0000000000000000000");
-			escritor.print(servidor.getAdmissaoOrgao());
+			escritor.print(servidor.getAdmissaoOrgao()); // Data de admissão no órgão.
 			escritor.print("00000");
 			escritor.print("      ");
 			escritor.print("0000000000000");
