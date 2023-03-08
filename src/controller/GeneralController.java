@@ -59,27 +59,27 @@ public class GeneralController {
 		// Registrando dados da instituição no arquivo.
 		escritor.print(fita.getConstante()); // Constantes com zeros.
 		escritor.print(fita.getNome()); // Nome: SIAPEFITAESP.
-		escritor.print(fita.getCodigo()); // Código da instituição
-		escritor.print(fita.getSigla()); // Sigla da instituição
-		escritor.print(fita.getMes()); // Mês de referência
-		escritor.print(fita.getAno()); // Ano de referência
+		escritor.print(fita.getCodigo()); // Código da instituição.
+		escritor.print(fita.getSigla()); // Sigla da instituição.
+		escritor.print(fita.getMes()); // Mês de referência.
+		escritor.print(fita.getAno()); // Ano de referência.
 		escritor.print(fita.getFiller1()); // Filler do Header0.
 		escritor.print("\n");
 
 		// Registrando dados pessoais dos servidores nas próximas linhas
 		for (Servidor servidor : servidores) {
 			// Registro dos dados pessoais dos servidores (Linha 2).
-			escritor.print(fita.getUniPagadora());
-			escritor.print(servidor.getSiape());
-			escritor.print(servidor.getDigitoSIAPE());
-			escritor.print("1");
-			escritor.print(fita.getUf());
-			escritor.print(servidor.getNome());
-			escritor.print(servidor.getCpf());
-			escritor.print(servidor.getPis());
-			escritor.print(servidor.getNomeMae());
-			escritor.print(servidor.getSexo());
-			escritor.print(servidor.getDataNascimento());
+			escritor.print(fita.getUniPagadora()); // Siapecad da unidade pagadora.
+			escritor.print(servidor.getSiape()); // Siape do servidor.
+			escritor.print(servidor.getDigitoSIAPE()); // Dígito Siape do servidor.
+			escritor.print("1"); // Código de registro 1.
+			escritor.print(fita.getUf()); 
+			escritor.print(servidor.getNome()); // Nome do servidor.
+			escritor.print(servidor.getCpf()); // Cpf do servidor.
+			escritor.print(servidor.getPis()); // Pis do servidor.
+			escritor.print(servidor.getNomeMae()); // Nome da mãe do servidor.
+			escritor.print(servidor.getSexo()); // Sexo do servidor.
+			escritor.print(servidor.getDataNascimento()); // Data de Nascimento do servidor.
 			escritor.print(servidor.getEstadoCivil());
 			escritor.print(servidor.getEscolaridade());
 			escritor.print(servidor.getCodigoFormacao());
