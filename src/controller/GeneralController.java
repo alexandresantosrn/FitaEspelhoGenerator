@@ -80,8 +80,8 @@ public class GeneralController {
 			escritor.print(servidor.getNomeMae()); // Nome da mãe do servidor.
 			escritor.print(servidor.getSexo()); // Sexo do servidor.
 			escritor.print(servidor.getDataNascimento()); // Data de Nascimento do servidor.
-			escritor.print(servidor.getEstadoCivil());
-			escritor.print(servidor.getEscolaridade());
+			escritor.print(servidor.getEstadoCivil()); // Código(DB) do estado civil do servidor.
+			escritor.print(servidor.getEscolaridade()); // Código(DB) da escolaridade do servidor.
 			escritor.print(servidor.getCodigoFormacao());
 			escritor.print(servidor.getFiller2());
 			escritor.print(servidor.getNacionalidade());
