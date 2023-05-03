@@ -82,14 +82,14 @@ public class GeneralController {
 			escritor.print(servidor.getDataNascimento()); // Data de Nascimento do servidor.
 			escritor.print(servidor.getEstadoCivil()); // Código(DB) do estado civil do servidor.
 			escritor.print(servidor.getEscolaridade()); // Código(DB) da escolaridade do servidor.
-			escritor.print(servidor.getCodigoFormacao());
+			escritor.print(servidor.getCodigoFormacao()); // Código(DB) da escolaridade do servidor.
 			escritor.print(servidor.getFiller2());
 			escritor.print(servidor.getNacionalidade());
 			escritor.print(servidor.getSiglaNaturalidade());
 			escritor.print("000"); // Dados do país (Em geral vem com valor 0)
-			escritor.print(servidor.getFiller3());
-			escritor.print(servidor.getEndereco());
-			escritor.print(servidor.getNumero());
+			escritor.print(servidor.getFiller3()); // Filler.
+			escritor.print(servidor.getEndereco()); // Endereço do servidor.
+			escritor.print(servidor.getNumero()); // Número da residência do servidor.
 			escritor.print(servidor.getComplemento());
 			escritor.print(servidor.getBairro());
 			escritor.print(servidor.getMunicipio());
@@ -161,7 +161,7 @@ public class GeneralController {
 	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
-		final String path = "/home/bzaum/servidores.txt";
+		final String path = "/home/bzaum/servidoresFIM.txt";
 
 		FileReader file = new FileReader(path);
 		try (BufferedReader leitor = new BufferedReader(file)) {
