@@ -47,117 +47,6 @@ public class GeneralController {
 		validador.validateDadosInstitucionais(fita);
 	}
 
-	public void exportarArquivo() throws IOException {
-
-		FileWriter arquivo = new FileWriter("file.txt");
-		PrintWriter escritor = new PrintWriter(arquivo);
-
-		// Recuperando servidores da lista de servidores.
-		List<Servidor> servidores = new ArrayList<>();
-		servidores = fita.getServidores();
-
-		// Registrando dados da instituição no arquivo.
-		escritor.print(fita.getConstante()); // Constantes com zeros.
-		escritor.print(fita.getNome()); // Nome: SIAPEFITAESP.
-		escritor.print(fita.getCodigo()); // Código da instituição.
-		escritor.print(fita.getSigla()); // Sigla da instituição.
-		escritor.print(fita.getMes()); // Mês de referência.
-		escritor.print(fita.getAno()); // Ano de referência.
-		escritor.print(fita.getFiller1()); // Filler do Header0.
-		escritor.print("\n");
-
-		// Registrando dados pessoais dos servidores nas próximas linhas
-		for (Servidor servidor : servidores) {
-			// Registro dos dados pessoais dos servidores (Linha 2).
-			escritor.print(fita.getUniPagadora()); // Siapecad da unidade pagadora.
-			escritor.print(servidor.getSiape()); // Siape do servidor.
-			escritor.print(servidor.getDigitoSIAPE()); // Dígito Siape do servidor.
-			escritor.print("1"); // Código de registro 1.
-			escritor.print(fita.getUf()); 
-			escritor.print(servidor.getNome()); // Nome do servidor.
-			escritor.print(servidor.getCpf()); // Cpf do servidor.
-			escritor.print(servidor.getPis()); // Pis do servidor.
-			escritor.print(servidor.getNomeMae()); // Nome da mãe do servidor.
-			escritor.print(servidor.getSexo()); // Sexo do servidor.
-			escritor.print(servidor.getDataNascimento()); // Data de Nascimento do servidor.
-			escritor.print(servidor.getEstadoCivil()); // Código(DB) do estado civil do servidor.
-			escritor.print(servidor.getEscolaridade()); // Código(DB) da escolaridade do servidor.
-			escritor.print(servidor.getCodigoFormacao()); // Código(DB) da escolaridade do servidor.
-			escritor.print(servidor.getFiller2());
-			escritor.print(servidor.getNacionalidade());
-			escritor.print(servidor.getSiglaNaturalidade());
-			escritor.print("000"); // Dados do país (Em geral vem com valor 0)
-			escritor.print(servidor.getFiller3()); // Filler.
-			escritor.print(servidor.getEndereco()); // Endereço do servidor.
-			escritor.print(servidor.getNumero()); // Número da residência do servidor.
-			escritor.print(servidor.getComplemento());
-			escritor.print(servidor.getBairro());
-			escritor.print(servidor.getMunicipio());
-			escritor.print(servidor.getCep());
-			escritor.print(servidor.getUf());
-			escritor.print(servidor.getRg());
-			escritor.print(servidor.getOrgaoExpedidor());
-			escritor.print(servidor.getDataExpedicao());
-			escritor.print(servidor.getUfIdentidade());
-			escritor.print(servidor.getTituloEleitor());
-			escritor.print(servidor.getFiller4());
-			escritor.print("\n");
-
-			// Registro dos dados funcionais dos servidores (Linha 3).
-			escritor.print(fita.getUniPagadora());
-			escritor.print(servidor.getSiape());
-			escritor.print(servidor.getDigitoSIAPE());
-			escritor.print("2");
-			escritor.print(fita.getUf());
-			escritor.print(servidor.getSiglaRegime());
-			escritor.print(servidor.getSituacaoServidor());
-			escritor.print("000000"); // Carteira de trabalho
-			escritor.print("       "); // Dados complementares da carteira
-			escritor.print(servidor.getBanco());
-			escritor.print(servidor.getAgencia());
-			escritor.print(servidor.getContaBancaria());
-			escritor.print("00000000000"); // Dados de FGTS
-			escritor.print("                   "); // Dados complementares do FGTS
-			escritor.print(servidor.getJornada());
-			escritor.print("00"); // Percentual de tempo de serviço
-			escritor.print(servidor.getDataCadastro());
-			escritor.print(" "); // Supressão de pagamento
-			escritor.print("0000000000000000"); // Dados de pagamento e proporcionalidade
-			escritor.print(servidor.getGrupoCargo());
-			escritor.print(servidor.getCargo());
-			escritor.print(servidor.getClasseCargo());
-			escritor.print(servidor.getNivelCargo());
-			escritor.print(servidor.getDataEntrada());
-			escritor.print(servidor.getDataSaida());
-			escritor.print("   "); // Sigla Função
-			escritor.print("00000"); // Código Função
-			escritor.print("   "); // Escolaridade Função
-			escritor.print("0000000000000000000000000"); // Dados complementares da função
-			escritor.print("   "); // Sigla Nova Função
-			escritor.print("00000"); // Código Nova Função
-			escritor.print("   "); // Escolaridade Nova Função
-			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
-			escritor.print(servidor.getUnidadeLotacao());
-			escritor.print(servidor.getDataIngressoUnidade());
-			//escritor.print(
-			//		"00000000000000000000000000000000      000000000000000000000000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
-			escritor.print("0000000000000000000");
-			escritor.print(servidor.getAdmissaoOrgao()); // Data de admissão no órgão.
-			escritor.print("00000");
-			escritor.print("      ");
-			escritor.print("0000000000000");
-			escritor.print(servidor.getAdmissaoServicoPublico());
-			escritor.print("000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
-			escritor.print("\n");
-		}
-
-		escritor.print("999999999999999999");
-		escritor.print("000000002"); // Quantidade de servidores
-		escritor.print(fita.getFillerFim());
-
-		arquivo.close();
-	}
-
 	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
@@ -168,7 +57,7 @@ public class GeneralController {
 			// Variável de leitura da linha.
 			String linha = leitor.readLine();
 			// Salta linha do cabeçalho.
-			//linha = leitor.readLine();
+			// linha = leitor.readLine();
 
 			while (linha != null) {
 
@@ -275,6 +164,123 @@ public class GeneralController {
 			}
 		}
 
+	}
+
+	public void exportarArquivo() throws IOException {
+
+		FileWriter arquivo = new FileWriter("file.txt");
+		PrintWriter escritor = new PrintWriter(arquivo);
+
+		// Recuperando servidores da lista de servidores.
+		List<Servidor> servidores = new ArrayList<>();
+		servidores = fita.getServidores();
+
+		// Registrando dados da instituição no arquivo.
+		escritor.print(fita.getConstante()); // Constantes com zeros.
+		escritor.print(fita.getNome()); // Nome: SIAPEFITAESP.
+		escritor.print(fita.getCodigo()); // Código da instituição.
+		escritor.print(fita.getSigla()); // Sigla da instituição.
+		escritor.print(fita.getMes()); // Mês de referência.
+		escritor.print(fita.getAno()); // Ano de referência.
+		escritor.print(fita.getFiller1()); // Filler do Header0.
+		escritor.print("\n");
+
+		// Registrando dados pessoais dos servidores nas próximas linhas
+		for (Servidor servidor : servidores) {
+			// Registro dos dados pessoais dos servidores (Linha 2).
+			escritor.print(fita.getUniPagadora()); // Siapecad da unidade pagadora.
+			escritor.print(servidor.getSiape()); // Siape do servidor.
+			escritor.print(servidor.getDigitoSIAPE()); // Dígito Siape do servidor.
+			escritor.print("1"); // Código de registro 1.
+			escritor.print(fita.getUf());
+			escritor.print(servidor.getNome()); // Nome do servidor.
+			escritor.print(servidor.getCpf()); // Cpf do servidor.
+			escritor.print(servidor.getPis()); // Pis do servidor.
+			escritor.print(servidor.getNomeMae()); // Nome da mãe do servidor.
+			escritor.print(servidor.getSexo()); // Sexo do servidor.
+			escritor.print(servidor.getDataNascimento()); // Data de Nascimento do servidor.
+			escritor.print(servidor.getEstadoCivil()); // Código(DB) do estado civil do servidor.
+			escritor.print(servidor.getEscolaridade()); // Código(DB) da escolaridade do servidor.
+			escritor.print(servidor.getCodigoFormacao()); // Código(DB) da escolaridade do servidor.
+			escritor.print(servidor.getFiller2());
+			escritor.print(servidor.getNacionalidade());
+			escritor.print(servidor.getSiglaNaturalidade());
+			escritor.print("000"); // Dados do país (Em geral vem com valor 0)
+			escritor.print(servidor.getFiller3()); // Filler.
+			escritor.print(servidor.getEndereco()); // Endereço do servidor.
+			escritor.print(servidor.getNumero()); // Número da residência do servidor.
+			escritor.print(servidor.getComplemento());
+			escritor.print(servidor.getBairro());
+			escritor.print(servidor.getMunicipio());
+			escritor.print(servidor.getCep());
+			escritor.print(servidor.getUf());
+			escritor.print(servidor.getRg());
+			escritor.print(servidor.getOrgaoExpedidor());
+			escritor.print(servidor.getDataExpedicao());
+			escritor.print(servidor.getUfIdentidade());
+			escritor.print(servidor.getTituloEleitor());
+			escritor.print(servidor.getFiller4());
+			escritor.print("\n");
+
+			// Registro dos dados funcionais dos servidores (Linha 3).
+			escritor.print(fita.getUniPagadora());
+			escritor.print(servidor.getSiape());
+			escritor.print(servidor.getDigitoSIAPE());
+			escritor.print("2");
+			escritor.print(fita.getUf());
+			escritor.print(servidor.getSiglaRegime());
+			escritor.print(servidor.getSituacaoServidor());
+			escritor.print("000000"); // Carteira de trabalho
+			escritor.print("       "); // Dados complementares da carteira
+			escritor.print(servidor.getBanco());
+			escritor.print(servidor.getAgencia());
+			escritor.print(servidor.getContaBancaria());
+			escritor.print("00000000000"); // Dados de FGTS
+			escritor.print("                   "); // Dados complementares do FGTS
+			escritor.print(servidor.getJornada());
+			escritor.print("00"); // Percentual de tempo de serviço
+			escritor.print(servidor.getDataCadastro());
+			escritor.print(" "); // Supressão de pagamento
+			escritor.print("0000000000000000"); // Dados de pagamento e proporcionalidade
+			escritor.print(servidor.getGrupoCargo());
+			escritor.print(servidor.getCargo());
+			escritor.print(servidor.getClasseCargo());
+			escritor.print(servidor.getNivelCargo());
+			escritor.print(servidor.getDataEntrada());
+			escritor.print(servidor.getDataSaida());
+			escritor.print("   "); // Sigla Função
+			escritor.print("00000"); // Código Função
+			escritor.print("   "); // Escolaridade Função
+			escritor.print("0000000000000000000000000"); // Dados complementares da função
+			escritor.print("   "); // Sigla Nova Função
+			escritor.print("00000"); // Código Nova Função
+			escritor.print("   "); // Escolaridade Nova Função
+			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
+			escritor.print(servidor.getUnidadeLotacao());
+			escritor.print(servidor.getDataIngressoUnidade());
+			// escritor.print(
+			// "00000000000000000000000000000000 000000000000000000000000000
+			// 00000000000000000000000 00000000 000000000000000 00000000 0000
+			// 000000000000000000000000 00000000
+			// 0000000000000000000000000000000000000000000000000000000000000000000000000 0
+			// 00000000000000000 00000000000000000000000000000000000000000000000000000000000
+			// 00000000000000000000000 SSSSSSSSSSSSSSSSSSSSS");
+			escritor.print("0000000000000000000");
+			escritor.print(servidor.getAdmissaoOrgao()); // Data de admissão no órgão.
+			escritor.print("00000");
+			escritor.print("      ");
+			escritor.print("0000000000000");
+			escritor.print(servidor.getAdmissaoServicoPublico());
+			escritor.print(
+					"000000     00000000000000000000000         00000000                                        000000000000000         00000000               0000 000000000000000000000000         00000000   0000000000000000000000000000000000000000000000000000000000000000000000000 0                                                                        00000000000000000 00000000000000000000000000000000000000000000000000000000000         00000000000000000000000         SSSSSSSSSSSSSSSSSSSSS");
+			escritor.print("\n");
+		}
+
+		escritor.print("999999999999999999");
+		escritor.print("000000002"); // Quantidade de servidores
+		escritor.print(fita.getFillerFim());
+
+		arquivo.close();
 	}
 
 }

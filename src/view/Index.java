@@ -17,9 +17,9 @@ public class Index {
 				System.out.println("Informe a opção desejada: ");
 				System.out.println("1 - Importar arquivo");
 				System.out.println("0 - Sair");
-				System.out.print("Opção: ");
+				System.out.print("Opção: ");				
 				option = input.nextInt();
-
+				
 				switch (option) {
 
 				case 1: {
