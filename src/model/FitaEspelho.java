@@ -10,6 +10,7 @@ public class FitaEspelho {
 	String filler1 = " ";
 	String codigo, sigla, mes, ano, uniPagadora, uf;
 	String fillerFim = " ";
+	String qtdServidores;
 
 	List<Servidor> servidores = new ArrayList<>();
 
@@ -95,6 +96,14 @@ public class FitaEspelho {
 
 	public void setServidores(List<Servidor> servidores) {
 		this.servidores = servidores;
+	}
+
+	public String getQtdServidores() {
+		return qtdServidores;
+	}
+
+	public void setQtdServidores(String codigo2) {
+		this.qtdServidores = codigo2;
 	}
 
 }

@@ -16,7 +16,8 @@ public class GeneralController {
 
 	FitaEspelho fita = new FitaEspelho();
 	Validator validador = new Validator();
-
+	int qtdServidores;
+	
 	public void informarDadosInstituicao() {
 
 		String codigo, sigla, mes, ano, uniPagadora, uf;
@@ -50,7 +51,7 @@ public class GeneralController {
 	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
-		final String path = "/home/bzaum/servidoresFIM.txt";
+		final String path = "/home/bzaum/servidores.txt";
 
 		FileReader file = new FileReader(path);
 		try (BufferedReader leitor = new BufferedReader(file)) {
@@ -159,7 +160,11 @@ public class GeneralController {
 
 				// Valida e atualiza dados pessoais dos servidores.
 				validador.validateDadosPessoais(servidor);
-
+				
+				qtdServidores ++;
+				fita.setQtdServidores(Integer.toString(qtdServidores));	
+				validador.validateQtdServidores(fita);
+				
 				linha = leitor.readLine();
 			}
 		}
@@ -277,7 +282,8 @@ public class GeneralController {
 		}
 
 		escritor.print("999999999999999999");
-		escritor.print("000000002"); // Quantidade de servidores
+		//escritor.print("000000002"); // Quantidade de servidores
+		escritor.print(fita.getQtdServidores()); // Quantidade de servidores
 		escritor.print(fita.getFillerFim());
 
 		arquivo.close();

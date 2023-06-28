@@ -38,7 +38,7 @@ public class Validator {
 
 			fita.setUniPagadora(uniPagadora);
 		}
-		
+
 		// Valida e atualiza tamanho do Filler final (Adiciona espaços à direita).
 		while (fita.getFillerFim().length() < 743) {
 			String brancos = " ";
@@ -204,6 +204,18 @@ public class Validator {
 			String unidadeLotacao = zeros + servidor.getUnidadeLotacao();
 
 			servidor.setUnidadeLotacao(unidadeLotacao);
+		}
+
+	}
+
+	public void validateQtdServidores(FitaEspelho fita) {
+
+		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).
+		while (fita.getQtdServidores().length() < 9) {
+			String zeros = "0";
+			String codigo = zeros + fita.getQtdServidores();
+
+			fita.setQtdServidores(codigo);
 		}
 
 	}
