@@ -23,7 +23,7 @@ public class GeneralController {
 		String codigo, sigla, mes, ano, uniPagadora, uf;
 
 		try (Scanner input = new Scanner(System.in)) {
-			System.out.print("Informe o código da instuição: ");
+			System.out.print("Informe o código da instituição: ");
 			codigo = input.next();
 			System.out.print("Informe a sigla da instituição: ");
 			sigla = input.next();
@@ -51,7 +51,8 @@ public class GeneralController {
 	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
-		final String path = "/home/bzaum/servidores.txt";
+		//final String path = "/home/bzaum/servidores.txt";
+		final String path = "C:/temp/servidores.txt";
 
 		FileReader file = new FileReader(path);
 		try (BufferedReader leitor = new BufferedReader(file)) {
@@ -206,10 +207,10 @@ public class GeneralController {
 			escritor.print(servidor.getDataNascimento()); // Data de Nascimento do servidor.
 			escritor.print(servidor.getEstadoCivil()); // Código(DB) do estado civil do servidor.
 			escritor.print(servidor.getEscolaridade()); // Código(DB) da escolaridade do servidor.
-			escritor.print(servidor.getCodigoFormacao()); // Código(DB) da escolaridade do servidor.
+			escritor.print(servidor.getCodigoFormacao()); // Código(DB) da formação do servidor.
 			escritor.print(servidor.getFiller2());
-			escritor.print(servidor.getNacionalidade());
-			escritor.print(servidor.getSiglaNaturalidade());
+			escritor.print(servidor.getNacionalidade()); //Valor padrão: 1.
+			escritor.print(servidor.getSiglaNaturalidade()); //Ex: RN
 			escritor.print("000"); // Dados do país (Em geral vem com valor 0)
 			escritor.print(servidor.getFiller3()); // Filler.
 			escritor.print(servidor.getEndereco()); // Endereço do servidor.
