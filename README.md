@@ -46,7 +46,7 @@ O arquivo: servidores.txt deverá ter as seguintes informações dos servidores,
 - Nível Cargo; (Valor alfanumérico - 3 dígitos - Deixar em branco, caso não exista)
 - Data de Entrada do servidor no cargo; (Data/formato: 01012000)
 - Data de Saída do servidor no cargo; (Data/formato: 01012000 - Obs: Deixar com valor 0, caso não exista.) 
-- Unidade de Lotação do servidor; (Codigo SIAPECAD da unidade de lotação do servidor. Deve existir este código na tabela de unidades: select siapecad from comum.unidade)	
+- Unidade de Lotação do servidor; (Codigo SIAPECAD da unidade de lotação do servidor. Deve existir este código na tabela de unidades: select codigo_siapecad from comum.unidade)	
 - Data de ingresso na unidade; (Data/formato: 01012000)
 - Data de admissão no órgão; (Data/formato: 01012000)
 - Data de admissão no serviço público; (Data/formato: 01012000) 
