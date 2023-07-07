@@ -263,7 +263,7 @@ public class GeneralController {
 			escritor.print("   "); // Escolaridade Nova Função
 			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
 			escritor.print(servidor.getUnidadeLotacao());
-			escritor.print(servidor.getDataIngressoUnidade());
+			escritor.print(servidor.getDataIngressoUnidade()); // Data de ingresso do servidor na unidade
 			// escritor.print(
 			// "00000000000000000000000000000000 000000000000000000000000000
 			// 00000000000000000000000 00000000 000000000000000 00000000 0000
