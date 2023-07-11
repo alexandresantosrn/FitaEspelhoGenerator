@@ -105,5 +105,10 @@ public class FitaEspelho {
 	public void setQtdServidores(String codigo2) {
 		this.qtdServidores = codigo2;
 	}
+	
+	public void printCabecalho() {
+		System.out.println("\nCabeçalho Fita Espelho \nCódigo : " + codigo + ", Sigla : " + sigla +", Mês : "+ mes 
+				+ ", Ano : " + ano + ", UniPagadora : " + uniPagadora + ", UF : " + uf + "\n");		
+	}
 
 }

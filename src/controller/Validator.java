@@ -2,50 +2,98 @@ package controller;
 
 import model.FitaEspelho;
 import model.Servidor;
+import model.TamanhoCampos;
+import view.Mensagens;
 
 public class Validator {
 
-	public void validateDadosInstitucionais(FitaEspelho fita) {
+	public void validateDadosInstitucionais(FitaEspelho fita) throws Exception {
+
+		
+		
+		String temp = "";
+		int tamanhoFinalString = 0;
+		String caractereCompletar = "";
+		boolean retirarEspacos = false;
 
 		// Valida e atualiza tamanho do c√≥digo (Adiciona zeros √† esquerda).
-		while (fita.getCodigo().length() < 5) {
-			String zeros = "0";
-			String codigo = zeros + fita.getCodigo();
+		temp = fita.getCodigo();
+		tamanhoFinalString = TamanhoCampos.CODIGO;
+		caractereCompletar = "0";
+		retirarEspacos = true;
 
-			fita.setCodigo(codigo);
+		if (temp.length() <= tamanhoFinalString) {
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			fita.setCodigo(temp);
+		} else {
+			Mensagens.errosValidacao.add("CÛdigo da instituiÁ„o com " + temp.length() + " caracteres (" + temp + ")"
+					+ ". Deveria ter no m·ximo " + tamanhoFinalString + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho da Sigla (Adiciona espa√ßos √† direita).
-		while (fita.getSigla().length() < 10) {
-			String brancos = " ";
-			String sigla = fita.getSigla() + brancos;
+		temp = fita.getSigla();
+		tamanhoFinalString = TamanhoCampos.SIGLA;
+		caractereCompletar = " ";
+		retirarEspacos = true;
 
-			fita.setSigla(sigla);
+		if (temp.length() <= tamanhoFinalString) {
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			fita.setSigla(temp);
+		} else {
+			Mensagens.errosValidacao.add("CÛdigo da instituiÁ„o com " + temp.length() + " caracteres (" + temp + ")"
+					+ ". Deveria ter no m·ximo " + tamanhoFinalString + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho do Filler1 (Adiciona espa√ßos √† direita).
-		while (fita.getFiller1().length() < 719) {
-			String brancos = " ";
-			String filler1 = fita.getFiller1() + brancos;
+		temp = fita.getFiller1();
+		tamanhoFinalString = TamanhoCampos.FILLER1;
+		caractereCompletar = " ";
+		retirarEspacos = false;
 
-			fita.setFiller1(filler1);
+		if (temp.length() <= tamanhoFinalString) {
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			fita.setFiller1(temp);
+		} else {
+			Mensagens.errosValidacao.add("CÛdigo da instituiÁ„o com " + temp.length() + " caracteres (" + temp + ")"
+					+ ". Deveria ter no m·ximo " + tamanhoFinalString + " caracteres.");
 		}
 
-		// Valida e atualiza tamanho da unidade pagadora (Adiciona espa√ßos √† esquerda).
-		while (fita.getUniPagadora().length() < 9) {
-			String zeros = "0";
-			String uniPagadora = zeros + fita.getUniPagadora();
+		// Valida e atualiza tamanho da unidade pagadora (Adiciona espa√ßos √†
+		// esquerda).
+		temp = fita.getUniPagadora();
+		tamanhoFinalString = TamanhoCampos.UNIDADE_PAGADORA;
+		caractereCompletar = "0";
+		retirarEspacos = true;
 
-			fita.setUniPagadora(uniPagadora);
+		if (temp.length() <= tamanhoFinalString) {
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			fita.setUniPagadora(temp);
+		} else {
+			Mensagens.errosValidacao.add("CÛdigo da instituiÁ„o com " + temp.length() + " caracteres (" + temp + ")"
+					+ ". Deveria ter no m·ximo " + tamanhoFinalString + " caracteres.");
 		}
+	
 
 		// Valida e atualiza tamanho do Filler final (Adiciona espa√ßos √† direita).
-		while (fita.getFillerFim().length() < 743) {
-			String brancos = " ";
-			String fillerFim = fita.getFillerFim() + brancos;
+		temp = fita.getFillerFim();
+		tamanhoFinalString = TamanhoCampos.FILLER_FIM;
+		caractereCompletar = " ";
+		retirarEspacos = true;
 
-			fita.setFillerFim(fillerFim);
+		if (temp.length() <= tamanhoFinalString) {
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			fita.setFillerFim(temp);
+		} else {
+			Mensagens.errosValidacao.add("CÛdigo da instituiÁ„o com " + temp.length() + " caracteres (" + temp + ")"
+					+ ". Deveria ter no m·ximo " + tamanhoFinalString + " caracteres.");
 		}
+		
+		/*
+		 * if (Mensagens.errosValidacao.isEmpty()) {
+		 * System.out.println("\nTodos os Campos formatados com sucesso!"); } else {
+		 * String msg = "ERROS: \n \n"; for (String string : Mensagens.errosValidacao) {
+		 * msg += string + "\n"; } throw new Exception(msg); }
+		 */
 
 	}
 
@@ -164,7 +212,8 @@ public class Validator {
 			servidor.setFiller4(filler4);
 		}
 
-		// Valida e atualiza tamanho do Ag√™ncia Banc√°ria (Adiciona espa√ßos √† esquerda).
+		// Valida e atualiza tamanho do Ag√™ncia Banc√°ria (Adiciona espa√ßos √†
+		// esquerda).
 		while (servidor.getAgencia().length() < 6) {
 			String zeros = "0";
 			String agencia = zeros + servidor.getAgencia();
@@ -172,13 +221,6 @@ public class Validator {
 			servidor.setAgencia(agencia);
 		}
 
-		// Valida e atualiza tamanho da conta banc√°ria (Adiciona espa√ßos √† esquerda).
-		while (servidor.getContaBancaria().length() < 13) {
-			String zeros = "0";
-			String contaBancaria = zeros + servidor.getContaBancaria();
-
-			servidor.setContaBancaria(contaBancaria);
-		}
 
 		// Valida e atualiza tamanho da conta banc√°ria (Adiciona espa√ßos √† esquerda).
 		while (servidor.getContaBancaria().length() < 13) {
@@ -218,6 +260,30 @@ public class Validator {
 			fita.setQtdServidores(codigo);
 		}
 
+	}
+
+	public static String completarCaracteresEsquerda(String originalString, int tamanhoFinalString, String caractere,
+			boolean tirarEspaÁos) {
+
+		String temp = "";
+		if (tirarEspaÁos) {
+			temp = originalString.trim().replaceAll("\\s+", "");
+		} else {
+			temp = originalString.trim();
+		}
+
+		if (temp.length() >= tamanhoFinalString) {
+			return temp;
+		}
+
+		StringBuilder paddedString = new StringBuilder();
+		int quantCaracteresAdicionar = tamanhoFinalString - temp.length();
+		for (int i = 0; i < quantCaracteresAdicionar; i++) {
+			paddedString.append(caractere);
+		}
+		paddedString.append(temp);
+
+		return paddedString.toString();
 	}
 
 }

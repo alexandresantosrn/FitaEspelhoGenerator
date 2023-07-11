@@ -6,10 +6,10 @@ public class MainController {
 
 	GeneralController controlador = new GeneralController();
 
-	public void carregar() throws IOException {
-		controlador.informarDadosInstituicao();
-		controlador.carregarDadosServidores();
-		controlador.exportarArquivo();
+	public void carregar() throws IOException, Exception {		
+			controlador.informarDadosInstituicao();
+			controlador.carregarDadosServidores();
+			controlador.exportarArquivo();
 	}
 
 }
