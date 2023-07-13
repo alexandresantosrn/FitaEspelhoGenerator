@@ -11,6 +11,15 @@ public class Servidor {
 	String filler2 = " ";
 	String filler3 = "0";
 	String filler4 = "00000";
+	int linhaArquivo = 0;
+	
+	public int getLinhaArquivo() {
+		return linhaArquivo;
+	}
+
+	public void setLinhaArquivo(int linhaArquivo) {
+		this.linhaArquivo = linhaArquivo;
+	}
 
 	public String getSiape() {
 		return siape;

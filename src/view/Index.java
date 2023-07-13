@@ -19,14 +19,24 @@ public class Index {
 				ClearConsole();
 				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGAA #### \n ");
 				
+				if(!Mensagens.errosValidacao.isEmpty()) {
+					System.out.println("-- -- --- ERROS DE VALIDAÇÃO --- -- --");
+					for (String string : Mensagens.errosValidacao) {
+						System.out.println(string);
+					}
+					System.out.println("-- -- --- ERROS DE VALIDAÇÃO --- -- --\n\n");
+				}
+				
 				if(!Mensagens.msg.isEmpty()) {
 					System.out.println("-- -- --- MENSAGENS --- -- --");
 					for (String string : Mensagens.msg) {
 						System.out.println(string);
 					}
-					System.out.println("-- -- --- MENSAGENS --- -- --");
+					System.out.println("-- -- --- MENSAGENS --- -- --\n");
 				}
 				
+				Mensagens.errosValidacao.clear();
+				Mensagens.msg.clear();
 				
 				System.out.println("\tInforme a opção desejada: ");
 				System.out.println("\t\t1 - Importar arquivo");
@@ -36,7 +46,7 @@ public class Index {
 
 				switch (option) {
 				case 1: {
-					System.out.println("\nApresentando informações...");
+					System.out.println("\nApresentando informações...\n");
 					controlador.carregar();
 					break;
 				}
