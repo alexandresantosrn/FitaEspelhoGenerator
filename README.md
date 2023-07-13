@@ -20,7 +20,6 @@ O arquivo: servidores.txt deverá ter as seguintes informações dos servidores,
 - Formação Acadêmica; (Valor numérico de 2 dígitos extraído da tabela: rh.formacao - Coluna: id_formacao)
 - Nacionalidade; (Valor padrão numérico = 1)
 - Sigla Naturalidade; (Ex: RN)
-- País; (Valor padrão: 000)
 - Endereço; (Valor alfanumérico)
 - Número; (Valor alfanumérico)
 - Complemento do endereço; (Valor alfanumérico - Obs: Deixar vazio, caso não exista.)
