@@ -1,5 +1,7 @@
 /bin/
-arquivos_fitas_espelho_geradas/*
-!arquivos_fitas_espelho_geradas/file.txt
-arquivo_servidores/*
-!arquivo_servidores/servidores.txt
+_Executavel/arquivos_fitas_espelho_geradas/*
+/arquivos_fitas_espelho_geradas/
+!_Executavel/arquivos_fitas_espelho_geradas/file.txt
+_Executavel/arquivo_servidores/*
+/arquivo_servidores/
+!_Executavel/arquivo_servidores/servidores.txt
