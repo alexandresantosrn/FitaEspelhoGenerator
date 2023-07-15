@@ -112,7 +112,8 @@ public class GeneralController {
 
 			if (opcao == 1) {
 				System.out.println("\nDigite o caminho da localização do arquivo:");
-				path = input.next();
+				ConfiguracaoUtil.oigemArquivoServidores = input.next();
+				path = ConfiguracaoUtil.oigemArquivoServidores;
 			}
 
 			FileReader file = new FileReader(path);
