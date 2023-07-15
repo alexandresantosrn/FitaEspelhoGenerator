@@ -9,8 +9,7 @@ public class TamanhoCampos {
 	public final static int ANO = 4;
 	public final static int FILLER1 = 719;
 	public final static int UNIDADE_PAGADORA = 9;
-	public final static int FILLER_FIM = 743;
-	
+	public final static int FILLER_FIM = 743;	
 	/* SERVIDOR */
 	public final static int SIAPE = 7;
 	public final static int NOME = 60;

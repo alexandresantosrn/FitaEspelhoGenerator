@@ -2,7 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import view.Mensagens;
+import Util.MensagensUtil;
 
 public class MainController {
 
@@ -11,7 +11,7 @@ public class MainController {
 	public void carregar() throws IOException, Exception {
 		controlador.informarDadosInstituicao();
 		controlador.carregarDadosServidores();
-		if (Mensagens.errosValidacao.isEmpty()) {
+		if (MensagensUtil.errosValidacao.isEmpty()) {
 			controlador.exportarArquivo();
 		}
 	}
