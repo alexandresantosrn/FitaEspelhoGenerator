@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import java.util.Scanner;
 
+import Util.MensagensUtil;
 import controller.MainController;
 
 public class Index {
@@ -19,24 +20,24 @@ public class Index {
 				ClearConsole();
 				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGAA #### \n ");
 				
-				if(!Mensagens.errosValidacao.isEmpty()) {
+				if(!MensagensUtil.errosValidacao.isEmpty()) {
 					System.out.println("-- -- --- ERROS DE VALIDAÇÃO --- -- --");
-					for (String string : Mensagens.errosValidacao) {
+					for (String string : MensagensUtil.errosValidacao) {
 						System.out.println(string);
 					}
 					System.out.println("-- -- --- ERROS DE VALIDAÇÃO --- -- --\n\n");
 				}
 				
-				if(!Mensagens.msg.isEmpty()) {
+				if(!MensagensUtil.msg.isEmpty()) {
 					System.out.println("-- -- --- MENSAGENS --- -- --");
-					for (String string : Mensagens.msg) {
+					for (String string : MensagensUtil.msg) {
 						System.out.println(string);
 					}
 					System.out.println("-- -- --- MENSAGENS --- -- --\n");
 				}
 				
-				Mensagens.errosValidacao.clear();
-				Mensagens.msg.clear();
+				MensagensUtil.errosValidacao.clear();
+				MensagensUtil.msg.clear();
 				
 				System.out.println("\tInforme a opção desejada: ");
 				System.out.println("\t\t1 - Importar arquivo");

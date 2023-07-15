@@ -1,9 +1,9 @@
 package controller;
 
+import Util.MensagensUtil;
 import model.FitaEspelho;
 import model.Servidor;
 import model.TamanhoCampos;
-import view.Mensagens;
 
 public class Validator {
 	String temp = "";
@@ -23,7 +23,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setCodigo(temp);
 		} else {
-			Mensagens.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -37,7 +37,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setSigla(temp);
 		} else {
-			Mensagens.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -53,11 +53,11 @@ public class Validator {
 				temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 				fita.setMes(temp);
 			} else {
-				Mensagens.errosValidacao.add("Mês inválido (" + temp + ")");
+				MensagensUtil.errosValidacao.add("Mês inválido (" + temp + ")");
 			}
 
 		} else {
-			Mensagens.errosValidacao.add("Mês com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Mês com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -68,10 +68,10 @@ public class Validator {
 		retirarEspacos = true;
 
 		if (temp.length() == tamanhoFinalString) {
-			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setAno(temp);
 		} else {
-			Mensagens.errosValidacao.add("Ano com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Ano com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter exatamente " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -85,7 +85,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setFiller1(temp);
 		} else {
-			Mensagens.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -100,7 +100,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setUniPagadora(temp);
 		} else {
-			Mensagens.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -114,7 +114,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setFillerFim(temp);
 		} else {
-			Mensagens.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Código da instituição com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -139,7 +139,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setSiape(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Matricula SIAPE com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Matricula SIAPE com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -154,7 +154,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setNome(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Nome do servidor com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Nome do servidor com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -169,7 +169,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setNomeMae(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Nome da mãe com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Nome da mãe com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -183,7 +183,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setFiller2(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Filler2 com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Filler2 com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -197,7 +197,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setFiller3(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Filler3 com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Filler3 com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -211,7 +211,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setEndereco(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Endereço com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Endereço com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -226,7 +226,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setNumero(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Número do endereço com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Número do endereço com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -241,7 +241,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setComplemento(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Complemento no endereço com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Complemento no endereço com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -256,7 +256,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setBairro(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Bairro com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Bairro com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -270,7 +270,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setMunicipio(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Município com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Município com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -285,7 +285,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setRg(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Número RG com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Número RG com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -300,7 +300,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setOrgaoExpedidor(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Órgão expedidor do RG com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Órgão expedidor do RG com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -315,7 +315,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setTituloEleitor(temp);
 		} else {
-			Mensagens.errosValidacao.add(
+			MensagensUtil.errosValidacao.add(
 					"Linha " + servidor.getLinhaArquivo() + " ->  Título eleitor com " + temp.length() + " caracteres ("
 							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
@@ -330,7 +330,7 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setFiller4(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Filler4 com " + temp.length()
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Filler4 com " + temp.length()
 					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
@@ -344,7 +344,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setAgencia(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Código da instituição com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Código da instituição com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -359,7 +359,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setContaBancaria(temp);
 		} else {
-			Mensagens.errosValidacao.add(
+			MensagensUtil.errosValidacao.add(
 					"Linha " + servidor.getLinhaArquivo() + " ->  Conta bancária com " + temp.length() + " caracteres ("
 							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
@@ -375,7 +375,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setDataSaida(temp);
 		} else {
-			Mensagens.errosValidacao.add(
+			MensagensUtil.errosValidacao.add(
 					"Linha " + servidor.getLinhaArquivo() + " ->  Data de saída com " + temp.length() + " caracteres ("
 							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
@@ -391,7 +391,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setUnidadeLotacao(temp);
 		} else {
-			Mensagens.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  CUnidade de lotação com "
+			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  CUnidade de lotação com "
 					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
 					+ " caracteres.");
 		}
@@ -410,7 +410,7 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setQtdServidores(temp);
 		} else {
-			Mensagens.errosValidacao.add("Quantidade de servidores com " + temp.length() + " caracteres (" + temp + ")"
+			MensagensUtil.errosValidacao.add("Quantidade de servidores com " + temp.length() + " caracteres (" + temp + ")"
 					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 

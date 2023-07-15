@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import Util.ConfiguracaoUtil;
+import Util.MensagensUtil;
 import model.FitaEspelho;
 import model.Servidor;
-import view.Mensagens;
 
 public class GeneralController {
 
@@ -89,9 +90,16 @@ public class GeneralController {
 	}
 
 	public void carregarDadosServidores() throws IOException, Exception {
-
+		qtdServidores = 0;		
+		
+		String path = "";
+		
+		if(ConfiguracaoUtil.oigemArquivoServidores.isBlank() || ConfiguracaoUtil.oigemArquivoServidores.isEmpty() ) {
+			ConfiguracaoUtil.oigemArquivoServidores = new File(".").getCanonicalPath() + "\\arquivo_servidores\\servidores.txt";
+		}
+		
 		// Caminho de localização do arquivo de servidores.
-		String path = new File(".").getCanonicalPath() + "\\arquivo_servidores\\servidores.txt";
+		path = ConfiguracaoUtil.oigemArquivoServidores;
 		int opcao = 0;
 
 		try {
@@ -233,7 +241,10 @@ public class GeneralController {
 	public void exportarArquivo() throws Exception {
 		try {
 			LocalDateTime data = LocalDateTime.now();
-			String pastaArquivosFitasEspelho = new File(".").getCanonicalPath() + "\\arquivos_fitas_espelho_geradas";
+			if(ConfiguracaoUtil.pastaArquivoFitaEspelho.isBlank() || ConfiguracaoUtil.pastaArquivoFitaEspelho.isEmpty()) {
+				ConfiguracaoUtil.pastaArquivoFitaEspelho = new File(".").getCanonicalPath() + "\\arquivos_fitas_espelho_geradas";
+			}
+			String pastaArquivosFitasEspelho = ConfiguracaoUtil.pastaArquivoFitaEspelho; 
 			String nomeArquivoFitaEspelho = "fita_espelho_" + data.format(DateTimeFormatter.ofPattern("uuuuMMddHHmmss"))+ ".txt";
 			String caminhoArquivoFitaEspelho = pastaArquivosFitasEspelho + "\\" + nomeArquivoFitaEspelho;
 
@@ -358,7 +369,7 @@ public class GeneralController {
 			escritor.close();
 			arquivo.close();
 
-			Mensagens.msg.add("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + caminhoArquivoFitaEspelho);
+			MensagensUtil.msg.add("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + caminhoArquivoFitaEspelho);
 
 			String anim = "|/-\\";
 			System.out.println("\n");
