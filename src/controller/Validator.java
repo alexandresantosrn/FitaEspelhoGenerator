@@ -421,9 +421,9 @@ public class Validator {
 
 		String temp = "";
 		if (tirarEspaços) {
-			temp = originalString.trim().replaceAll("\\s+", "");
+			temp = originalString.trim().replaceAll("\\s+", ""); // retira todos os espaço da string
 		} else {
-			temp = originalString.trim();
+			temp = originalString.trim(); // tira os espaços do inicio e fim da string
 		}
 
 		if (temp.length() >= tamanhoFinalString) {
@@ -445,9 +445,9 @@ public class Validator {
 
 		String temp = "";
 		if (tirarEspaços) {
-			temp = originalString.trim().replaceAll("\\s+", "");
+			temp = originalString.trim().replaceAll("\\s+", ""); // retira todos os espaço da string
 		} else {
-			temp = originalString.trim();
+			temp = originalString.trim(); // tira os espaços do inicio e fim da string
 		}
 
 		if (temp.length() == tamanhoFinalString) {
