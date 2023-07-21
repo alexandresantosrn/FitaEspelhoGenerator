@@ -40,14 +40,20 @@ public class Index {
 				MensagensUtil.msg.clear();
 				
 				System.out.println("\tInforme a opção desejada: ");
-				System.out.println("\t\t1 - Importar arquivo");
+				System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
+				System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
 				System.out.println("\t\t0 - Sair");
 				System.out.print("\tOpção: ");
 				option = input.nextInt();
 
 				switch (option) {
 				case 1: {
-					System.out.println("\nApresentando informações...\n");
+					System.out.println("\n #######  FITA ESPELHO SERVIDORES #######\n");
+					controlador.carregar();
+					break;
+				}
+				case 2: {
+					System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
 					controlador.carregar();
 					break;
 				}

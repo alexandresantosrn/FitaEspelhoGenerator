@@ -2,7 +2,8 @@ package model;
 
 public class TamanhoCampos {
 	
-	/* CABEÇALHO */
+	/* FITA ESPELHO SERVIDORES */
+		/* CABEÇALHO */
 	public final static int CODIGO = 5;
 	public final static int SIGLA = 10;
 	public final static int MES = 2;
@@ -10,7 +11,7 @@ public class TamanhoCampos {
 	public final static int FILLER1 = 719;
 	public final static int UNIDADE_PAGADORA = 9;
 	public final static int FILLER_FIM = 743;	
-	/* SERVIDOR */
+		/* SERVIDOR */
 	public final static int SIAPE = 7;
 	public final static int NOME = 60;
 	public final static int NOME_MAE = 50;	
@@ -29,7 +30,16 @@ public class TamanhoCampos {
 	public final static int CONTA_BANCARIA = 13;
 	public final static int DATA_SAIDA = 8;
 	public final static int UNIDADE_LOTACAO = 9;
+		/* RODAPÉ */
 	public final static int QUANTIDADE_SERVIDORES = 9;
 	
+	/* FITA ESPELHO UNIDADES */
+	public final static int ID_UNIDADE = 14;
+	public final static int NOME_UNIDADE = 40;
+	public final static int SIGLA_UNIDADE = 10;
+	public final static int UF_UNIDADE = 2;
+	public final static int ID_UNIDADE_PAGADORA = 14;
+	public final static int UNIDADE_GESTORA = 6;
+	public final static int UNIDADE_ANTECEDENTE = 90;
 	
 }

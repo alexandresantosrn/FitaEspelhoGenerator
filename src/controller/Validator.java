@@ -4,6 +4,7 @@ import Util.MensagensUtil;
 import model.FitaEspelho;
 import model.Servidor;
 import model.TamanhoCampos;
+import model.Unidade;
 
 public class Validator {
 	String temp = "";
@@ -169,8 +170,9 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setNomeMae(temp);
 		} else {
-			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Nome da mãe com " + temp.length()
-					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
+			MensagensUtil.errosValidacao.add(
+					"Linha " + servidor.getLinhaArquivo() + " ->  Nome da mãe com " + temp.length() + " caracteres ("
+							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho do Filler2 (Adiciona espaÃ§os Ã  direita).
@@ -211,8 +213,9 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setEndereco(temp);
 		} else {
-			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Endereço com " + temp.length()
-					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
+			MensagensUtil.errosValidacao
+					.add("Linha " + servidor.getLinhaArquivo() + " ->  Endereço com " + temp.length() + " caracteres ("
+							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho do nÃºmero (Adiciona espaÃ§os Ã  direita) ou a
@@ -270,8 +273,9 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setMunicipio(temp);
 		} else {
-			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Município com " + temp.length()
-					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
+			MensagensUtil.errosValidacao
+					.add("Linha " + servidor.getLinhaArquivo() + " ->  Município com " + temp.length() + " caracteres ("
+							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho do RG (Adiciona espaÃ§os Ã  direita) ou a
@@ -285,8 +289,9 @@ public class Validator {
 			temp = completarCaracteresDireita(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			servidor.setRg(temp);
 		} else {
-			MensagensUtil.errosValidacao.add("Linha " + servidor.getLinhaArquivo() + " ->  Número RG com " + temp.length()
-					+ " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
+			MensagensUtil.errosValidacao
+					.add("Linha " + servidor.getLinhaArquivo() + " ->  Número RG com " + temp.length() + " caracteres ("
+							+ temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho do Ã³rgÃ£o expedidor do RG (Adiciona espaÃ§os Ã 
@@ -410,10 +415,28 @@ public class Validator {
 			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
 			fita.setQtdServidores(temp);
 		} else {
-			MensagensUtil.errosValidacao.add("Quantidade de servidores com " + temp.length() + " caracteres (" + temp + ")"
-					+ ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
+			MensagensUtil.errosValidacao.add("Quantidade de servidores com " + temp.length() + " caracteres (" + temp
+					+ ")" + ". Deveria ter no máximo " + tamanhoFinalString + " caracteres.");
 		}
 
+	}
+
+	public void validateDadosUnidades(Unidade unidade) {
+//		idUnidade, nome, sigla, uf, idUnidadePagadora, unidadeGestora, unidadeAntecedente;
+		// Valida e atualiza id da unidade (Adiciona zeros Ã  esquerda).
+		temp = unidade.getIdUnidade();
+		tamanhoFinalString = TamanhoCampos.ID_UNIDADE;
+		caractereCompletar = "0";
+		retirarEspacos = true;
+
+		if (temp.length() <= tamanhoFinalString) {
+			temp = completarCaracteresEsquerda(temp, tamanhoFinalString, caractereCompletar, retirarEspacos);
+			unidade.setIdUnidade(temp);
+		} else {
+			MensagensUtil.errosValidacao.add("Linha " + unidade.getLinhaArquivo() + " ->  Id da UNIDADE com "
+					+ temp.length() + " caracteres (" + temp + ")" + ". Deveria ter no máximo " + tamanhoFinalString
+					+ " caracteres.");
+		}
 	}
 
 	public static String completarCaracteresEsquerda(String originalString, int tamanhoFinalString, String caractere,

@@ -16,14 +16,17 @@ import java.util.Scanner;
 import Util.ConfiguracaoUtil;
 import Util.MensagensUtil;
 import model.FitaEspelho;
+import model.FitaEspelhoUnidade;
 import model.Servidor;
+import model.Unidade;
 
 public class GeneralController {
 
 	FitaEspelho fita = new FitaEspelho();
+	FitaEspelhoUnidade fitaEspelhoUnidade =  new FitaEspelhoUnidade();
 	Validator validador = new Validator();
 	Scanner input = new Scanner(System.in);
-	int qtdServidores;
+	int quantidadeLinhas;
 
 	public void informarDadosInstituicao() throws Exception {
 		
@@ -90,7 +93,7 @@ public class GeneralController {
 	}
 
 	public void carregarDadosServidores() throws IOException, Exception {
-		qtdServidores = 0;		
+		quantidadeLinhas = 0;		
 		
 		String path = "";
 		
@@ -218,14 +221,14 @@ public class GeneralController {
 					servidor.setAdmissaoServicoPublico(admissaoServicoPublico);
 
 					// Adicionando servidor a lista de servidores.
-					qtdServidores++;
-					servidor.setLinhaArquivo(qtdServidores);
+					quantidadeLinhas++;
+					servidor.setLinhaArquivo(quantidadeLinhas);
 					fita.addServidores(servidor);
 
 					// Valida e atualiza dados pessoais dos servidores.
 					validador.validateDadosPessoais(servidor);
 
-					fita.setQtdServidores(Integer.toString(qtdServidores));
+					fita.setQtdServidores(Integer.toString(quantidadeLinhas));
 					validador.validateQtdServidores(fita);
 
 					linha = leitor.readLine();
@@ -386,6 +389,79 @@ public class GeneralController {
 			throw new Exception(e.getMessage());
 		}
 
+	}
+
+	public void carregarDadosUnidades() throws IOException, Exception {
+		quantidadeLinhas = 0;		
+		
+		String path = "";
+		
+		if(ConfiguracaoUtil.oigemArquivoUnidades.isBlank() || ConfiguracaoUtil.oigemArquivoUnidades.isEmpty() ) {
+			ConfiguracaoUtil.oigemArquivoUnidades = new File(".").getCanonicalPath() + "\\arquivo_servidores\\unidades.txt";
+		}
+		
+		// Caminho de localizaÃ§Ã£o do arquivo de servidores.
+		path = ConfiguracaoUtil.oigemArquivoUnidades;
+		int opcao = 0;
+
+		try {
+			System.out.println("\nAlterar caminho de localização do arquivo de UNIDADES?  ");
+			System.out.println("\tLocal atual: " + path);
+			System.out.println("\t\t1 - Sim");
+			System.out.println("\t\t0 - Não");
+			System.out.print("\t\tOpção: ");
+			opcao = input.nextInt();
+
+			if (opcao == 1) {
+				System.out.println("\nDigite o caminho da localização do arquivo:");
+				ConfiguracaoUtil.oigemArquivoUnidades = input.next();
+				path = ConfiguracaoUtil.oigemArquivoUnidades;
+			}
+
+			FileReader file = new FileReader(path);
+			try {
+				BufferedReader leitor = new BufferedReader(file);
+				// VariÃ¡vel de leitura da linha.
+				String linha = leitor.readLine();
+
+				while (linha != null) {
+
+					Unidade unidade = new Unidade();
+
+					String vector[] = linha.split(";");
+
+					unidade.setIdUnidade(vector[0]);
+					unidade.setNome(vector[1]);
+					unidade.setSigla(vector[2]);
+					unidade.setUf(vector[3]);
+					unidade.setIdUnidadePagadora(vector[4]);
+					unidade.setUnidadeGestora(vector[5]);
+					unidade.setIdUnidade(vector[6]);
+					
+				
+					
+					
+
+					// Adicionando unidade a lista de unidades.
+					quantidadeLinhas++;
+					unidade.setLinhaArquivo(quantidadeLinhas);
+					fitaEspelhoUnidade.addUnidade(unidade);
+
+					// Valida e atualiza dados das unidades.
+					validador.validateDadosUnidades(unidade);
+
+					fita.setQtdServidores(Integer.toString(quantidadeLinhas));
+					validador.validateQtdServidores(fita);
+
+					linha = leitor.readLine();
+				}
+				leitor.close();
+			} catch (Exception e) {
+				throw new Exception("ERRO4 " + e.getMessage());
+			}
+		} catch (Exception e) {
+			throw new Exception("ERRO3 " + e.getMessage());
+		}
 	}
 
 }
