@@ -10,8 +10,8 @@ public class FitaEspelhoUnidade {
 		return unidades;
 	}
 
-	public void addUnidade(Unidade unidades) {
-		this.unidades.add(unidades);
+	public void addUnidade(Unidade unidade) {
+		this.unidades.add(unidade);
 	}
 	
 	

@@ -8,11 +8,18 @@ public class MainController {
 
 	GeneralController controlador = new GeneralController();
 
-	public void carregar() throws IOException, Exception {
+	public void carregarServidores() throws IOException, Exception {
 		controlador.informarDadosInstituicao();
 		controlador.carregarDadosServidores();
 		if (MensagensUtil.errosValidacao.isEmpty()) {
-			controlador.exportarArquivo();
+			controlador.exportarArquivoServidores();
+		}
+	}
+	
+	public void carregarUnidades() throws IOException, Exception {
+		controlador.carregarDadosUnidades();;
+		if (MensagensUtil.errosValidacao.isEmpty()) {
+			controlador.exportarArquivoUnidades();
 		}
 	}
 

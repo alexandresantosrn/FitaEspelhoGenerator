@@ -15,14 +15,14 @@ import java.util.Scanner;
 
 import Util.ConfiguracaoUtil;
 import Util.MensagensUtil;
-import model.FitaEspelho;
+import model.FitaEspelhoServidore;
 import model.FitaEspelhoUnidade;
 import model.Servidor;
 import model.Unidade;
 
 public class GeneralController {
 
-	FitaEspelho fita = new FitaEspelho();
+	FitaEspelhoServidore fitaEspelhoServidore = new FitaEspelhoServidore();
 	FitaEspelhoUnidade fitaEspelhoUnidade =  new FitaEspelhoUnidade();
 	Validator validador = new Validator();
 	Scanner input = new Scanner(System.in);
@@ -39,18 +39,18 @@ public class GeneralController {
 		String temp = "";
 
 		try {
-			System.out.println("\tPRESSIONE ENTER PARA ACEITAR O VALOR PADRÃO \n");
-			System.out.print("\tInforme o código da instituição ("+ codigo +"): ");
+			System.out.println("\tPRESSIONE ENTER PARA ACEITAR O VALOR PADRï¿½O \n");
+			System.out.print("\tInforme o cï¿½digo da instituiï¿½ï¿½o ("+ codigo +"): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				codigo = temp;
 			}
-			System.out.print("\tInforme a sigla da instituição ("+ sigla +"): ");
+			System.out.print("\tInforme a sigla da instituiï¿½ï¿½o ("+ sigla +"): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				sigla = temp;
 			}
-			System.out.print("\tInforme o mês desejado ("+ mes +"): ");
+			System.out.print("\tInforme o mï¿½s desejado ("+ mes +"): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				mes = temp;
@@ -60,7 +60,7 @@ public class GeneralController {
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				ano = temp;
 			}
-			System.out.print("\tInforme o código SIAPECAD da unidade pagadora ("+ uniPagadora +"): ");
+			System.out.print("\tInforme o cï¿½digo SIAPECAD da unidade pagadora ("+ uniPagadora +"): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				uniPagadora = temp;
@@ -71,34 +71,35 @@ public class GeneralController {
 				uf = temp;
 			}
 
-			fita.setCodigo(codigo);
-			fita.setSigla(sigla.toUpperCase());
-			fita.setMes(mes);
-			fita.setAno(ano);
-			fita.setUniPagadora(uniPagadora);
-			fita.setUf(uf.toUpperCase());
+			fitaEspelhoServidore.setCodigo(codigo);
+			fitaEspelhoServidore.setSigla(sigla.toUpperCase());
+			fitaEspelhoServidore.setMes(mes);
+			fitaEspelhoServidore.setAno(ano);
+			fitaEspelhoServidore.setUniPagadora(uniPagadora);
+			fitaEspelhoServidore.setUf(uf.toUpperCase());
 
-			fita.printCabecalho();
+			fitaEspelhoServidore.printCabecalho();
 		} catch (Exception e) {
 			throw new Exception("\nERRO2: " + e.getMessage());
 		}
 
 		// Valida e atualiza algumas informaÃ§Ãµes da fita.
 		try {
-			validador.validateDadosInstitucionais(fita);
+			validador.validateDadosInstitucionais(fitaEspelhoServidore);
 		} catch (Exception e) {
 			throw new Exception("\nERRO3: " + e.getMessage());
 
 		}
 	}
 
+	/* #### SEVIDORES #### */
 	public void carregarDadosServidores() throws IOException, Exception {
 		quantidadeLinhas = 0;		
 		
 		String path = "";
 		
 		if(ConfiguracaoUtil.oigemArquivoServidores.isBlank() || ConfiguracaoUtil.oigemArquivoServidores.isEmpty() ) {
-			ConfiguracaoUtil.oigemArquivoServidores = new File(".").getCanonicalPath() + "\\arquivo_servidores\\servidores.txt";
+			ConfiguracaoUtil.oigemArquivoServidores = new File(".").getCanonicalPath() + "\\arquivo_origem\\servidores.txt";
 		}
 		
 		// Caminho de localizaÃ§Ã£o do arquivo de servidores.
@@ -106,15 +107,15 @@ public class GeneralController {
 		int opcao = 0;
 
 		try {
-			System.out.println("\nAlterar caminho de localização do arquivo de servidores?  ");
+			System.out.println("\nAlterar caminho de localizaï¿½ï¿½o do arquivo de servidores?  ");
 			System.out.println("\tLocal atual: " + path);
 			System.out.println("\t\t1 - Sim");
-			System.out.println("\t\t0 - Não");
-			System.out.print("\t\tOpção: ");
+			System.out.println("\t\t0 - Nao");
+			System.out.print("\t\tOpcao: ");
 			opcao = input.nextInt();
 
 			if (opcao == 1) {
-				System.out.println("\nDigite o caminho da localização do arquivo:");
+				System.out.println("\nDigite o caminho da localizacao do arquivo:");
 				ConfiguracaoUtil.oigemArquivoServidores = input.next();
 				path = ConfiguracaoUtil.oigemArquivoServidores;
 			}
@@ -223,33 +224,33 @@ public class GeneralController {
 					// Adicionando servidor a lista de servidores.
 					quantidadeLinhas++;
 					servidor.setLinhaArquivo(quantidadeLinhas);
-					fita.addServidores(servidor);
+					fitaEspelhoServidore.addServidores(servidor);
 
 					// Valida e atualiza dados pessoais dos servidores.
 					validador.validateDadosPessoais(servidor);
 
-					fita.setQtdServidores(Integer.toString(quantidadeLinhas));
-					validador.validateQtdServidores(fita);
+					fitaEspelhoServidore.setQtdServidores(Integer.toString(quantidadeLinhas));
+					validador.validateQtdServidores(fitaEspelhoServidore);
 
 					linha = leitor.readLine();
 				}
 				leitor.close();
 			} catch (Exception e) {
-				throw new Exception("ERRO4 " + e.getMessage());
+				throw new Exception("ERRO7 " + e.getMessage());
 			}
 		} catch (Exception e) {
-			throw new Exception("ERRO3 " + e.getMessage());
+			throw new Exception("ERRO6 " + e.getMessage());
 		}
 	}
 
-	public void exportarArquivo() throws Exception {
+	public void exportarArquivoServidores() throws Exception {
 		try {
 			LocalDateTime data = LocalDateTime.now();
 			if(ConfiguracaoUtil.pastaArquivoFitaEspelho.isBlank() || ConfiguracaoUtil.pastaArquivoFitaEspelho.isEmpty()) {
 				ConfiguracaoUtil.pastaArquivoFitaEspelho = new File(".").getCanonicalPath() + "\\arquivos_fitas_espelho_geradas";
 			}
 			String pastaArquivosFitasEspelho = ConfiguracaoUtil.pastaArquivoFitaEspelho; 
-			String nomeArquivoFitaEspelho = "fita_espelho_" + data.format(DateTimeFormatter.ofPattern("uuuuMMddHHmmss"))+ ".txt";
+			String nomeArquivoFitaEspelho = "fita_espelho_servidores_" + data.format(DateTimeFormatter.ofPattern("uuuuMMddHHmmss"))+ ".txt";
 			String caminhoArquivoFitaEspelho = pastaArquivosFitasEspelho + "\\" + nomeArquivoFitaEspelho;
 
 			File file = new File(pastaArquivosFitasEspelho);
@@ -262,26 +263,26 @@ public class GeneralController {
 
 			// Recuperando servidores da lista de servidores.
 			List<Servidor> servidores = new ArrayList<>();
-			servidores = fita.getServidores();
+			servidores = fitaEspelhoServidore.getServidores();
 
 			// Registrando dados da instituiÃ§Ã£o no arquivo.
-			escritor.print(fita.getConstante()); // Constantes com zeros.
-			escritor.print(fita.getNome()); // Nome: SIAPEFITAESP.
-			escritor.print(fita.getCodigo()); // CÃ³digo da instituiÃ§Ã£o.
-			escritor.print(fita.getSigla()); // Sigla da instituiÃ§Ã£o.
-			escritor.print(fita.getMes()); // MÃªs de referÃªncia.
-			escritor.print(fita.getAno()); // Ano de referÃªncia.
-			escritor.print(fita.getFiller1()); // Filler do Header0.
+			escritor.print(fitaEspelhoServidore.getConstante()); // Constantes com zeros.
+			escritor.print(fitaEspelhoServidore.getNome()); // Nome: SIAPEFITAESP.
+			escritor.print(fitaEspelhoServidore.getCodigo()); // CÃ³digo da instituiÃ§Ã£o.
+			escritor.print(fitaEspelhoServidore.getSigla()); // Sigla da instituiÃ§Ã£o.
+			escritor.print(fitaEspelhoServidore.getMes()); // MÃªs de referÃªncia.
+			escritor.print(fitaEspelhoServidore.getAno()); // Ano de referÃªncia.
+			escritor.print(fitaEspelhoServidore.getFiller1()); // Filler do Header0.
 			escritor.print("\n");
 
 			// Registrando dados pessoais dos servidores nas prÃ³ximas linhas
 			for (Servidor servidor : servidores) {
 				// Registro dos dados pessoais dos servidores (Linha 2).
-				escritor.print(fita.getUniPagadora()); // Siapecad da unidade pagadora.
+				escritor.print(fitaEspelhoServidore.getUniPagadora()); // Siapecad da unidade pagadora.
 				escritor.print(servidor.getSiape()); // Siape do servidor.
 				escritor.print(servidor.getDigitoSIAPE()); // DÃ­gito Siape do servidor.
 				escritor.print("1"); // CÃ³digo de registro 1.
-				escritor.print(fita.getUf());
+				escritor.print(fitaEspelhoServidore.getUf());
 				escritor.print(servidor.getNome()); // Nome do servidor.
 				escritor.print(servidor.getCpf()); // Cpf do servidor.
 				escritor.print(servidor.getPis()); // Pis do servidor.
@@ -312,11 +313,11 @@ public class GeneralController {
 				escritor.print("\n");
 
 				// Registro dos dados funcionais dos servidores (Linha 3).
-				escritor.print(fita.getUniPagadora());
+				escritor.print(fitaEspelhoServidore.getUniPagadora());
 				escritor.print(servidor.getSiape());
 				escritor.print(servidor.getDigitoSIAPE());
 				escritor.print("2");
-				escritor.print(fita.getUf());
+				escritor.print(fitaEspelhoServidore.getUf());
 				escritor.print(servidor.getSiglaRegime());
 				escritor.print(servidor.getSituacaoServidor());
 				escritor.print("000000"); // Carteira de trabalho
@@ -367,8 +368,8 @@ public class GeneralController {
 
 			escritor.print("999999999999999999");
 			// escritor.print("000000002"); // Quantidade de servidores
-			escritor.print(fita.getQtdServidores()); // Quantidade de servidores
-			escritor.print(fita.getFillerFim());
+			escritor.print(fitaEspelhoServidore.getQtdServidores()); // Quantidade de servidores
+			escritor.print(fitaEspelhoServidore.getFillerFim());
 
 			escritor.close();
 			arquivo.close();
@@ -391,13 +392,15 @@ public class GeneralController {
 
 	}
 
+	
+	/* #### UNIDADES #### */
 	public void carregarDadosUnidades() throws IOException, Exception {
 		quantidadeLinhas = 0;		
 		
 		String path = "";
 		
 		if(ConfiguracaoUtil.oigemArquivoUnidades.isBlank() || ConfiguracaoUtil.oigemArquivoUnidades.isEmpty() ) {
-			ConfiguracaoUtil.oigemArquivoUnidades = new File(".").getCanonicalPath() + "\\arquivo_servidores\\unidades.txt";
+			ConfiguracaoUtil.oigemArquivoUnidades = new File(".").getCanonicalPath() + "\\arquivo_origem\\unidades.txt";
 		}
 		
 		// Caminho de localizaÃ§Ã£o do arquivo de servidores.
@@ -405,15 +408,15 @@ public class GeneralController {
 		int opcao = 0;
 
 		try {
-			System.out.println("\nAlterar caminho de localização do arquivo de UNIDADES?  ");
+			System.out.println("\nAlterar caminho de localizacao do arquivo de UNIDADES?  ");
 			System.out.println("\tLocal atual: " + path);
 			System.out.println("\t\t1 - Sim");
-			System.out.println("\t\t0 - Não");
-			System.out.print("\t\tOpção: ");
+			System.out.println("\t\t0 - NÃ£o");
+			System.out.print("\t\tOpcao: ");
 			opcao = input.nextInt();
 
 			if (opcao == 1) {
-				System.out.println("\nDigite o caminho da localização do arquivo:");
+				System.out.println("\nDigite o caminho da localizacao do arquivo:");
 				ConfiguracaoUtil.oigemArquivoUnidades = input.next();
 				path = ConfiguracaoUtil.oigemArquivoUnidades;
 			}
@@ -425,33 +428,28 @@ public class GeneralController {
 				String linha = leitor.readLine();
 
 				while (linha != null) {
-
+					
 					Unidade unidade = new Unidade();
 
 					String vector[] = linha.split(";");
-
 					unidade.setIdUnidade(vector[0]);
 					unidade.setNome(vector[1]);
 					unidade.setSigla(vector[2]);
 					unidade.setUf(vector[3]);
 					unidade.setIdUnidadePagadora(vector[4]);
 					unidade.setUnidadeGestora(vector[5]);
-					unidade.setIdUnidade(vector[6]);
+					unidade.setUnidadeAntecedente(vector[6]);											
 					
-				
-					
-					
-
 					// Adicionando unidade a lista de unidades.
 					quantidadeLinhas++;
 					unidade.setLinhaArquivo(quantidadeLinhas);
 					fitaEspelhoUnidade.addUnidade(unidade);
-
+					
 					// Valida e atualiza dados das unidades.
 					validador.validateDadosUnidades(unidade);
-
-					fita.setQtdServidores(Integer.toString(quantidadeLinhas));
-					validador.validateQtdServidores(fita);
+					
+					fitaEspelhoServidore.setQtdServidores(Integer.toString(quantidadeLinhas));
+					validador.validateQtdServidores(fitaEspelhoServidore);
 
 					linha = leitor.readLine();
 				}
@@ -463,5 +461,60 @@ public class GeneralController {
 			throw new Exception("ERRO3 " + e.getMessage());
 		}
 	}
+
+	public void exportarArquivoUnidades() throws Exception {
+		try {
+			LocalDateTime data = LocalDateTime.now();
+			if(ConfiguracaoUtil.pastaArquivoFitaEspelho.isBlank() || ConfiguracaoUtil.pastaArquivoFitaEspelho.isEmpty()) {
+				ConfiguracaoUtil.pastaArquivoFitaEspelho = new File(".").getCanonicalPath() + "\\arquivos_fitas_espelho_geradas";
+			}
+			String pastaArquivosFitasEspelho = ConfiguracaoUtil.pastaArquivoFitaEspelho; 
+			String nomeArquivoFitaEspelho = "fita_espelho_unidades_" + data.format(DateTimeFormatter.ofPattern("uuuuMMddHHmmss"))+ ".txt";
+			String caminhoArquivoFitaEspelho = pastaArquivosFitasEspelho + "\\" + nomeArquivoFitaEspelho;
+
+			File file = new File(pastaArquivosFitasEspelho);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+
+			FileWriter arquivo = new FileWriter(caminhoArquivoFitaEspelho);
+			PrintWriter escritor = new PrintWriter(arquivo);
+
+			// Recuperando as unidades
+			List<Unidade> unidades = new ArrayList<>();
+			unidades = fitaEspelhoUnidade.getUnidades();
+			
+			for (Unidade unidade : unidades) {
+				escritor.print(unidade.getIdUnidade());
+				escritor.print(unidade.getNome());
+				escritor.print(unidade.getSigla());
+				escritor.print(unidade.getUf());
+				escritor.print(unidade.getIdUnidadePagadora());
+				escritor.print(unidade.getUnidadeGestora());
+				escritor.print(unidade.getUnidadeAntecedente());				
+				escritor.print("\n");
+			}
+			
+			escritor.close();
+			arquivo.close();
+
+			MensagensUtil.msg.add("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + caminhoArquivoFitaEspelho);
+
+			String anim = "|/-\\";
+			System.out.println("\n");
+			System.out.flush();
+			for (int x = 0; x < 100; x++) {
+				String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
+				System.out.write(progresso.getBytes());
+				Thread.sleep(30);
+			}
+			System.out.flush();
+
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+
+	}
+
 
 }

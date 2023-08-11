@@ -6,4 +6,5 @@ public class ConfiguracaoUtil  {
 	public static String oigemArquivoServidores = "";
 	public static String oigemArquivoUnidades = "";
 	
+	
  }

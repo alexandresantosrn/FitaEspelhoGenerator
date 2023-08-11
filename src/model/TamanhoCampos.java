@@ -3,7 +3,7 @@ package model;
 public class TamanhoCampos {
 	
 	/* FITA ESPELHO SERVIDORES */
-		/* CABEÇALHO */
+		/* CABECALHO */
 	public final static int CODIGO = 5;
 	public final static int SIGLA = 10;
 	public final static int MES = 2;
@@ -30,7 +30,7 @@ public class TamanhoCampos {
 	public final static int CONTA_BANCARIA = 13;
 	public final static int DATA_SAIDA = 8;
 	public final static int UNIDADE_LOTACAO = 9;
-		/* RODAPÉ */
+		/* RODAPE */
 	public final static int QUANTIDADE_SERVIDORES = 9;
 	
 	/* FITA ESPELHO UNIDADES */

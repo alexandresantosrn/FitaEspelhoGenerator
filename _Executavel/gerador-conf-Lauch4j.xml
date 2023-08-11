@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>console</headerType>
   <jar>C:\SIG_UFRN\SISTEMAS_SIG\FitaEspelhoGenerator\_Executavel\GeradorFitaEspelho.jar</jar>
-  <outfile>C:\SIG_UFRN\SISTEMAS_SIG\FitaEspelhoGenerator\_Executavel\GeradorFitaEspelho_1-0-0.exe</outfile>
+  <outfile>C:\SIG_UFRN\SISTEMAS_SIG\FitaEspelhoGenerator\_Executavel\GeradorFitaEspelho_1-1-0.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>

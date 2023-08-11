@@ -68,5 +68,12 @@ public class Unidade {
 	public void setUnidadeAntecedente(String unidadeAntecedente) {
 		this.unidadeAntecedente = unidadeAntecedente;
 	}
+
+	@Override
+	public String toString() {
+		return "Unidade [idUnidade=" + idUnidade + ", nome=" + nome + ", sigla=" + sigla + ", uf=" + uf
+				+ ", idUnidadePagadora=" + idUnidadePagadora + ", unidadeGestora=" + unidadeGestora
+				+ ", unidadeAntecedente=" + unidadeAntecedente + ", linhaArquivo=" + linhaArquivo + "]";
+	}
 	
 }

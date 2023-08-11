@@ -13,19 +13,18 @@ public class Index {
 	public static void main(String[] args) throws IOException, Exception {
 
 		int option = 10;
-		MainController controlador = new MainController();
-
+		
 		//try {
 			while (option != 0) {
 				ClearConsole();
 				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGAA #### \n ");
 				
 				if(!MensagensUtil.errosValidacao.isEmpty()) {
-					System.out.println("-- -- --- ERROS DE VALIDAÇÃO --- -- --");
+					System.out.println("-- -- --- ERROS DE VALIDACAO --- -- --");
 					for (String string : MensagensUtil.errosValidacao) {
 						System.out.println(string);
 					}
-					System.out.println("-- -- --- ERROS DE VALIDAÇÃO --- -- --\n\n");
+					System.out.println("-- -- --- ERROS DE VALIDACAO --- -- --\n\n");
 				}
 				
 				if(!MensagensUtil.msg.isEmpty()) {
@@ -39,22 +38,24 @@ public class Index {
 				MensagensUtil.errosValidacao.clear();
 				MensagensUtil.msg.clear();
 				
-				System.out.println("\tInforme a opção desejada: ");
+				System.out.println("\tInforme a opcao desejada: ");
 				System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
 				System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
 				System.out.println("\t\t0 - Sair");
-				System.out.print("\tOpção: ");
+				System.out.print("\tOpcao: ");
 				option = input.nextInt();
 
 				switch (option) {
 				case 1: {
+					MainController controlador = new MainController();
 					System.out.println("\n #######  FITA ESPELHO SERVIDORES #######\n");
-					controlador.carregar();
+					controlador.carregarServidores();
 					break;
 				}
 				case 2: {
+					MainController controlador = new MainController();
 					System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
-					controlador.carregar();
+					controlador.carregarUnidades();
 					break;
 				}
 				default:
@@ -68,7 +69,7 @@ public class Index {
 			System.exit(1);
 		}*/
 
-		System.out.println(" \n" + "Até logo!!!!");
+		System.out.println(" \n" + "Ate logo!!!!");
 		input.close();
 		System.exit(0);
 	}

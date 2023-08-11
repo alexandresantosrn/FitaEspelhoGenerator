@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FitaEspelho {
+public class FitaEspelhoServidore {
 
 	final String constante = "000000000000000000";
 	final String nome = "SIAPEFITAESP";
@@ -107,8 +107,9 @@ public class FitaEspelho {
 	}
 	
 	public void printCabecalho() {
-		System.out.println("\nCabeçalho Fita Espelho \nCódigo : " + codigo + ", Sigla : " + sigla +", Mês : "+ mes 
+		System.out.println("\nCabecalho Fita Espelho \nCodigo : " + codigo + ", Sigla : " + sigla +", Mes : "+ mes 
 				+ ", Ano : " + ano + ", UniPagadora : " + uniPagadora + ", UF : " + uf + "\n");		
 	}
 
+	
 }
