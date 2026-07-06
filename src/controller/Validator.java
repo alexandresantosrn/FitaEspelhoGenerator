@@ -1,11 +1,11 @@
 package controller;
 
-import model.FitaEspelho;
+import model.FitaEspelhoServidores;
 import model.Servidor;
 
 public class Validator {
 
-	public void validateDadosInstitucionais(FitaEspelho fita) {
+	public void validateDadosInstitucionais(FitaEspelhoServidores fita) {
 
 		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).
 		while (fita.getCodigo().length() < 5) {
@@ -13,9 +13,17 @@ public class Validator {
 			String codigo = zeros + fita.getCodigo();
 
 			fita.setCodigo(codigo);
-		}
+		}		
+		
+		// Valida e atualiza tamanho do mês (Adiciona zeros à esquerda).
+		while (fita.getMes().length() < 2) {
+			String zeros = "0";
+			String mes = zeros + fita.getMes();
 
-		// Valida e atualiza tamanho da Sigla (Adiciona espaços à direita).
+			fita.setMes(mes);
+		}
+		
+		// Valida e atualiza tamanho da sigla (Adiciona espaços à direita).
 		while (fita.getSigla().length() < 10) {
 			String brancos = " ";
 			String sigla = fita.getSigla() + brancos;
@@ -31,7 +39,7 @@ public class Validator {
 			fita.setFiller1(filler1);
 		}
 
-		// Valida e atualiza tamanho da unidade pagadora (Adiciona espaços à esquerda).
+		// Valida e atualiza tamanho da unidade pagadora (Adiciona zeros à esquerda).
 		while (fita.getUniPagadora().length() < 9) {
 			String zeros = "0";
 			String uniPagadora = zeros + fita.getUniPagadora();
@@ -208,7 +216,7 @@ public class Validator {
 
 	}
 
-	public void validateQtdServidores(FitaEspelho fita) {
+	public void validateQtdServidores(FitaEspelhoServidores fita) {
 
 		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).
 		while (fita.getQtdServidores().length() < 9) {

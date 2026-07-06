@@ -1,0 +1,26 @@
+00000000110109UNIDADE ORGANIZACIONAL DE INFORMATICA   UINFOR    BA00000000110103001101                                                                                          
+00000000110110ASSESSORIA DE GESTAO DE PROJETOS INSTITUAGESPI    BA00000000110103001101                                                                                          
+00000011010102DEPARTAMENTO CIENCIAS HUMANAS E LETRAS  DCHL      BA00000000110103001101                                                                                          
+00000000110108BIBLIOTECA CENTRAL                      BC        BA00000000110103001101                                                                                          
+00001101070201SECRETARIA SETORIAL DE CURSOS - ITA     SSC-ITA   BA00000000110103001101                                                                                          
+00000011010704ASSESSORIA ACADEMICA - JQ               AAC-JQ    BA00000000110103001101                                                                                          
+00000011010703GERENCIA DE ACESSO E ACOMPANHAMENTO     GAA       BA00000000110103001101                                                                                          
+00000011010702SECRETARIA GERAL DE CURSOS              SGC       BA00000000110103001101                                                                                          
+00000011010801BIBLIOTECA SETORIAL - ITA               BS-IT     BA00000000110103001101                                                                                          
+00000011010103DEPARTAMENTO DE FILOSOFIA CIENCIAS HUMANDFCH      BA00000000110103001101                                                                                          
+00000011010802BIBLIOTECA SETORIAL - JQ                BS-JQ     BA00000000110103001101                                                                                          
+00000011010104DEPARTAMENTO DE CIENCIAS E TECNOLOGIAS  DCT       BA00000000110103001101                                                                                          
+00000011010105GERENCIA ACADEMICA                      GA        BA00000000110103001101                                                                                          
+00001101010501SECRETARIA DE DIPLOMAS E CERTIFICADOS   SEDIC     BA00000000110103001101                                                                                          
+00000011010701GERENCIA DE POS-GRADUCAO                GPG       BA00000000110103001101                                                                                          
+00000000110107PRO-REITORIA DE PESQUISA E POS-GRADUACAOPPG       BA00000000110103001101                                                                                          
+00000011010106DEPARTAMENTO DE CIENCIAS SOCIAIS APLICADDCSA      BA00000000110103001101                                                                                          
+00000011010601GERENCIA DE EXTENSAO E ASSUNTOS COMUNITAGEAC      BA00000000110103001101                                                                                          
+00000000110106PRO-REITORIA DE EXTENSAO E ASSUNTOS COMUPROEX     BA00000000110103001101                                                                                          
+00001101060101SUBGERENCIA DE EXTENSAO                 SUBE      BA00000000110103001101                                                                                          
+00000011010101DEPARTAMENTO DE SAUDE II                DSII      BA00000000110103001101                                                                                          
+00000000001101REITORIA                                RTR       BA00000000110103001101                                                                                          
+00000000110101PRO-REITORIA DE GRADUACAO               PROGRAD   BA00000000110103001101                                                                                          
+00000000110102GABINETE                                GAB       BA00000000110103001101                                                                                          
+00000000110103ASSESSORIA TECNICA DE FINANCAS E PLANEJAASPLAN    BA00000000110103001101                                                                                          
+00000011010301GERENCIA DE PLANEJAMENTO                GERPLAN   BA00000000110103001101                                                                                          

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FitaEspelho {
+public class FitaEspelhoServidores {
 
 	final String constante = "000000000000000000";
 	final String nome = "SIAPEFITAESP";
@@ -105,5 +105,9 @@ public class FitaEspelho {
 	public void setQtdServidores(String codigo2) {
 		this.qtdServidores = codigo2;
 	}
-
+	
+	public void printCabecalho() {
+		System.out.println("\nCabecalho Fita Espelho \nCodigo : " + codigo + ", Sigla : " + sigla +", Mes : "+ mes 
+				+ ", Ano : " + ano + ", UniPagadora : " + uniPagadora + ", UF : " + uf + "\n");		
+	}
 }

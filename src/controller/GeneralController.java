@@ -5,54 +5,87 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.FitaEspelho;
+import model.FitaEspelhoServidores;
 import model.Servidor;
 
 public class GeneralController {
 
-	FitaEspelho fita = new FitaEspelho();
+	FitaEspelhoServidores fitaEspelhoServidores = new FitaEspelhoServidores();
 	Validator validador = new Validator();
 	int qtdServidores;
 	
 	public void informarDadosInstituicao() {
 
-		String codigo, sigla, mes, ano, uniPagadora, uf;
+		LocalDate dataAtual = LocalDate.now();
+
+		String codigo = "00001", sigla = "UFRN";
+		String mes = "" + dataAtual.getMonthValue();
+		String ano = "" + dataAtual.getYear(), uniPagadora = "38000", uf = "RN";
+
+		String temp = "";
 
 		try (Scanner input = new Scanner(System.in)) {
-			System.out.print("Informe o código da instituição: ");
-			codigo = input.next();
-			System.out.print("Informe a sigla da instituição: ");
-			sigla = input.next();
-			System.out.print("Informe o mês desejado: ");
-			mes = input.next();
-			System.out.print("Informe o ano desejado: ");
-			ano = input.next();
-			System.out.print("Informe o código SIAPECAD da unidade pagadora: ");
-			uniPagadora = input.next();
-			System.out.print("Informe a UF da unidade pagadora: ");
-			uf = input.next();
+			System.out.println("\tPRESSIONE ENTER PARA ACEITAR O VALOR PADRÃO \n");
+			System.out.print("\tInforme o código da instituição ("+ codigo +"): ");
+			temp = input.nextLine();
+			if (!temp.isEmpty() && !temp.isBlank()) {
+				codigo = temp;
+			}
+			
+			System.out.print("\tInforme a sigla da instituição ("+ sigla +"): ");
+			temp = input.nextLine();
+			if (!temp.isEmpty() && !temp.isBlank()) {
+				sigla = temp;
+			}
+			
+			System.out.print("\tInforme o mês desejado ("+ mes +"): ");
+			temp = input.nextLine();
+			if (!temp.isEmpty() && !temp.isBlank()) {
+				mes = temp;
+			}
+			
+			System.out.print("\tInforme o ano desejado ("+ ano +"): ");
+			temp = input.nextLine();
+			if (!temp.isEmpty() && !temp.isBlank()) {
+				ano = temp;
+			}
+			
+			System.out.print("\tInforme o código SIAPECAD da unidade pagadora ("+ uniPagadora +"): ");
+			temp = input.nextLine();
+			if (!temp.isEmpty() && !temp.isBlank()) {
+				uniPagadora = temp;
+			}
+			
+			System.out.print("\tInforme a UF da unidade pagadora ("+ uf +"): ");
+			temp = input.nextLine();
+			if (!temp.isEmpty() && !temp.isBlank()) {
+				uf = temp;
+			}
 
-			fita.setCodigo(codigo);
-			fita.setSigla(sigla);
-			fita.setMes(mes);
-			fita.setAno(ano);
-			fita.setUniPagadora(uniPagadora);
-			fita.setUf(uf);
+			fitaEspelhoServidores.setCodigo(codigo);
+			fitaEspelhoServidores.setSigla(sigla);
+			fitaEspelhoServidores.setMes(mes);
+			fitaEspelhoServidores.setAno(ano);
+			fitaEspelhoServidores.setUniPagadora(uniPagadora);
+			fitaEspelhoServidores.setUf(uf);
+			
+			fitaEspelhoServidores.printCabecalho();
 		}
 
 		// Valida e atualiza algumas informações da fita.
-		validador.validateDadosInstitucionais(fita);
+		validador.validateDadosInstitucionais(fitaEspelhoServidores);
 	}
 
 	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
-		//final String path = "/home/bzaum/servidores.txt";
-		final String path = "C:/temp/servidores.txt";
+		final String path = "/home/bzaum/servidores.txt";
+		//final String path = "C:/temp/servidores.txt";
 
 		FileReader file = new FileReader(path);
 		try (BufferedReader leitor = new BufferedReader(file)) {
@@ -157,14 +190,14 @@ public class GeneralController {
 				servidor.setAdmissaoServicoPublico(admissaoServicoPublico);
 
 				// Adicionando servidor a lista de servidores.
-				fita.addServidores(servidor);
+				fitaEspelhoServidores.addServidores(servidor);
 
 				// Valida e atualiza dados pessoais dos servidores.
 				validador.validateDadosPessoais(servidor);
 				
 				qtdServidores ++;
-				fita.setQtdServidores(Integer.toString(qtdServidores));	
-				validador.validateQtdServidores(fita);
+				fitaEspelhoServidores.setQtdServidores(Integer.toString(qtdServidores));	
+				validador.validateQtdServidores(fitaEspelhoServidores);
 				
 				linha = leitor.readLine();
 			}
@@ -172,33 +205,33 @@ public class GeneralController {
 
 	}
 
-	public void exportarArquivo() throws IOException {
+	public void exportarArquivoServidores() throws IOException {
 
 		FileWriter arquivo = new FileWriter("file.txt");
 		PrintWriter escritor = new PrintWriter(arquivo);
 
 		// Recuperando servidores da lista de servidores.
 		List<Servidor> servidores = new ArrayList<>();
-		servidores = fita.getServidores();
+		servidores = fitaEspelhoServidores.getServidores();
 
 		// Registrando dados da instituição no arquivo.
-		escritor.print(fita.getConstante()); // Constantes com zeros.
-		escritor.print(fita.getNome()); // Nome: SIAPEFITAESP.
-		escritor.print(fita.getCodigo()); // Código da instituição.
-		escritor.print(fita.getSigla()); // Sigla da instituição.
-		escritor.print(fita.getMes()); // Mês de referência.
-		escritor.print(fita.getAno()); // Ano de referência.
-		escritor.print(fita.getFiller1()); // Filler do Header0.
+		escritor.print(fitaEspelhoServidores.getConstante()); // Constantes com zeros.
+		escritor.print(fitaEspelhoServidores.getNome()); // Nome: SIAPEFITAESP.
+		escritor.print(fitaEspelhoServidores.getCodigo()); // Código da instituição.
+		escritor.print(fitaEspelhoServidores.getSigla()); // Sigla da instituição.
+		escritor.print(fitaEspelhoServidores.getMes()); // Mês de referência.
+		escritor.print(fitaEspelhoServidores.getAno()); // Ano de referência.
+		escritor.print(fitaEspelhoServidores.getFiller1()); // Filler do Header0.
 		escritor.print("\n");
 
 		// Registrando dados pessoais dos servidores nas próximas linhas
 		for (Servidor servidor : servidores) {
 			// Registro dos dados pessoais dos servidores (Linha 2).
-			escritor.print(fita.getUniPagadora()); // Siapecad da unidade pagadora.
+			escritor.print(fitaEspelhoServidores.getUniPagadora()); // Siapecad da unidade pagadora.
 			escritor.print(servidor.getSiape()); // Siape do servidor.
 			escritor.print(servidor.getDigitoSIAPE()); // Dígito Siape do servidor.
 			escritor.print("1"); // Código de registro 1.
-			escritor.print(fita.getUf());
+			escritor.print(fitaEspelhoServidores.getUf());
 			escritor.print(servidor.getNome()); // Nome do servidor.
 			escritor.print(servidor.getCpf()); // Cpf do servidor.
 			escritor.print(servidor.getPis()); // Pis do servidor.
@@ -229,11 +262,11 @@ public class GeneralController {
 			escritor.print("\n");
 
 			// Registro dos dados funcionais dos servidores (Linha 3).
-			escritor.print(fita.getUniPagadora());
+			escritor.print(fitaEspelhoServidores.getUniPagadora());
 			escritor.print(servidor.getSiape());
 			escritor.print(servidor.getDigitoSIAPE());
 			escritor.print("2");
-			escritor.print(fita.getUf());
+			escritor.print(fitaEspelhoServidores.getUf());
 			escritor.print(servidor.getSiglaRegime());
 			escritor.print(servidor.getSituacaoServidor());
 			escritor.print("000000"); // Carteira de trabalho
@@ -284,8 +317,8 @@ public class GeneralController {
 
 		escritor.print("999999999999999999");
 		//escritor.print("000000002"); // Quantidade de servidores
-		escritor.print(fita.getQtdServidores()); // Quantidade de servidores
-		escritor.print(fita.getFillerFim());
+		escritor.print(fitaEspelhoServidores.getQtdServidores()); // Quantidade de servidores
+		escritor.print(fitaEspelhoServidores.getFillerFim());
 
 		arquivo.close();
 	}
