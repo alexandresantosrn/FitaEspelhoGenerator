@@ -3,48 +3,88 @@ package view;
 import java.io.IOException;
 import java.util.Scanner;
 import controller.MainController;
+import util.MensagensUtil;
 
 public class Index {
 
-	public static void main(String[] args) throws IOException {
+	static Scanner input = new Scanner(System.in);
 
-		int option = 10;
-		MainController controlador = new MainController();
+	public static void main(String[] args) throws IOException, Exception {
 
-		try (Scanner input = new Scanner(System.in)) {
+		int option = 1000;		
+		
 			while (option != 0) {
-
-				System.out.println("Informe a opção desejada: ");
-				System.out.println("1 - Importar arquivo");
-				System.out.println("0 - Sair");
-				System.out.print("Opção: ");		
+				ClearConsole();
+				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGRH #### \n ");
 				
-				if (input.hasNextInt()) {
-					option = input.nextInt();
-				}	
-				
-				if(option != 10) {
-					System.out.println("Opção Escolhida: " + option);
+				if(!MensagensUtil.errosValidacao.isEmpty()) {
+					System.out.println("-- -- --- ERROS DE VALIDACAO --- -- --");
+					for (String string : MensagensUtil.errosValidacao) {
+						System.out.println(string);
+					}
+					System.out.println("-- -- --- ERROS DE VALIDACAO --- -- --\n\n");
 				}
 				
-				switch (option) {
+				if(!MensagensUtil.msg.isEmpty()) {
+					System.out.println("-- -- --- MENSAGENS --- -- --");
+					for (String string : MensagensUtil.msg) {
+						System.out.println(string);
+					}
+					System.out.println("-- -- --- MENSAGENS --- -- --\n");
+				}
+				
+				MensagensUtil.errosValidacao.clear();
+				MensagensUtil.msg.clear();
+				
+				System.out.println("\tInforme a opcao desejada: ");
+				System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
+				//System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
+				System.out.println("\t\t0 - Sair");
+				System.out.print("\tOpcao: ");
+				option = input.nextInt();
 
+				switch (option) {
 				case 1: {
-					System.out.println("Apresentando informações...");
-					controlador.carregar();
+					MainController controlador = new MainController();
+					System.out.println("\n #######  FITA ESPELHO SERVIDORES #######\n");
+					controlador.carregarServidores();
 					break;
 				}
-
+//				case 2: {
+//					MainController controlador = new MainController();
+//					System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
+//					controlador.carregarUnidades();
+//					break;
+//				}
+				
 				default:
 					break;
 				}
 				
-				break;				
+				break;
+			}		
+
+		System.out.println(" \n" + "Ate logo!!!!");
+		input.close();
+		System.exit(0);
+	}
+
+	public static void ClearConsole() {
+		try {
+			String operatingSystem = System.getProperty("os.name"); // Check the current operating system
+
+			if (operatingSystem.contains("Windows")) {
+				ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+				Process startProcess = pb.inheritIO().start();
+				startProcess.waitFor();
+			} else {
+				ProcessBuilder pb = new ProcessBuilder("clear");
+				Process startProcess = pb.inheritIO().start();
+				startProcess.waitFor();
 			}
-
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-
-		System.out.println(" \n" + "Até logo!!!!");
 	}
 
 }
