@@ -2,9 +2,8 @@
 Aplicação de apoio para geração dos dados para fita-espelho SIAPE.
 
 ## Execução
-Executar o projeto no Eclipse (Qualquer versão atual) na versão 17 do Java.
-Criar a pasta tempo junto a raiz C do computador. Ex: C:/temp
-Adicionar o arquivo servidores.txt dentro desta pasta.
+Substituir o arquivo servidores.txt dentro do diretório /arquivo_entrada presente na raiz do projeto.
+
 O arquivo: servidores.txt deverá ter as seguintes informações dos servidores, separados por ponto e vírgula (;) na seguinte ORDEM:
 
 - Matrícula SIAPE do servidor; (Valor numérico)
@@ -50,16 +49,19 @@ O arquivo: servidores.txt deverá ter as seguintes informações dos servidores,
 - Data de admissão no órgão; (Data/formato: 01012000)
 - Data de admissão no serviço público; (Data/formato: 01012000) 
 
-Ao rodar a classe: Index.java deve-se selecionar a opção: 1 - Importar Arquivo.
+Ao execeutar a classe: Index.java deve-se selecionar a opção: 1 - Gerar Fita Espelho SERVIDORES.
+
 Em seguida serão apresentadas as seguintes perguntas:
-- Informe o código da instituição: 00001
-- Informe a sigla da instituição: UFRN
-- Informe o mês desejado: 06
-- Informe o ano desejado: 2023
-- Informe o código SIAPECAD da unidade pagadora: 38000
-- Informe a UF da unidade pagadora: RN
 
-A seguir, embora seja sexibido um erro no Eclipse será gerado um arquivo de saída dentro da onde o projeto roda, denominado: file.txt. 
-Atenção: No caso específico, apresentado acima foi gerada uma fita para o mês de junho, junto ao ano de 2023.
-Deverá existir na base uma unidade com o código SIAPECAD informado. Em geral a unidade raiz possui SIAPECAD padrão no valor de 38.000, mas isto pode ser atualizado pela instituição. (select * from comum.unidade where codigo_siapecad = 38000)
+	Informe o código da instituição (00001): 
+	Informe a sigla da instituição (UFRN): 
+	Informe o mês desejado (7): 
+	Informe o ano desejado (2026): 
+	Informe o código SIAPECAD da unidade pagadora (38000): 
+	Informe a UF da unidade pagadora (RN): 
 
+Por fim, será gerado um arquivo de saída dentro do diretório: arquivo_saida, denominado: fita_espelho_mes_ano.txt.
+
+Atenção: No caso específico, apresentado acima foi gerada uma fita para o mês de julho, junto ao ano de 2026. Deverá existir na base uma unidade com o código SIAPECAD informado. Em geral a unidade raiz possui SIAPECAD padrão no valor de 38.000, mas isto pode ser atualizado pela instituição. (select * from comum.unidade where codigo_siapecad = 38000)
+
+OBS: O projeto foi desenvolvido na versão: 17 do Java.
