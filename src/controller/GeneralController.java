@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,10 +86,9 @@ public class GeneralController {
 	public void carregarDadosServidores() throws IOException {
 
 		// Caminho de localização do arquivo de servidores.
-		final String path = "/home/bzaum/servidores.txt";
-		//final String path = "C:/temp/servidores.txt";
+		final Path path = Paths.get("arquivo_entrada", "servidores.txt");
 
-		FileReader file = new FileReader(path);
+		FileReader file = new FileReader(path.toString());
 		try (BufferedReader leitor = new BufferedReader(file)) {
 			// Variável de leitura da linha.
 			String linha = leitor.readLine();
@@ -206,8 +207,13 @@ public class GeneralController {
 	}
 
 	public void exportarArquivoServidores() throws IOException {
-
-		FileWriter arquivo = new FileWriter("file.txt");
+		
+		String nomeArquivoSaida = "fita_espelho_" + fitaEspelhoServidores.getMes() + "_" + 
+				fitaEspelhoServidores.getAno() + ".txt";
+		
+		Path caminhoSaida = Paths.get("arquivo_saida", nomeArquivoSaida);
+		FileWriter arquivo = new FileWriter(caminhoSaida.toString());
+		
 		PrintWriter escritor = new PrintWriter(arquivo);
 
 		// Recuperando servidores da lista de servidores.
