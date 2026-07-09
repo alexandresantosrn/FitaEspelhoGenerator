@@ -18,44 +18,65 @@ public class Validator {
 				fita.setCodigo(codigo);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Código da instituição ultrapassando o limite "
+			MensagensUtil.errosValidacao.add("Código da instituição ultrapass o limite "
 					+ "máximo de " + TamanhoCamposFitaServidores.CODIGO + " caracteres.");
 		}
 		
-		// Valida e atualiza tamanho do mês (Adiciona zeros à esquerda).
-		while (fita.getMes().length() < 2) {
-			String zeros = "0";
-			String mes = zeros + fita.getMes();
-
-			fita.setMes(mes);
+		// Valida e atualiza tamanho da sigla (Adiciona espaços à direita).		
+		if (fita.getSigla().length() <= TamanhoCamposFitaServidores.SIGLA) {
+			while (fita.getSigla().length() < 10) {
+				String brancos = " ";
+				String sigla = fita.getSigla() + brancos;
+	
+				fita.setSigla(sigla);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Sigla da instituição ultrapassa o limite "
+					+ "máximo de " + TamanhoCamposFitaServidores.SIGLA + " caracteres.");
+		}
+				
+		// Valida e atualiza tamanho do mês (Adiciona zeros à esquerda).		
+		if (fita.getMes().length() <= TamanhoCamposFitaServidores.MES) {
+			while (fita.getMes().length() < 2) {
+				String zeros = "0";
+				String mes = zeros + fita.getMes();
+	
+				fita.setMes(mes);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Mês informado ultrapassa o limite "
+					+ "máximo de " + TamanhoCamposFitaServidores.MES + " caracteres.");
 		}
 		
-		// Valida e atualiza tamanho da sigla (Adiciona espaços à direita).
-		while (fita.getSigla().length() < 10) {
-			String brancos = " ";
-			String sigla = fita.getSigla() + brancos;
+		// Valida tamanho do ano.
+		if (fita.getAno().length() != TamanhoCamposFitaServidores.ANO) {
+			MensagensUtil.errosValidacao.add("Ano informado com tamanho de caracteres inválido. "
+					+ "O campo deve ter " + TamanhoCamposFitaServidores.MES + " caracteres.");
+		}		
 
-			fita.setSigla(sigla);
+		// Valida e atualiza tamanho da unidade pagadora (Adiciona zeros à esquerda).
+		if (fita.getUniPagadora().length() <= TamanhoCamposFitaServidores.UNIDADE_PAGADORA) {
+			while (fita.getUniPagadora().length() < TamanhoCamposFitaServidores.UNIDADE_PAGADORA) {
+				String zeros = "0";
+				String uniPagadora = zeros + fita.getUniPagadora();
+	
+				fita.setUniPagadora(uniPagadora);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Tamanho da unidade pagadora ultrapassa o limite "
+					+ "máximo de " + TamanhoCamposFitaServidores.UNIDADE_PAGADORA + " caracteres.");
 		}
-
-		// Valida e atualiza tamanho do Filler1 (Adiciona espaços à direita).
-		while (fita.getFiller1().length() < 719) {
+		
+		// Atualiza tamanho do Filler1 (Adiciona espaços à direita).
+		while (fita.getFiller1().length() < TamanhoCamposFitaServidores.FILLER1) {
 			String brancos = " ";
 			String filler1 = fita.getFiller1() + brancos;
 
 			fita.setFiller1(filler1);
 		}
 
-		// Valida e atualiza tamanho da unidade pagadora (Adiciona zeros à esquerda).
-		while (fita.getUniPagadora().length() < 9) {
-			String zeros = "0";
-			String uniPagadora = zeros + fita.getUniPagadora();
-
-			fita.setUniPagadora(uniPagadora);
-		}
-
-		// Valida e atualiza tamanho do Filler final (Adiciona espaços à direita).
-		while (fita.getFillerFim().length() < 743) {
+		// Atualiza tamanho do Filler final (Adiciona espaços à direita).
+		while (fita.getFillerFim().length() < TamanhoCamposFitaServidores.FILLER_FIM) {
 			String brancos = " ";
 			String fillerFim = fita.getFillerFim() + brancos;
 

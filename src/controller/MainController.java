@@ -17,6 +17,7 @@ public class MainController {
 			controlador.exportarArquivoServidores();
 		} else {
 			for (String erro : MensagensUtil.errosValidacao) {
+				System.out.println("\n");
 				System.out.println("******** Erro: " + erro + " ********");
 			}
 		}

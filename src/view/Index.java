@@ -3,7 +3,6 @@ package view;
 import java.io.IOException;
 import java.util.Scanner;
 import controller.MainController;
-import util.MensagensUtil;
 
 public class Index {
 
@@ -15,26 +14,7 @@ public class Index {
 		
 			while (option != 0) {
 				ClearConsole();
-				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGRH #### \n ");
-				
-				if(!MensagensUtil.errosValidacao.isEmpty()) {
-					System.out.println("-- -- --- ERROS DE VALIDACAO --- -- --");
-					for (String string : MensagensUtil.errosValidacao) {
-						System.out.println(string);
-					}
-					System.out.println("-- -- --- ERROS DE VALIDACAO --- -- --\n\n");
-				}
-				
-				if(!MensagensUtil.msg.isEmpty()) {
-					System.out.println("-- -- --- MENSAGENS --- -- --");
-					for (String string : MensagensUtil.msg) {
-						System.out.println(string);
-					}
-					System.out.println("-- -- --- MENSAGENS --- -- --\n");
-				}
-				
-				MensagensUtil.errosValidacao.clear();
-				MensagensUtil.msg.clear();
+				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGRH #### \n ");				
 				
 				System.out.println("\tInforme a opcao desejada: ");
 				System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
