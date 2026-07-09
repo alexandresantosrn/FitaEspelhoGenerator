@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 import model.FitaEspelhoServidores;
 import model.Servidor;
+import util.MensagensUtil;
 
 public class GeneralController {
 
@@ -327,6 +328,22 @@ public class GeneralController {
 		escritor.print(fitaEspelhoServidores.getFillerFim());
 
 		arquivo.close();
+		
+		String anim = "|/-\\";
+		System.out.println("\n");
+		System.out.flush();
+		for (int x = 0; x < 100; x++) {
+			String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
+			System.out.write(progresso.getBytes());
+			try {
+				Thread.sleep(30);
+			} catch (InterruptedException e) {				
+				e.printStackTrace();
+			}
+		}
+		System.out.flush();
+		
+		MensagensUtil.msg.add("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
 	}
 
 }
