@@ -64,27 +64,22 @@ public class Index {
 				break;
 			}		
 
-		System.out.println(" \n" + "Ate logo!!!!");
+		System.out.println(" \n" + "Finalizando. Ate logo!!!!");
 		input.close();
 		System.exit(0);
 	}
 
 	public static void ClearConsole() {
 		try {
-			String operatingSystem = System.getProperty("os.name"); // Check the current operating system
-
-			if (operatingSystem.contains("Windows")) {
-				ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
-				Process startProcess = pb.inheritIO().start();
-				startProcess.waitFor();
-			} else {
-				ProcessBuilder pb = new ProcessBuilder("clear");
-				Process startProcess = pb.inheritIO().start();
-				startProcess.waitFor();
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+	        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+	        } else {
+	            System.out.print("\033[H\033[2J");
+	            System.out.flush();
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 }

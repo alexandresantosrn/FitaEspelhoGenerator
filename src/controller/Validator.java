@@ -2,18 +2,25 @@ package controller;
 
 import model.FitaEspelhoServidores;
 import model.Servidor;
+import model.TamanhoCamposFitaServidores;
+import util.MensagensUtil;
 
 public class Validator {
 
 	public void validateDadosInstitucionais(FitaEspelhoServidores fita) {
 
-		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).
-		while (fita.getCodigo().length() < 5) {
-			String zeros = "0";
-			String codigo = zeros + fita.getCodigo();
-
-			fita.setCodigo(codigo);
-		}		
+		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).		
+		if (fita.getCodigo().length() <= TamanhoCamposFitaServidores.CODIGO) {
+			while (fita.getCodigo().length() < TamanhoCamposFitaServidores.CODIGO) {
+				String zeros = "0";
+				String codigo = zeros + fita.getCodigo();
+	
+				fita.setCodigo(codigo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Código da instituição ultrapassando o limite "
+					+ "máximo de " + TamanhoCamposFitaServidores.CODIGO + " caracteres.");
+		}
 		
 		// Valida e atualiza tamanho do mês (Adiciona zeros à esquerda).
 		while (fita.getMes().length() < 2) {
