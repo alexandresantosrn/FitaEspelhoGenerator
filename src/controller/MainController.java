@@ -22,5 +22,13 @@ public class MainController {
 			}
 		}
 	}
+	
+	public void carregarUnidades() throws IOException, Exception {
+		controlador.carregarDadosUnidades();
+		
+		if (MensagensUtil.errosValidacao.isEmpty()) {
+			controlador.exportarArquivoUnidades();
+		}
+	}
 
 }

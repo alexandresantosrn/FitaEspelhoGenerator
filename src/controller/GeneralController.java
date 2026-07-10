@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,12 +14,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.FitaEspelhoServidores;
+import model.FitaEspelhoUnidades;
 import model.Servidor;
+import model.Unidade;
 import util.MensagensUtil;
 
 public class GeneralController {
 
 	FitaEspelhoServidores fitaEspelhoServidores = new FitaEspelhoServidores();
+	FitaEspelhoUnidades fitaEspelhoUnidades = new FitaEspelhoUnidades();
 	Validator validador = new Validator();
 	int qtdServidores;
 	
@@ -92,9 +96,7 @@ public class GeneralController {
 		FileReader file = new FileReader(path.toString());
 		try (BufferedReader leitor = new BufferedReader(file)) {
 			// Variável de leitura da linha.
-			String linha = leitor.readLine();
-			// Salta linha do cabeçalho.
-			// linha = leitor.readLine();
+			String linha = leitor.readLine();			
 
 			while (linha != null) {
 
@@ -323,7 +325,6 @@ public class GeneralController {
 		}
 
 		escritor.print("999999999999999999");
-		//escritor.print("000000002"); // Quantidade de servidores
 		escritor.print(fitaEspelhoServidores.getQtdServidores()); // Quantidade de servidores
 		escritor.print(fitaEspelhoServidores.getFillerFim());
 
@@ -342,6 +343,47 @@ public class GeneralController {
 		Thread.sleep(1000);
 		System.out.println("\n");
 		System.out.println("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
+	}
+
+	public void carregarDadosUnidades() throws IOException {
+		
+		// Caminho de localização do arquivo de unidades.
+		final Path path = Paths.get("arquivo_entrada", "unidades.txt");
+
+		FileReader file = new FileReader(path.toString());
+		try (BufferedReader leitor = new BufferedReader(file)) {
+			// Variável de leitura da linha.
+			String linha = leitor.readLine();			
+
+			while (linha != null) {
+				
+				Unidade unidade = new Unidade();
+				
+				String vector[] = linha.split(";");
+				
+				unidade.setIdUnidade(vector[0]);
+				unidade.setNome(vector[1]);
+				unidade.setSigla(vector[2]);
+				unidade.setUf(vector[3]);
+				unidade.setIdUnidadePagadora(vector[4]);
+				unidade.setUnidadeGestora(vector[5]);
+				unidade.setUnidadeAntecedente(vector[6]);
+				
+				// Adicionando unidade a lista de unidades.
+				fitaEspelhoUnidades.addUnidade(unidade);
+
+				// Valida e atualiza dados das unidades.
+				validador.validateUnidades(unidade);
+				
+				linha = leitor.readLine();
+			}
+		}	
+		
+	}
+
+	public void exportarArquivoUnidades() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
