@@ -18,7 +18,7 @@ public class Index {
 				
 				System.out.println("\tInforme a opcao desejada: ");
 				System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
-				//System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
+				System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
 				System.out.println("\t\t0 - Sair");
 				System.out.print("\tOpcao: ");
 				option = input.nextInt();
@@ -30,12 +30,12 @@ public class Index {
 					controlador.carregarServidores();
 					break;
 				}
-//				case 2: {
-//					MainController controlador = new MainController();
-//					System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
-//					controlador.carregarUnidades();
-//					break;
-//				}
+				case 2: {
+					MainController controlador = new MainController();
+					System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
+					controlador.carregarUnidades();
+					break;
+				}
 				
 				default:
 					break;

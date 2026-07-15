@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,12 +14,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.FitaEspelhoServidores;
+import model.FitaEspelhoUnidades;
 import model.Servidor;
+import model.Unidade;
 import util.MensagensUtil;
 
 public class GeneralController {
 
 	FitaEspelhoServidores fitaEspelhoServidores = new FitaEspelhoServidores();
+	FitaEspelhoUnidades fitaEspelhoUnidades = new FitaEspelhoUnidades();
 	Validator validador = new Validator();
 	int qtdServidores;
 	
@@ -92,9 +96,7 @@ public class GeneralController {
 		FileReader file = new FileReader(path.toString());
 		try (BufferedReader leitor = new BufferedReader(file)) {
 			// Variável de leitura da linha.
-			String linha = leitor.readLine();
-			// Salta linha do cabeçalho.
-			// linha = leitor.readLine();
+			String linha = leitor.readLine();			
 
 			while (linha != null) {
 
@@ -323,11 +325,10 @@ public class GeneralController {
 		}
 
 		escritor.print("999999999999999999");
-		//escritor.print("000000002"); // Quantidade de servidores
 		escritor.print(fitaEspelhoServidores.getQtdServidores()); // Quantidade de servidores
 		escritor.print(fitaEspelhoServidores.getFillerFim());
 
-		arquivo.close();		
+		arquivo.close();
 
 		String anim = "|/-\\";
 		System.out.println("\n");
@@ -344,4 +345,83 @@ public class GeneralController {
 		System.out.println("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
 	}
 
+	public void carregarDadosUnidades() throws IOException {
+		
+		// Caminho de localização do arquivo de unidades.
+		final Path path = Paths.get("arquivo_entrada", "unidades.txt");
+
+		FileReader file = new FileReader(path.toString());
+		try (BufferedReader leitor = new BufferedReader(file)) {
+			// Variável de leitura da linha.
+			String linha = leitor.readLine();			
+
+			while (linha != null) {
+				
+				Unidade unidade = new Unidade();
+				
+				String vector[] = linha.split(";");
+				
+				unidade.setIdUnidade(vector[0]);
+				unidade.setNome(vector[1]);
+				unidade.setSigla(vector[2]);
+				unidade.setUf(vector[3]);
+				unidade.setIdUnidadePagadora(vector[4]);
+				unidade.setUnidadeGestora(vector[5]);
+				unidade.setUnidadeAntecedente(vector[6]);
+				
+				// Adicionando unidade a lista de unidades.
+				fitaEspelhoUnidades.addUnidade(unidade);
+
+				// Valida e atualiza dados das unidades.
+				validador.validateUnidades(unidade);
+				
+				linha = leitor.readLine();
+			}
+		}	
+		
+	}
+
+	public void exportarArquivoUnidades() throws IOException, InterruptedException {
+		String nomeArquivoSaida = "fita_espelho_unidades.txt";
+		
+		Path caminhoSaida = Paths.get("arquivo_saida", nomeArquivoSaida);
+		FileWriter arquivo = new FileWriter(caminhoSaida.toString());
+		
+		PrintWriter escritor = new PrintWriter(arquivo);
+
+		// Recuperando servidores da lista de servidores.
+		List<Unidade> unidades = new ArrayList<>();
+		unidades = fitaEspelhoUnidades.getUnidades();
+
+		// Registrando dados pessoais dos servidores nas próximas linhas
+		for (Unidade unidade : unidades) {
+			// Registro dos dados pessoais dos servidores (Linha 2).
+			escritor.print(unidade.getIdUnidade()); // Id da unidade.
+			escritor.print(unidade.getNome());
+			escritor.print(unidade.getSigla());
+			escritor.print(unidade.getUf());
+			escritor.print(unidade.getIdUnidadePagadora());
+			escritor.print(unidade.getUnidadeGestora());
+			escritor.print(unidade.getUnidadeAntecedente());
+						
+			escritor.print("\n");
+		}
+		
+		arquivo.close();
+
+		String anim = "|/-\\";
+		System.out.println("\n");
+		System.out.flush();
+		for (int x = 0; x < 100; x++) {
+			String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
+			System.out.write(progresso.getBytes());			
+			Thread.sleep(30);			
+		}
+		System.out.flush();
+		
+		Thread.sleep(1000);
+		System.out.println("\n");
+		System.out.println("Arquivo UNIDADES gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
+		
+	}
 }

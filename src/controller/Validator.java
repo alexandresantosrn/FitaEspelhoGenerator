@@ -3,70 +3,72 @@ package controller;
 import model.FitaEspelhoServidores;
 import model.Servidor;
 import model.TamanhoCamposFitaServidores;
+import model.TamanhoCamposFitaUnidades;
+import model.Unidade;
 import util.MensagensUtil;
 
 public class Validator {
 
 	public void validateDadosInstitucionais(FitaEspelhoServidores fita) {
 
-		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).		
+		// Valida e atualiza tamanho do código (Adiciona zeros à esquerda).
 		if (fita.getCodigo().length() <= TamanhoCamposFitaServidores.CODIGO) {
 			while (fita.getCodigo().length() < TamanhoCamposFitaServidores.CODIGO) {
 				String zeros = "0";
 				String codigo = zeros + fita.getCodigo();
-	
+
 				fita.setCodigo(codigo);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Código da instituição ultrapass o limite "
-					+ "máximo de " + TamanhoCamposFitaServidores.CODIGO + " caracteres.");
+			MensagensUtil.errosValidacao.add("Código da instituição ultrapassa o limite " + "máximo de "
+					+ TamanhoCamposFitaServidores.CODIGO + " caracteres.");
 		}
-		
-		// Valida e atualiza tamanho da sigla (Adiciona espaços à direita).		
+
+		// Valida e atualiza tamanho da sigla (Adiciona espaços à direita).
 		if (fita.getSigla().length() <= TamanhoCamposFitaServidores.SIGLA) {
 			while (fita.getSigla().length() < 10) {
 				String brancos = " ";
 				String sigla = fita.getSigla() + brancos;
-	
+
 				fita.setSigla(sigla);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Sigla da instituição ultrapassa o limite "
-					+ "máximo de " + TamanhoCamposFitaServidores.SIGLA + " caracteres.");
+			MensagensUtil.errosValidacao.add("Sigla da instituição ultrapassa o limite " + "máximo de "
+					+ TamanhoCamposFitaServidores.SIGLA + " caracteres.");
 		}
-				
-		// Valida e atualiza tamanho do mês (Adiciona zeros à esquerda).		
+
+		// Valida e atualiza tamanho do mês (Adiciona zeros à esquerda).
 		if (fita.getMes().length() <= TamanhoCamposFitaServidores.MES) {
 			while (fita.getMes().length() < 2) {
 				String zeros = "0";
 				String mes = zeros + fita.getMes();
-	
+
 				fita.setMes(mes);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Mês informado ultrapassa o limite "
-					+ "máximo de " + TamanhoCamposFitaServidores.MES + " caracteres.");
+			MensagensUtil.errosValidacao.add("Mês informado ultrapassa o limite " + "máximo de "
+					+ TamanhoCamposFitaServidores.MES + " caracteres.");
 		}
-		
+
 		// Valida tamanho do ano.
 		if (fita.getAno().length() != TamanhoCamposFitaServidores.ANO) {
-			MensagensUtil.errosValidacao.add("Ano informado com tamanho de caracteres inválido. "
-					+ "O campo deve ter " + TamanhoCamposFitaServidores.MES + " caracteres.");
-		}		
+			MensagensUtil.errosValidacao.add("Ano informado com tamanho de caracteres inválido. " + "O campo deve ter "
+					+ TamanhoCamposFitaServidores.MES + " caracteres.");
+		}
 
 		// Valida e atualiza tamanho da unidade pagadora (Adiciona zeros à esquerda).
 		if (fita.getUniPagadora().length() <= TamanhoCamposFitaServidores.UNIDADE_PAGADORA) {
 			while (fita.getUniPagadora().length() < TamanhoCamposFitaServidores.UNIDADE_PAGADORA) {
 				String zeros = "0";
 				String uniPagadora = zeros + fita.getUniPagadora();
-	
+
 				fita.setUniPagadora(uniPagadora);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Tamanho da unidade pagadora ultrapassa o limite "
-					+ "máximo de " + TamanhoCamposFitaServidores.UNIDADE_PAGADORA + " caracteres.");
+			MensagensUtil.errosValidacao.add("Tamanho da unidade pagadora ultrapassa o limite " + "máximo de "
+					+ TamanhoCamposFitaServidores.UNIDADE_PAGADORA + " caracteres.");
 		}
-		
+
 		// Atualiza tamanho do Filler1 (Adiciona espaços à direita).
 		while (fita.getFiller1().length() < TamanhoCamposFitaServidores.FILLER1) {
 			String brancos = " ";
@@ -252,6 +254,104 @@ public class Validator {
 			String codigo = zeros + fita.getQtdServidores();
 
 			fita.setQtdServidores(codigo);
+		}
+
+	}
+
+	public void validateUnidades(Unidade unidade) {
+		// Valida e atualiza tamanho do código de identificação da unidade (Adiciona
+		// zeros à esquerda).
+		if (unidade.getIdUnidade().length() <= TamanhoCamposFitaUnidades.ID_UNIDADE) {
+			while (unidade.getIdUnidade().length() < TamanhoCamposFitaUnidades.ID_UNIDADE) {
+				String zeros = "0";
+				String codigo = zeros + unidade.getIdUnidade();
+
+				unidade.setIdUnidade(codigo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Código da identificação da unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.ID_UNIDADE + " caracteres.");
+		}
+
+		// Valida e atualiza o nome da unidade (Adiciona espaços à direita).
+		if (unidade.getNome().length() <= TamanhoCamposFitaUnidades.NOME_UNIDADE) {
+			while (unidade.getNome().length() < TamanhoCamposFitaUnidades.NOME_UNIDADE) {
+				String brancos = " ";
+				String nome = unidade.getNome() + brancos;
+
+				unidade.setNome(nome);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Nome da unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.NOME_UNIDADE + " caracteres.");
+		}
+		
+		// Valida e atualiza o nome da unidade (Adiciona espaços à direita).
+		if (unidade.getSigla().length() <= TamanhoCamposFitaUnidades.SIGLA_UNIDADE) {
+			while (unidade.getSigla().length() < TamanhoCamposFitaUnidades.SIGLA_UNIDADE) {
+				String brancos = " ";
+				String sigla = unidade.getSigla() + brancos;
+
+				unidade.setSigla(sigla);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Sigla da unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.SIGLA_UNIDADE + " caracteres.");
+		}
+		
+		// Valida e atualiza sigla da UF (Adiciona espaços à direita).
+		if (unidade.getUf().length() <= TamanhoCamposFitaUnidades.UF_UNIDADE) {
+			while (unidade.getUf().length() < TamanhoCamposFitaUnidades.UF_UNIDADE) {
+				String brancos = " ";
+				String uf = unidade.getUf() + brancos;
+
+				unidade.setUf(uf);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Sigla da UF unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UF_UNIDADE + " caracteres.");
+		}
+
+		// Valida e atualiza tamanho do código da unidade pagadora (Adiciona zeros à
+		// esquerda).
+		if (unidade.getIdUnidadePagadora().length() <= TamanhoCamposFitaUnidades.ID_UNIDADE_PAGADORA) {
+			while (unidade.getIdUnidadePagadora().length() < TamanhoCamposFitaUnidades.ID_UNIDADE_PAGADORA) {
+				String zeros = "0";
+				String codigo = zeros + unidade.getIdUnidadePagadora();
+
+				unidade.setIdUnidadePagadora(codigo);
+			}
+		} else {
+			MensagensUtil.errosValidacao
+					.add("Unidade pagadora da unidade: " + unidade.getNome() + " " + "ultrapassa o limite máximo de "
+							+ TamanhoCamposFitaUnidades.ID_UNIDADE_PAGADORA + " caracteres.");
+		}
+
+		// Valida e atualiza tamanho do código da unidade gestora (Adiciona zeros à
+		// esquerda).
+		if (unidade.getUnidadeGestora().length() <= TamanhoCamposFitaUnidades.UNIDADE_GESTORA) {
+			while (unidade.getUnidadeGestora().length() < TamanhoCamposFitaUnidades.UNIDADE_GESTORA) {
+				String zeros = "0";
+				String codigo = zeros + unidade.getUnidadeGestora();
+
+				unidade.setUnidadeGestora(codigo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Unidade gestora da unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UNIDADE_GESTORA + " caracteres.");
+		}
+		
+		// Valida e atualiza unidade antecedentes (Adiciona espaços à direita).
+		if (unidade.getUnidadeAntecedente().length() <= TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
+			while (unidade.getUnidadeAntecedente().length() < TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
+				String brancos = " ";
+				String antecedente = unidade.getUnidadeAntecedente() + brancos;
+
+				unidade.setUnidadeAntecedente(antecedente);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Unidade antecedente da unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UF_UNIDADE + " caracteres.");
 		}
 
 	}
