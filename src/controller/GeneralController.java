@@ -328,7 +328,7 @@ public class GeneralController {
 		escritor.print(fitaEspelhoServidores.getQtdServidores()); // Quantidade de servidores
 		escritor.print(fitaEspelhoServidores.getFillerFim());
 
-		arquivo.close();		
+		arquivo.close();
 
 		String anim = "|/-\\";
 		System.out.println("\n");
@@ -381,9 +381,47 @@ public class GeneralController {
 		
 	}
 
-	public void exportarArquivoUnidades() {
-		// TODO Auto-generated method stub
+	public void exportarArquivoUnidades() throws IOException, InterruptedException {
+		String nomeArquivoSaida = "fita_espelho_unidades.txt";
+		
+		Path caminhoSaida = Paths.get("arquivo_saida", nomeArquivoSaida);
+		FileWriter arquivo = new FileWriter(caminhoSaida.toString());
+		
+		PrintWriter escritor = new PrintWriter(arquivo);
+
+		// Recuperando servidores da lista de servidores.
+		List<Unidade> unidades = new ArrayList<>();
+		unidades = fitaEspelhoUnidades.getUnidades();
+
+		// Registrando dados pessoais dos servidores nas próximas linhas
+		for (Unidade unidade : unidades) {
+			// Registro dos dados pessoais dos servidores (Linha 2).
+			escritor.print(unidade.getIdUnidade()); // Id da unidade.
+			escritor.print(unidade.getNome());
+			escritor.print(unidade.getSigla());
+			escritor.print(unidade.getUf());
+			escritor.print(unidade.getIdUnidadePagadora());
+			escritor.print(unidade.getUnidadeGestora());
+			escritor.print(unidade.getUnidadeAntecedente());
+						
+			escritor.print("\n");
+		}
+		
+		arquivo.close();
+
+		String anim = "|/-\\";
+		System.out.println("\n");
+		System.out.flush();
+		for (int x = 0; x < 100; x++) {
+			String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
+			System.out.write(progresso.getBytes());			
+			Thread.sleep(30);			
+		}
+		System.out.flush();
+		
+		Thread.sleep(1000);
+		System.out.println("\n");
+		System.out.println("Arquivo UNIDADES gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
 		
 	}
-
 }
