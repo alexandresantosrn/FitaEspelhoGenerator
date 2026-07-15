@@ -2,7 +2,7 @@ package model;
 
 public class TamanhoCamposFitaServidores {
 	
-	/* Cabeçalho */
+	/* Cabeçalho da fita*/
 	public final static int CODIGO = 5;
 	public final static int SIGLA = 10;
 	public final static int MES = 2;
@@ -10,6 +10,11 @@ public class TamanhoCamposFitaServidores {
 	public final static int FILLER1 = 719;
 	public final static int UNIDADE_PAGADORA = 9;
 	
+	/* Dados Funcionais do Servidor */
+	public final static int GRUPO_CARGO = 3;
+	public final static int CARGO = 3;
+	public final static int CLASSE_CARGO = 1;
+	public final static int NIVEL_CARGO = 3;	
 	
 	public final static int FILLER_FIM = 743;
 }

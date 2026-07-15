@@ -20,7 +20,7 @@ public class Validator {
 				fita.setCodigo(codigo);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Código da instituição ultrapassa o limite " + "máximo de "
+			MensagensUtil.errosValidacao.add("Código da instituição ultrapassa o limite máximo de "
 					+ TamanhoCamposFitaServidores.CODIGO + " caracteres.");
 		}
 
@@ -33,7 +33,7 @@ public class Validator {
 				fita.setSigla(sigla);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Sigla da instituição ultrapassa o limite " + "máximo de "
+			MensagensUtil.errosValidacao.add("Sigla da instituição ultrapassa o limite máximo de "
 					+ TamanhoCamposFitaServidores.SIGLA + " caracteres.");
 		}
 
@@ -46,13 +46,13 @@ public class Validator {
 				fita.setMes(mes);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Mês informado ultrapassa o limite " + "máximo de "
+			MensagensUtil.errosValidacao.add("Mês informado ultrapassa o limite máximo de "
 					+ TamanhoCamposFitaServidores.MES + " caracteres.");
 		}
 
 		// Valida tamanho do ano.
 		if (fita.getAno().length() != TamanhoCamposFitaServidores.ANO) {
-			MensagensUtil.errosValidacao.add("Ano informado com tamanho de caracteres inválido. " + "O campo deve ter "
+			MensagensUtil.errosValidacao.add("Ano informado com tamanho de caracteres inválido. O campo deve ter "
 					+ TamanhoCamposFitaServidores.MES + " caracteres.");
 		}
 
@@ -65,7 +65,7 @@ public class Validator {
 				fita.setUniPagadora(uniPagadora);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Tamanho da unidade pagadora ultrapassa o limite " + "máximo de "
+			MensagensUtil.errosValidacao.add("Tamanho da unidade pagadora ultrapassa o limite máximo de "
 					+ TamanhoCamposFitaServidores.UNIDADE_PAGADORA + " caracteres.");
 		}
 
@@ -244,6 +244,61 @@ public class Validator {
 			servidor.setUnidadeLotacao(unidadeLotacao);
 		}
 
+	}
+	
+	public void validateDadosFuncionais(Servidor servidor) {
+		
+		// Valida e atualiza o grupo cargo do servidor (Adiciona zeros à esquerda).
+		if (servidor.getGrupoCargo().length() <= TamanhoCamposFitaServidores.GRUPO_CARGO) {
+			while (servidor.getGrupoCargo().length() < TamanhoCamposFitaServidores.GRUPO_CARGO) {
+				String zeros = "0";
+				String grupoCargo = zeros + servidor.getGrupoCargo();
+	
+				servidor.setGrupoCargo(grupoCargo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Grupo Cargo do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.GRUPO_CARGO + " caracteres.");
+		}
+		
+		// Valida e atualiza o cargo do servidor (Adiciona zeros à esquerda).		
+		if (servidor.getCargo().length() <= TamanhoCamposFitaServidores.CARGO) {
+			while (servidor.getCargo().length() < TamanhoCamposFitaServidores.CARGO) {
+				String zeros = "0";
+				String cargo = zeros + servidor.getCargo();
+	
+				servidor.setCargo(cargo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Cargo do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.CARGO + " caracteres.");
+		}
+		
+		// Valida e atualiza a classe funcional do servidor (Adiciona espaços à direita).
+		if (servidor.getClasseCargo().length() <= TamanhoCamposFitaServidores.CLASSE_CARGO) {
+			while (servidor.getClasseCargo().length() < TamanhoCamposFitaServidores.CLASSE_CARGO) {
+				String brancos = " ";
+				String classeCargo = servidor.getClasseCargo() + brancos;
+	
+				servidor.setClasseCargo(classeCargo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Classe funcional do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.CLASSE_CARGO + " caracteres.");
+		}
+		
+		// Valida e atualiza a classe funcional do servidor (Adiciona espaços à direita).
+		if (servidor.getNivelCargo().length() <= TamanhoCamposFitaServidores.NIVEL_CARGO) {
+			while (servidor.getNivelCargo().length() < TamanhoCamposFitaServidores.NIVEL_CARGO) {
+				String brancos = " ";
+				String nivelCargo = servidor.getNivelCargo() + brancos;
+	
+				servidor.setNivelCargo(nivelCargo);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Nivel funcional do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.NIVEL_CARGO + " caracteres.");
+		}
 	}
 
 	public void validateQtdServidores(FitaEspelhoServidores fita) {

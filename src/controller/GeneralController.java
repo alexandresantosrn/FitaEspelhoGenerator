@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -196,8 +195,11 @@ public class GeneralController {
 				// Adicionando servidor a lista de servidores.
 				fitaEspelhoServidores.addServidores(servidor);
 
-				// Valida e atualiza dados pessoais dos servidores.
+				// Valida e atualiza os dados pessoais dos servidores.
 				validador.validateDadosPessoais(servidor);
+				
+				// Valida e atualiza os dados funcionais dos servidores
+				validador.validateDadosFuncionais(servidor);
 				
 				qtdServidores ++;
 				fitaEspelhoServidores.setQtdServidores(Integer.toString(qtdServidores));	
