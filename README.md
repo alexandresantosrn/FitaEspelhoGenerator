@@ -1,6 +1,17 @@
 # FitaEspelhoGenerator
 Aplicação de apoio para geração dos dados para fita-espelho SIAPE.
 
+## Compilação
+Para compilar o projeto executar o seguinte comando na raiz do projeto: 
+
+	javac -d bin $(find src -name "*.java")
+
+Para rodar a aplicação executar o seguinte comando na raiz do projeto: 
+
+	java -cp bin view.Index
+
+OBS: O projeto foi desenvolvido na versão: 17 do Java, mas é provável que rode em versões mais antigas.
+
 ## Execução
 Substituir o arquivo servidores.txt dentro do diretório /arquivo_entrada presente na raiz do projeto.
 
@@ -21,7 +32,7 @@ O arquivo: servidores.txt deverá ter as seguintes informações dos servidores,
 - Sigla Naturalidade; (Ex: RN)
 - Endereço; (Valor alfanumérico)
 - Número; (Valor alfanumérico)
-- Complemento do endereço; (Valor alfanumérico - Obs: Deixar vazio, caso não exista.)
+- Complemento do endereço; (Valor alfanumérico - Obs: Deixar um espaço em branco, caso não exista.)
 - Bairro; (Valor alfanumérico)
 - Município; (Valor alfanumérico)
 - CEP; (Valor numérico - ex: 59000000)
@@ -38,10 +49,10 @@ O arquivo: servidores.txt deverá ter as seguintes informações dos servidores,
 - Conta Bancária; (Valor alfanumérico)
 - Jornada de Trabalho; (Ex: 20, 40 - DE são registrados como 99)
 - Data de Cadastro do servidor; (Data/formato: 01012000)
-- Grupo Cargo; (3 primeiros valores numéricos extraídos da tabela: rh.cargo - Coluna: id)
-- Cargo; (3 últimos valores numéricos extraídos da tabela: rh.cargo - Coluna: id)
-- Classe Cargo; (Valor alfanumérico de 1 dígito extraído da tabela: rh.classe_funcional - Coluna: sigla - Deixar em branco, caso não exista)
-- Nível Cargo; (Valor alfanumérico - 3 dígitos - Deixar em branco, caso não exista)
+- Grupo Cargo; (3 primeiros valores numéricos extraídos da tabela: rh.cargo - Coluna: id - Obs: Deixar com valor 0, caso não exista)
+- Cargo; (3 últimos valores numéricos extraídos da tabela: rh.cargo - Coluna: id - Obs: Deixar com valor 0, caso não exista)
+- Classe Cargo; (Valor alfanumérico de 1 dígito extraído da tabela: rh.classe_funcional - Coluna: sigla - Deixar um espaço em branco, caso não exista)
+- Nível Cargo; (Valor alfanumérico - 3 dígitos - Deixar um espaço em branco, caso não exista)
 - Data de Entrada do servidor no cargo; (Data/formato: 01012000)
 - Data de Saída do servidor no cargo; (Data/formato: 01012000 - Obs: Deixar com valor 0, caso não exista.) 
 - Unidade de Lotação do servidor; (Codigo SIAPECAD da unidade de lotação do servidor. Deve existir este código na tabela de unidades: select codigo_siapecad from comum.unidade)	
@@ -63,5 +74,3 @@ Em seguida serão apresentadas as seguintes perguntas:
 Por fim, será gerado um arquivo de saída dentro do diretório: arquivo_saida, denominado: fita_espelho_mes_ano.txt.
 
 Atenção: No caso específico, apresentado acima foi gerada uma fita para o mês de julho, junto ao ano de 2026. Deverá existir na base uma unidade com o código SIAPECAD informado. Em geral a unidade raiz possui SIAPECAD padrão no valor de 38.000, mas isto pode ser atualizado pela instituição. (select * from comum.unidade where codigo_siapecad = 38000)
-
-OBS: O projeto foi desenvolvido na versão: 17 do Java.
