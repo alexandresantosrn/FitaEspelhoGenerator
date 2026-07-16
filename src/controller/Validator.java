@@ -46,8 +46,8 @@ public class Validator {
 				fita.setMes(mes);
 			}
 		} else {
-			MensagensUtil.errosValidacao.add("Mês informado ultrapassa o limite máximo de "
-					+ TamanhoCamposFitaServidores.MES + " caracteres.");
+			MensagensUtil.errosValidacao.add(
+					"Mês informado ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.MES + " caracteres.");
 		}
 
 		// Valida tamanho do ano.
@@ -245,54 +245,56 @@ public class Validator {
 		}
 
 	}
-	
+
 	public void validateDadosFuncionais(Servidor servidor) {
-		
+
 		// Valida e atualiza o grupo cargo do servidor (Adiciona zeros à esquerda).
 		if (servidor.getGrupoCargo().length() <= TamanhoCamposFitaServidores.GRUPO_CARGO) {
 			while (servidor.getGrupoCargo().length() < TamanhoCamposFitaServidores.GRUPO_CARGO) {
 				String zeros = "0";
 				String grupoCargo = zeros + servidor.getGrupoCargo();
-	
+
 				servidor.setGrupoCargo(grupoCargo);
 			}
 		} else {
 			MensagensUtil.errosValidacao.add("Grupo Cargo do servidor: " + servidor.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.GRUPO_CARGO + " caracteres.");
 		}
-		
-		// Valida e atualiza o cargo do servidor (Adiciona zeros à esquerda).		
+
+		// Valida e atualiza o cargo do servidor (Adiciona zeros à esquerda).
 		if (servidor.getCargo().length() <= TamanhoCamposFitaServidores.CARGO) {
 			while (servidor.getCargo().length() < TamanhoCamposFitaServidores.CARGO) {
 				String zeros = "0";
 				String cargo = zeros + servidor.getCargo();
-	
+
 				servidor.setCargo(cargo);
 			}
 		} else {
 			MensagensUtil.errosValidacao.add("Cargo do servidor: " + servidor.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.CARGO + " caracteres.");
 		}
-		
-		// Valida e atualiza a classe funcional do servidor (Adiciona espaços à direita).
+
+		// Valida e atualiza a classe funcional do servidor (Adiciona espaços à
+		// direita).
 		if (servidor.getClasseCargo().length() <= TamanhoCamposFitaServidores.CLASSE_CARGO) {
 			while (servidor.getClasseCargo().length() < TamanhoCamposFitaServidores.CLASSE_CARGO) {
 				String brancos = " ";
 				String classeCargo = servidor.getClasseCargo() + brancos;
-	
+
 				servidor.setClasseCargo(classeCargo);
 			}
 		} else {
 			MensagensUtil.errosValidacao.add("Classe funcional do servidor: " + servidor.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.CLASSE_CARGO + " caracteres.");
 		}
-		
-		// Valida e atualiza a classe funcional do servidor (Adiciona espaços à direita).
+
+		// Valida e atualiza a classe funcional do servidor (Adiciona espaços à
+		// direita).
 		if (servidor.getNivelCargo().length() <= TamanhoCamposFitaServidores.NIVEL_CARGO) {
 			while (servidor.getNivelCargo().length() < TamanhoCamposFitaServidores.NIVEL_CARGO) {
 				String brancos = " ";
 				String nivelCargo = servidor.getNivelCargo() + brancos;
-	
+
 				servidor.setNivelCargo(nivelCargo);
 			}
 		} else {
@@ -340,7 +342,7 @@ public class Validator {
 			MensagensUtil.errosValidacao.add("Nome da unidade: " + unidade.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.NOME_UNIDADE + " caracteres.");
 		}
-		
+
 		// Valida e atualiza o nome da unidade (Adiciona espaços à direita).
 		if (unidade.getSigla().length() <= TamanhoCamposFitaUnidades.SIGLA_UNIDADE) {
 			while (unidade.getSigla().length() < TamanhoCamposFitaUnidades.SIGLA_UNIDADE) {
@@ -353,7 +355,7 @@ public class Validator {
 			MensagensUtil.errosValidacao.add("Sigla da unidade: " + unidade.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.SIGLA_UNIDADE + " caracteres.");
 		}
-		
+
 		// Valida e atualiza sigla da UF (Adiciona espaços à direita).
 		if (unidade.getUf().length() <= TamanhoCamposFitaUnidades.UF_UNIDADE) {
 			while (unidade.getUf().length() < TamanhoCamposFitaUnidades.UF_UNIDADE) {
@@ -395,7 +397,7 @@ public class Validator {
 			MensagensUtil.errosValidacao.add("Unidade gestora da unidade: " + unidade.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UNIDADE_GESTORA + " caracteres.");
 		}
-		
+
 		// Valida e atualiza unidade antecedentes (Adiciona espaços à direita).
 		if (unidade.getUnidadeAntecedente().length() <= TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
 			while (unidade.getUnidadeAntecedente().length() < TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {

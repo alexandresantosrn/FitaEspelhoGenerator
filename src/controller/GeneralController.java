@@ -16,7 +16,6 @@ import model.FitaEspelhoServidores;
 import model.FitaEspelhoUnidades;
 import model.Servidor;
 import model.Unidade;
-import util.MensagensUtil;
 
 public class GeneralController {
 

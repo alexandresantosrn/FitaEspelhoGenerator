@@ -1,7 +1,7 @@
 package model;
 
 public class TamanhoCamposFitaUnidades {
-	
+
 	public final static int ID_UNIDADE = 14;
 	public final static int NOME_UNIDADE = 40;
 	public final static int SIGLA_UNIDADE = 10;

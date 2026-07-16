@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import util.MensagensUtil;
 
 public class MainController {
@@ -12,23 +10,28 @@ public class MainController {
 	public void carregarServidores() throws IOException, InterruptedException {
 		controlador.informarDadosInstituicao();
 		controlador.carregarDadosServidores();
-		
+
 		if (MensagensUtil.errosValidacao.isEmpty()) {
 			controlador.exportarArquivoServidores();
 		} else {
-			for (String erro : MensagensUtil.errosValidacao) {
-				System.out.println("\n");
-				System.out.println("******** Erro: " + erro + " ********");
-			}
-		}
-	}
-	
-	public void carregarUnidades() throws IOException, Exception {
-		controlador.carregarDadosUnidades();
-		
-		if (MensagensUtil.errosValidacao.isEmpty()) {
-			controlador.exportarArquivoUnidades();
+			apresentarMsgErroValidacao();
 		}
 	}
 
+	public void carregarUnidades() throws IOException, Exception {
+		controlador.carregarDadosUnidades();
+
+		if (MensagensUtil.errosValidacao.isEmpty()) {
+			controlador.exportarArquivoUnidades();
+		} else {
+			apresentarMsgErroValidacao();
+		}
+	}
+
+	public void apresentarMsgErroValidacao() {
+		for (String erro : MensagensUtil.errosValidacao) {
+			System.out.println("\n");
+			System.out.println("******** Erro: " + erro + " ********");
+		}
+	}
 }

@@ -10,39 +10,39 @@ public class Index {
 
 	public static void main(String[] args) throws IOException, Exception {
 
-		int option = 1000;		
-		
-			while (option != 0) {
-				ClearConsole();
-				System.out.println("\n #### GERADOR DE FITA ESPELHO SIGRH #### \n ");				
-				
-				System.out.println("\tInforme a opcao desejada: ");
-				System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
-				System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
-				System.out.println("\t\t0 - Sair");
-				System.out.print("\tOpcao: ");
-				option = input.nextInt();
+		int option = 1000;
 
-				switch (option) {
-				case 1: {
-					MainController controlador = new MainController();
-					System.out.println("\n #######  FITA ESPELHO SERVIDORES #######\n");
-					controlador.carregarServidores();
-					break;
-				}
-				case 2: {
-					MainController controlador = new MainController();
-					System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
-					controlador.carregarUnidades();
-					break;
-				}
-				
-				default:
-					break;
-				}
-				
+		while (option != 0) {
+			ClearConsole();
+			System.out.println("\n #### GERADOR DE FITA ESPELHO SIGRH #### \n ");
+
+			System.out.println("\tInforme a opcao desejada: ");
+			System.out.println("\t\t1 - Gerar Fita Espelho SERVIDORES");
+			System.out.println("\t\t2 - Gerar Fita Espelho UNIDADES");
+			System.out.println("\t\t0 - Sair");
+			System.out.print("\tOpcao: ");
+			option = input.nextInt();
+
+			switch (option) {
+			case 1: {
+				MainController controlador = new MainController();
+				System.out.println("\n #######  FITA ESPELHO SERVIDORES #######\n");
+				controlador.carregarServidores();
 				break;
-			}		
+			}
+			case 2: {
+				MainController controlador = new MainController();
+				System.out.println("\n #######  FITA ESPELHO UNIDADES #######\n");
+				controlador.carregarUnidades();
+				break;
+			}
+
+			default:
+				break;
+			}
+
+			break;
+		}
 
 		System.out.println(" \n" + "Finalizando. Ate logo!!!!");
 		input.close();
@@ -51,15 +51,15 @@ public class Index {
 
 	public static void ClearConsole() {
 		try {
-	        if (System.getProperty("os.name").toLowerCase().contains("win")) {
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-	        } else {
-	            System.out.print("\033[H\033[2J");
-	            System.out.flush();
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			if (System.getProperty("os.name").toLowerCase().contains("win")) {
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			} else {
+				System.out.print("\033[H\033[2J");
+				System.out.flush();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
