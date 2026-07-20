@@ -202,28 +202,43 @@ public class Validator {
 			servidor.setFiller4(filler4);
 		}
 
-		// Valida e atualiza tamanho do Agência Bancária (Adiciona espaços à esquerda).
-		while (servidor.getAgencia().length() < 6) {
-			String zeros = "0";
-			String agencia = zeros + servidor.getAgencia();
+		// Valida e atualiza tamanho do banco (Adiciona zeros à esquerda).
+		if (servidor.getBanco().length() <= TamanhoCamposFitaServidores.BANCO) {
+			while (servidor.getBanco().length() < TamanhoCamposFitaServidores.BANCO) {
+				String zeros = "0";
+				String banco = zeros + servidor.getBanco();
 
-			servidor.setAgencia(agencia);
+				servidor.setBanco(banco);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Banco do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.BANCO + " caracteres.");
+		}
+
+		// Valida e atualiza tamanho do Agência Bancária (Adiciona espaços à direita).
+		if (servidor.getAgencia().length() <= TamanhoCamposFitaServidores.AGENCIA_BANCARIA) {
+			while (servidor.getAgencia().length() < TamanhoCamposFitaServidores.AGENCIA_BANCARIA) {
+				String brancos = " ";
+				String agencia = brancos + servidor.getAgencia();
+
+				servidor.setAgencia(agencia);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Agência bancária do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.AGENCIA_BANCARIA + " caracteres.");
 		}
 
 		// Valida e atualiza tamanho da conta bancária (Adiciona espaços à esquerda).
-		while (servidor.getContaBancaria().length() < 13) {
-			String zeros = "0";
-			String contaBancaria = zeros + servidor.getContaBancaria();
+		if (servidor.getContaBancaria().length() <= TamanhoCamposFitaServidores.CONTA_BANCARIA) {
+			while (servidor.getContaBancaria().length() < TamanhoCamposFitaServidores.CONTA_BANCARIA) {
+				String brancos = " ";
+				String contaBancaria = brancos + servidor.getContaBancaria();
 
-			servidor.setContaBancaria(contaBancaria);
-		}
-
-		// Valida e atualiza tamanho da conta bancária (Adiciona espaços à esquerda).
-		while (servidor.getContaBancaria().length() < 13) {
-			String zeros = "0";
-			String contaBancaria = zeros + servidor.getContaBancaria();
-
-			servidor.setContaBancaria(contaBancaria);
+				servidor.setContaBancaria(contaBancaria);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Conta bancária do servidor: " + servidor.getNome() + " "
+					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaServidores.CONTA_BANCARIA + " caracteres.");
 		}
 
 		// Valida e atualiza data de desligamento do servidor (Adiciona zeros à
