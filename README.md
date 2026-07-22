@@ -1,5 +1,6 @@
 # FitaEspelhoGenerator
 Aplicação de apoio para geração dos dados para fita-espelho SIAPE.
+Neste documento consta a descrição da geração do arquivo de importação de servidores e unidades.
 
 ## Compilação
 Para compilar o projeto executar o seguinte comando na raiz do projeto: 
@@ -10,9 +11,9 @@ Para rodar a aplicação executar o seguinte comando na raiz do projeto:
 
 	java -cp bin view.Index
 
-OBS: O projeto foi desenvolvido na versão: 17 do Java, mas é provável que rode em versões mais antigas.
+OBS: O projeto foi desenvolvido na versão: 17 do Java, mas é provável que o mesmo possa ser executado em versões mais antigas.
 
-## Execução
+## Montagem do arquivo de servidores
 Substituir o arquivo servidores.txt dentro do diretório /arquivo_entrada presente na raiz do projeto.
 
 O arquivo: servidores.txt deverá ter as seguintes informações dos servidores, separados por ponto e vírgula (;) na seguinte ORDEM:
@@ -60,7 +61,7 @@ O arquivo: servidores.txt deverá ter as seguintes informações dos servidores,
 - Data de admissão no órgão; (Data/formato: 01012000)
 - Data de admissão no serviço público; (Data/formato: 01012000) 
 
-Ao execeutar a classe: Index.java deve-se selecionar a opção: 1 - Gerar Fita Espelho SERVIDORES.
+Ao executar a aplicação, junto a classe: Index.java deve-se selecionar a opção: 1 - Gerar Fita Espelho SERVIDORES.
 
 Em seguida serão apresentadas as seguintes perguntas:
 
@@ -74,3 +75,24 @@ Em seguida serão apresentadas as seguintes perguntas:
 Por fim, será gerado um arquivo de saída dentro do diretório: arquivo_saida, denominado: fita_espelho_mes_ano.txt.
 
 Atenção: No caso específico, apresentado acima foi gerada uma fita para o mês de julho, junto ao ano de 2026. Deverá existir na base uma unidade com o código SIAPECAD informado. Em geral a unidade raiz possui SIAPECAD padrão no valor de 38.000, mas isto pode ser atualizado pela instituição. (select * from comum.unidade where codigo_siapecad = 38000)
+
+## Importando o arquivo de servidores no SIGRH
+Após geração do arquivo de servidores, realizar a importação do arquivo junto ao sistema através da operação presente em: SIGRH -> Módulo: Administração de Pessoal -> Aba: Administração -> Fita-Espelho -> Fita Espelho SIAPE (Novo) -> Processamento -> Carregar Arquivo. OBS: Neste etapa anexar o arquivo correspondente ao mês/ano referência gerado.
+
+Após carregamento do arquivo, realizar o seu processamento em: SIGRH -> Módulo: Administração de Pessoal -> Aba: Administração -> Fita-Espelho -> Arquivo-Espelho SIAPE -> Unidade -> Processar Arquivo Unidade. Os servidores importados serão apresentados com status: SUCESSO, e os não importados serão apresentados com status: FALHA.
+
+## Montagem do arquivo de unidades.
+Substituir o arquivo unidades.txt dentro do diretório /arquivo_entrada presente na raiz do projeto.
+
+O arquivo: unidades.txt deverá ter as seguintes informações das unidades, separados por ponto e vírgula (;) na seguinte ORDEM:
+
+- Identificador da unidade; (Valor numérico de até 6 dígitos) - OBS: O código de id = 1 deverá ser reservado à unidade raiz. Neste caso não deverão existir unidades neste arquivo com este identificador = 1.
+- Nome Completo da unidade; (Valor alfanumérico de até 40 dígitos)
+- Sigla da unidade; (Valor alfanumérico de até 10 dígitos)
+- Unidade Federativa (UF) da unidade; (Valor alfanumérico de até 2 dígitos)
+- Unidade Responsável; (Valor numérico de até 6 dígitos) - OBS: Inserir o identificador da unidade responsável (unidade-pai) junto a este campo. Esta unidade deverá estar também mapeada nesta arquivo. Caso a unidade esteja diretamente ligada a unidade-raiz da instituição atribuir neste campo o valor = 1.
+
+Ao executar a aplicação, junto a classe: Index.java deve-se selecionar a opção: 2 - Gerar Fita Espelho UNIDADES.
+
+Por fim, será gerado um arquivo de saída dentro do diretório: arquivo_saida, denominado: fita_espelho_unidades.txt.
+
