@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.FitaEspelhoServidores;
 import model.Servidor;
 import model.TamanhoCamposFitaServidores;
@@ -333,16 +335,23 @@ public class Validator {
 	public void validateUnidades(Unidade unidade) {
 		// Valida e atualiza tamanho do código de identificação da unidade (Adiciona
 		// zeros à esquerda).
-		if (unidade.getIdUnidade().length() <= TamanhoCamposFitaUnidades.ID_UNIDADE) {
-			while (unidade.getIdUnidade().length() < TamanhoCamposFitaUnidades.ID_UNIDADE) {
+		if (unidade.getIdUnidade().length() <= TamanhoCamposFitaUnidades.ID_UNIDADE - 8) {
+			String codigo_inicio = "26440000";
+			String codigo = "";
+			while (unidade.getIdUnidade().length() < TamanhoCamposFitaUnidades.ID_UNIDADE - 8) {
 				String zeros = "0";
-				String codigo = zeros + unidade.getIdUnidade();
+				codigo = zeros + unidade.getIdUnidade();
 
 				unidade.setIdUnidade(codigo);
 			}
+
+			String idUnidadeFormatado = unidade.getIdUnidade().substring(unidade.getIdUnidade().length() - 6);
+			unidade.setIdUnidadeFormatado(idUnidadeFormatado + ".");
+
+			unidade.setIdUnidade(codigo_inicio + codigo);
 		} else {
 			MensagensUtil.errosValidacao.add("Código da identificação da unidade: " + unidade.getNome() + " "
-					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.ID_UNIDADE + " caracteres.");
+					+ "ultrapassa o limite máximo de " + 6 + " caracteres.");
 		}
 
 		// Valida e atualiza o nome da unidade (Adiciona espaços à direita).
@@ -413,7 +422,56 @@ public class Validator {
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UNIDADE_GESTORA + " caracteres.");
 		}
 
-		// Valida e atualiza unidade antecedentes (Adiciona espaços à direita).
+		// Valida e atualiza tamanho dos antecedentes (Adiciona zeros à
+		// esquerda).
+		if (unidade.getUnidadeAntecedente().length() <= 6) {
+			while (unidade.getUnidadeAntecedente().length() < 6) {
+				String zeros = "0";
+				String codigo = zeros + unidade.getUnidadeAntecedente();
+
+				unidade.setUnidadeAntecedente(codigo);
+				unidade.setHierarquia(codigo + ".");
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Unidade gestora da unidade: " + unidade.getNome() + " "
+					+ "ultrapassa o limite máximo de " + 6 + " caracteres.");
+		}
+
+	}
+
+	public void validateHierarquia(Unidade unidade, List<Unidade> unidadesPopuladas) {
+
+		Unidade unidadePai = unidade; // Seta a própria unidade como unidade-pai inicialmente.
+		String hierarquiaRaiz = "000001."; // Topo da hierarquia, unidade raiz = 1
+		String hierarquiaLocal = unidade.getHierarquia() + unidade.getIdUnidadeFormatado();
+
+		while (!hierarquiaLocal.contains(hierarquiaRaiz)) {
+			unidadePai = buscarUnidadePai(unidadePai, unidadesPopuladas);
+			hierarquiaLocal = unidadePai.getHierarquia() + hierarquiaLocal;
+		}
+
+//		// Ajusta a hierarquia para as unidades diretamente ligadas a raiz.
+//		if (hierarquiaLocal.equals(hierarquiaRaiz)) {
+//			hierarquiaLocal = hierarquiaRaiz + unidade.getIdUnidadeFormatado();
+//		}
+
+		unidade.setHierarquia(hierarquiaLocal);
+		unidade.setUnidadeAntecedente(unidade.getHierarquia().replace(".", ""));
+	}
+	
+	private Unidade buscarUnidadePai(Unidade unidade, List<Unidade> unidadesPopuladas) {
+		Unidade unidadePai = new Unidade();
+
+		for (Unidade uni : unidadesPopuladas) {
+			if (unidade.getHierarquia().equals(uni.getIdUnidadeFormatado())) {
+				unidadePai = uni;
+			}
+		}
+
+		return unidadePai;
+	}
+
+	public void formatUnidadeAntecedente(Unidade unidade) {
 		if (unidade.getUnidadeAntecedente().length() <= TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
 			while (unidade.getUnidadeAntecedente().length() < TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
 				String brancos = " ";
@@ -425,7 +483,6 @@ public class Validator {
 			MensagensUtil.errosValidacao.add("Unidade antecedente da unidade: " + unidade.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UF_UNIDADE + " caracteres.");
 		}
-
 	}
 
 }
