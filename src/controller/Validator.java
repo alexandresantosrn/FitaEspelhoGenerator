@@ -422,8 +422,10 @@ public class Validator {
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UNIDADE_GESTORA + " caracteres.");
 		}
 
-		// Valida e atualiza tamanho dos antecedentes (Adiciona zeros à
-		// esquerda).
+		/*
+		 * Valida e atualiza o tamanho inicial da unidade dos antecedentes (Adiciona
+		 * zeros à esquerda).
+		 */
 		if (unidade.getUnidadeAntecedente().length() <= 6) {
 			while (unidade.getUnidadeAntecedente().length() < 6) {
 				String zeros = "0";
@@ -439,10 +441,14 @@ public class Validator {
 
 	}
 
+	/* Valida a hierarquia, montando o valor do campo de unidade antecedente */
 	public void validateHierarquia(Unidade unidade, List<Unidade> unidadesPopuladas) {
 
-		Unidade unidadePai = unidade; // Seta a própria unidade como unidade-pai inicialmente.
-		String hierarquiaRaiz = "000001."; // Topo da hierarquia, unidade raiz = 1
+		Unidade unidadePai = unidade; /* Seta a própria unidade como unidade-pai inicialmente. */
+		String hierarquiaRaiz = "000001."; /* Topo da hierarquia, unidade raiz = 1 */
+		/*
+		 * Monta a hierarquia local como a junção da unidade superior + unidade atual.
+		 */
 		String hierarquiaLocal = unidade.getHierarquia() + unidade.getIdUnidadeFormatado();
 
 		while (!hierarquiaLocal.contains(hierarquiaRaiz)) {
@@ -450,15 +456,11 @@ public class Validator {
 			hierarquiaLocal = unidadePai.getHierarquia() + hierarquiaLocal;
 		}
 
-//		// Ajusta a hierarquia para as unidades diretamente ligadas a raiz.
-//		if (hierarquiaLocal.equals(hierarquiaRaiz)) {
-//			hierarquiaLocal = hierarquiaRaiz + unidade.getIdUnidadeFormatado();
-//		}
-
 		unidade.setHierarquia(hierarquiaLocal);
 		unidade.setUnidadeAntecedente(unidade.getHierarquia().replace(".", ""));
 	}
-	
+
+	/* Busca a unidade-pai por meio do campo de hierarquia já populado. */
 	private Unidade buscarUnidadePai(Unidade unidade, List<Unidade> unidadesPopuladas) {
 		Unidade unidadePai = new Unidade();
 
@@ -471,8 +473,13 @@ public class Validator {
 		return unidadePai;
 	}
 
+	/*
+	 * Ajuste final no tamanho de arquivos de antecedentes, adicionando os espaços
+	 * em branco necessários.
+	 */
 	public void formatUnidadeAntecedente(Unidade unidade) {
 		if (unidade.getUnidadeAntecedente().length() <= TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
+			/* Percorre a unidade antecedente e adiciona os espaços em branco até o limite definido. */
 			while (unidade.getUnidadeAntecedente().length() < TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
 				String brancos = " ";
 				String antecedente = unidade.getUnidadeAntecedente() + brancos;
