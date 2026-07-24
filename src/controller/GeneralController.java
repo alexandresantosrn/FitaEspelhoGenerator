@@ -23,7 +23,7 @@ public class GeneralController {
 	FitaEspelhoUnidades fitaEspelhoUnidades = new FitaEspelhoUnidades();
 	Validator validador = new Validator();
 	int qtdServidores;
-	
+
 	public void informarDadosInstituicao() {
 
 		LocalDate dataAtual = LocalDate.now();
@@ -35,38 +35,37 @@ public class GeneralController {
 		String temp = "";
 
 		try (Scanner input = new Scanner(System.in)) {
-			System.out.println("\tPRESSIONE ENTER PARA ACEITAR O VALOR PADRÃO \n");
-			System.out.print("\tInforme o código da instituição ("+ codigo +"): ");
-			temp = input.nextLine();
-			if (!temp.isEmpty() && !temp.isBlank()) {
-				codigo = temp;
-			}
-			
-			System.out.print("\tInforme a sigla da instituição ("+ sigla +"): ");
+			/*
+			 * Inserindo o código da instituição de forma hardcoded para facilitar o uso da
+			 * aplicação.
+			 */
+			codigo = "1";
+
+			System.out.print("\tInforme a sigla da instituição (" + sigla + "): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				sigla = temp;
 			}
-			
-			System.out.print("\tInforme o mês desejado ("+ mes +"): ");
+
+			System.out.print("\tInforme o mês desejado (" + mes + "): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				mes = temp;
 			}
-			
-			System.out.print("\tInforme o ano desejado ("+ ano +"): ");
+
+			System.out.print("\tInforme o ano desejado (" + ano + "): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				ano = temp;
 			}
-			
-			System.out.print("\tInforme o código SIAPECAD da unidade pagadora ("+ uniPagadora +"): ");
+
+			System.out.print("\tInforme o código SIAPECAD da unidade pagadora (" + uniPagadora + "): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				uniPagadora = temp;
 			}
-			
-			System.out.print("\tInforme a UF da unidade pagadora ("+ uf +"): ");
+
+			System.out.print("\tInforme a UF da unidade pagadora (" + uf + "): ");
 			temp = input.nextLine();
 			if (!temp.isEmpty() && !temp.isBlank()) {
 				uf = temp;
@@ -78,7 +77,7 @@ public class GeneralController {
 			fitaEspelhoServidores.setAno(ano);
 			fitaEspelhoServidores.setUniPagadora(uniPagadora);
 			fitaEspelhoServidores.setUf(uf);
-			
+
 			fitaEspelhoServidores.printCabecalho();
 		}
 
@@ -94,7 +93,7 @@ public class GeneralController {
 		FileReader file = new FileReader(path.toString());
 		try (BufferedReader leitor = new BufferedReader(file)) {
 			// Variável de leitura da linha.
-			String linha = leitor.readLine();			
+			String linha = leitor.readLine();
 
 			while (linha != null) {
 
@@ -196,14 +195,14 @@ public class GeneralController {
 
 				// Valida e atualiza os dados pessoais dos servidores.
 				validador.validateDadosPessoais(servidor);
-				
+
 				// Valida e atualiza os dados funcionais dos servidores
 				validador.validateDadosFuncionais(servidor);
-				
-				qtdServidores ++;
-				fitaEspelhoServidores.setQtdServidores(Integer.toString(qtdServidores));	
+
+				qtdServidores++;
+				fitaEspelhoServidores.setQtdServidores(Integer.toString(qtdServidores));
 				validador.validateQtdServidores(fitaEspelhoServidores);
-				
+
 				linha = leitor.readLine();
 			}
 		}
@@ -211,13 +210,13 @@ public class GeneralController {
 	}
 
 	public void exportarArquivoServidores() throws IOException, InterruptedException {
-		
-		String nomeArquivoSaida = "fita_espelho_" + fitaEspelhoServidores.getMes() + "_" + 
-				fitaEspelhoServidores.getAno() + ".txt";
-		
+
+		String nomeArquivoSaida = "fita_espelho_" + fitaEspelhoServidores.getMes() + "_"
+				+ fitaEspelhoServidores.getAno() + ".txt";
+
 		Path caminhoSaida = Paths.get("arquivo_saida", nomeArquivoSaida);
 		FileWriter arquivo = new FileWriter(caminhoSaida.toString());
-		
+
 		PrintWriter escritor = new PrintWriter(arquivo);
 
 		// Recuperando servidores da lista de servidores.
@@ -252,8 +251,8 @@ public class GeneralController {
 			escritor.print(servidor.getEscolaridade()); // Código(DB) da escolaridade do servidor.
 			escritor.print(servidor.getCodigoFormacao()); // Código(DB) da formação do servidor.
 			escritor.print(servidor.getFiller2());
-			escritor.print(servidor.getNacionalidade()); //Valor padrão: 1.
-			escritor.print(servidor.getSiglaNaturalidade()); //Ex: RN
+			escritor.print(servidor.getNacionalidade()); // Valor padrão: 1.
+			escritor.print(servidor.getSiglaNaturalidade()); // Ex: RN
 			escritor.print("000"); // Dados do país (Em geral vem com valor 0)
 			escritor.print(servidor.getFiller3()); // Filler.
 			escritor.print(servidor.getEndereco()); // Endereço do servidor.
@@ -305,7 +304,7 @@ public class GeneralController {
 			escritor.print("00000"); // Código Nova Função
 			escritor.print("   "); // Escolaridade Nova Função
 			escritor.print("00000000000000000000000000000"); // Dados complementares da nova função
-			escritor.print(servidor.getUnidadeLotacao()); //Código SIAPECAD da unidade de lotação
+			escritor.print(servidor.getUnidadeLotacao()); // Código SIAPECAD da unidade de lotação
 			escritor.print(servidor.getDataIngressoUnidade()); // Data de ingresso do servidor na unidade
 			// escritor.print(
 			// "00000000000000000000000000000000 000000000000000000000000000
@@ -336,32 +335,32 @@ public class GeneralController {
 		System.out.flush();
 		for (int x = 0; x < 100; x++) {
 			String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
-			System.out.write(progresso.getBytes());			
-			Thread.sleep(30);			
+			System.out.write(progresso.getBytes());
+			Thread.sleep(30);
 		}
 		System.out.flush();
-		
+
 		Thread.sleep(1000);
 		System.out.println("\n");
 		System.out.println("Arquivo FITA ESPELHO gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
 	}
 
 	public void carregarDadosUnidades() throws IOException {
-		
+
 		// Caminho de localização do arquivo de unidades.
 		final Path path = Paths.get("arquivo_entrada", "unidades.txt");
 
 		FileReader file = new FileReader(path.toString());
 		try (BufferedReader leitor = new BufferedReader(file)) {
 			// Variável de leitura da linha.
-			String linha = leitor.readLine();			
+			String linha = leitor.readLine();
 
 			while (linha != null) {
-				
+
 				Unidade unidade = new Unidade();
-				
+
 				String vector[] = linha.split(";");
-				
+
 				unidade.setIdUnidade(vector[0]);
 				unidade.setNome(vector[1]);
 				unidade.setSigla(vector[2]);
@@ -369,20 +368,20 @@ public class GeneralController {
 				unidade.setIdUnidadePagadora("1"); // Seta a unidade raiz como pagadora.
 				unidade.setUnidadeGestora("158517"); // String fixa.
 				unidade.setUnidadeAntecedente(vector[4]);
-				
+
 				// Adicionando unidade a lista de unidades.
 				fitaEspelhoUnidades.addUnidade(unidade);
 
 				// Valida e atualiza dados das unidades.
 				validador.validateUnidades(unidade);
-				
+
 				linha = leitor.readLine();
 			}
 		}
-		
+
 		List<Unidade> unidadesPopuladas = fitaEspelhoUnidades.getUnidades();
-		
-		for (Unidade unidade : unidadesPopuladas) {			
+
+		for (Unidade unidade : unidadesPopuladas) {
 			validador.validateHierarquia(unidade, unidadesPopuladas);
 			validador.formatUnidadeAntecedente(unidade);
 		}
@@ -390,10 +389,10 @@ public class GeneralController {
 
 	public void exportarArquivoUnidades() throws IOException, InterruptedException {
 		String nomeArquivoSaida = "fita_espelho_unidades.txt";
-		
+
 		Path caminhoSaida = Paths.get("arquivo_saida", nomeArquivoSaida);
 		FileWriter arquivo = new FileWriter(caminhoSaida.toString());
-		
+
 		PrintWriter escritor = new PrintWriter(arquivo);
 
 		// Recuperando servidores da lista de servidores.
@@ -410,10 +409,10 @@ public class GeneralController {
 			escritor.print(unidade.getIdUnidadePagadora());
 			escritor.print(unidade.getUnidadeGestora());
 			escritor.print(unidade.getUnidadeAntecedente());
-						
+
 			escritor.print("\n");
 		}
-		
+
 		arquivo.close();
 
 		String anim = "|/-\\";
@@ -421,14 +420,14 @@ public class GeneralController {
 		System.out.flush();
 		for (int x = 0; x < 100; x++) {
 			String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
-			System.out.write(progresso.getBytes());			
-			Thread.sleep(30);			
+			System.out.write(progresso.getBytes());
+			Thread.sleep(30);
 		}
 		System.out.flush();
-		
+
 		Thread.sleep(1000);
 		System.out.println("\n");
 		System.out.println("Arquivo UNIDADES gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
-		
+
 	}
 }

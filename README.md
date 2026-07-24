@@ -86,7 +86,6 @@ Ao executar a aplicação, junto a classe: Index.java deve-se selecionar a opç�
 
 Em seguida serão apresentadas as seguintes perguntas:
 
-	Informe o código da instituição (00001): 
 	Informe a sigla da instituição (UFRN): 
 	Informe o mês desejado (7): 
 	Informe o ano desejado (2026): 
