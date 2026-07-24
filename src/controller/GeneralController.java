@@ -30,7 +30,7 @@ public class GeneralController {
 
 		String codigo = "00001", sigla = "UFRN";
 		String mes = "" + dataAtual.getMonthValue();
-		String ano = "" + dataAtual.getYear(), uniPagadora = "38000", uf = "RN";
+		String ano = "" + dataAtual.getYear(), uniPagadora = "1", uf = "RN";
 
 		String temp = "";
 
