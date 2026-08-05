@@ -1,26 +1,26 @@
-26440000000002UNIDADE ORGANIZACIONAL DE INFORMATICA   UINFOR    BA00000000000001158517000001000025000002                                                                        
-26440000000003ASSESSORIA DE GESTAO DE PROJETOS INSTITUAGESPI    BA00000000000001158517000001000025000003                                                                        
-26440000000004DEPARTAMENTO CIENCIAS HUMANAS E LETRAS  DCHL      BA00000000000001158517000001000023000004                                                                        
-26440000000005BIBLIOTECA CENTRAL                      BC        BA00000000000001158517000001000023000005                                                                        
-26440000000006SECRETARIA SETORIAL DE CURSOS - ITA     SSC-ITA   BA00000000000001158517000001000023000024000014000006                                                            
-26440000000007ASSESSORIA ACADEMICA - JQ               AAC-JQ    BA00000000000001158517000001000023000024000007                                                                  
-26440000000008GERENCIA DE ACESSO E ACOMPANHAMENTO     GAA       BA00000000000001158517000001000023000024000008                                                                  
-26440000000009SECRETARIA GERAL DE CURSOS              SGC       BA00000000000001158517000001000023000024000014000009                                                            
-26440000000010BIBLIOTECA SETORIAL - ITA               BS-IT     BA00000000000001158517000001000023000005000005000010                                                            
-26440000000011DEPARTAMENTO DE FILOSOFIA CIENCIAS HUMANDFCH      BA00000000000001158517000001000023000011                                                                        
-26440000000012BIBLIOTECA SETORIAL - JQ                BS-JQ     BA00000000000001158517000001000023000005000005000012                                                            
-26440000000013DEPARTAMENTO DE CIENCIAS E TECNOLOGIAS  DCT       BA00000000000001158517000001000023000013                                                                        
-26440000000014GERENCIA ACADEMICA                      GA        BA00000000000001158517000001000023000024000014                                                                  
-26440000000015SECRETARIA DE DIPLOMAS E CERTIFICADOS   SEDIC     BA00000000000001158517000001000023000024000014000014000015                                                      
-26440000000016GERENCIA DE POS-GRADUCAO                GPG       BA00000000000001158517000001000023000017000016                                                                  
-26440000000017PRO-REITORIA DE PESQUISA E POS-GRADUACAOPPG       BA00000000000001158517000001000023000017                                                                        
-26440000000018DEPARTAMENTO DE CIENCIAS SOCIAIS APLICADDCSA      BA00000000000001158517000001000023000018                                                                        
-26440000000019GERENCIA DE EXTENSAO E ASSUNTOS COMUNITAGEAC      BA00000000000001158517000001000023000020000019                                                                  
-26440000000020PRO-REITORIA DE EXTENSAO E ASSUNTOS COMUPROEX     BA00000000000001158517000001000023000020                                                                        
-26440000000021SUBGERENCIA DE EXTENSAO                 SUBE      BA00000000000001158517000001000023000020000019000019000021                                                      
-26440000000022DEPARTAMENTO DE SAUDE II                DSII      BA00000000000001158517000001000023000022                                                                        
-26440000000023REITORIA                                RTR       BA00000000000001158517000001000023                                                                              
-26440000000024PRO-REITORIA DE GRADUACAO               PROGRAD   BA00000000000001158517000001000023000023000024                                                                  
-26440000000025GABINETE                                GAB       BA00000000000001158517000001000025                                                                              
-26440000000026ASSESSORIA TECNICA DE FINANCAS E PLANEJAASPLAN    BA00000000000001158517000001000023000023000027000026                                                            
-26440000000027GERENCIA DE PLANEJAMENTO                GERPLAN   BA00000000000001158517000001000023000023000027                                                                  
+00000000000002UNIDADE ORGANIZACIONAL DE INFORMATICA   UINFOR    BA00000000000001000001000001000025000002                                                                        
+00000000000003ASSESSORIA DE GESTAO DE PROJETOS INSTITUAGESPI    BA00000000000001000001000001000025000003                                                                        
+00000000000004DEPARTAMENTO CIENCIAS HUMANAS E LETRAS  DCHL      BA00000000000001000001000001000023000004                                                                        
+00000000000005BIBLIOTECA CENTRAL                      BC        BA00000000000001000001000001000023000005                                                                        
+00000000000006SECRETARIA SETORIAL DE CURSOS - ITA     SSC-ITA   BA00000000000001000001000001000023000024000014000006                                                            
+00000000000007ASSESSORIA ACADEMICA - JQ               AAC-JQ    BA00000000000001000001000001000023000024000007                                                                  
+00000000000008GERENCIA DE ACESSO E ACOMPANHAMENTO     GAA       BA00000000000001000001000001000023000024000008                                                                  
+00000000000009SECRETARIA GERAL DE CURSOS              SGC       BA00000000000001000001000001000023000024000014000009                                                            
+00000000000010BIBLIOTECA SETORIAL - ITA               BS-IT     BA00000000000001000001000001000023000005000010                                                                  
+00000000000011DEPARTAMENTO DE FILOSOFIA CIENCIAS HUMANDFCH      BA00000000000001000001000001000023000011                                                                        
+00000000000012BIBLIOTECA SETORIAL - JQ                BS-JQ     BA00000000000001000001000001000023000005000012                                                                  
+00000000000013DEPARTAMENTO DE CIENCIAS E TECNOLOGIAS  DCT       BA00000000000001000001000001000023000013                                                                        
+00000000000014GERENCIA ACADEMICA                      GA        BA00000000000001000001000001000023000024000014                                                                  
+00000000000015SECRETARIA DE DIPLOMAS E CERTIFICADOS   SEDIC     BA00000000000001000001000001000023000024000014000015                                                            
+00000000000016GERENCIA DE POS-GRADUCAO                GPG       BA00000000000001000001000001000023000017000016                                                                  
+00000000000017PRO-REITORIA DE PESQUISA E POS-GRADUACAOPPG       BA00000000000001000001000001000023000017                                                                        
+00000000000018DEPARTAMENTO DE CIENCIAS SOCIAIS APLICADDCSA      BA00000000000001000001000001000023000018                                                                        
+00000000000019GERENCIA DE EXTENSAO E ASSUNTOS COMUNITAGEAC      BA00000000000001000001000001000023000020000019                                                                  
+00000000000020PRO-REITORIA DE EXTENSAO E ASSUNTOS COMUPROEX     BA00000000000001000001000001000023000020                                                                        
+00000000000021SUBGERENCIA DE EXTENSAO                 SUBE      BA00000000000001000001000001000023000020000019000021                                                            
+00000000000022DEPARTAMENTO DE SAUDE II                DSII      BA00000000000001000001000001000023000022                                                                        
+00000000000023REITORIA                                RTR       BA00000000000001000001000001000023                                                                              
+00000000000024PRO-REITORIA DE GRADUACAO               PROGRAD   BA00000000000001000001000001000023000024                                                                        
+00000000000025GABINETE                                GAB       BA00000000000001000001000001000025                                                                              
+00000000000026ASSESSORIA TECNICA DE FINANCAS E PLANEJAASPLAN    BA00000000000001000001000001000023000027000026                                                                  
+00000000000027GERENCIA DE PLANEJAMENTO                GERPLAN   BA00000000000001000001000001000023000027                                                                        

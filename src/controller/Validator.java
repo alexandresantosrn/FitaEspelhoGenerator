@@ -336,7 +336,7 @@ public class Validator {
 		// Valida e atualiza tamanho do código de identificação da unidade (Adiciona
 		// zeros à esquerda).
 		if (unidade.getIdUnidade().length() <= TamanhoCamposFitaUnidades.ID_UNIDADE - 8) {
-			String codigo_inicio = "26440000";
+			String codigo_inicio = "00000000";
 			String codigo = "";
 			while (unidade.getIdUnidade().length() < TamanhoCamposFitaUnidades.ID_UNIDADE - 8) {
 				String zeros = "0";
@@ -432,7 +432,7 @@ public class Validator {
 				String codigo = zeros + unidade.getUnidadeAntecedente();
 
 				unidade.setUnidadeAntecedente(codigo);
-				unidade.setHierarquia(codigo + ".");
+				unidade.setHierarquiaInicial(codigo + ".");
 			}
 		} else {
 			MensagensUtil.errosValidacao.add("Unidade gestora da unidade: " + unidade.getNome() + " "
@@ -449,15 +449,15 @@ public class Validator {
 		/*
 		 * Monta a hierarquia local como a junção da unidade superior + unidade atual.
 		 */
-		String hierarquiaLocal = unidade.getHierarquia() + unidade.getIdUnidadeFormatado();
+		String hierarquiaLocal = unidade.getHierarquiaInicial() + unidade.getIdUnidadeFormatado();
 
 		while (!hierarquiaLocal.contains(hierarquiaRaiz)) {
-			unidadePai = buscarUnidadePai(unidadePai, unidadesPopuladas);
-			hierarquiaLocal = unidadePai.getHierarquia() + hierarquiaLocal;
-		}
-
-		unidade.setHierarquia(hierarquiaLocal);
-		unidade.setUnidadeAntecedente(unidade.getHierarquia().replace(".", ""));
+			unidadePai = buscarUnidadePai(unidadePai, unidadesPopuladas);			
+			hierarquiaLocal = unidadePai.getHierarquiaInicial() + hierarquiaLocal;
+		}		
+		
+		unidade.setHierarquiaFinal(hierarquiaLocal);
+		unidade.setUnidadeAntecedente(unidade.getHierarquiaFinal().replace(".", ""));
 	}
 
 	/* Busca a unidade-pai por meio do campo de hierarquia já populado. */
@@ -465,7 +465,7 @@ public class Validator {
 		Unidade unidadePai = new Unidade();
 
 		for (Unidade uni : unidadesPopuladas) {
-			if (unidade.getHierarquia().equals(uni.getIdUnidadeFormatado())) {
+			if (unidade.getHierarquiaInicial().equals(uni.getIdUnidadeFormatado())) {
 				unidadePai = uni;
 			}
 		}

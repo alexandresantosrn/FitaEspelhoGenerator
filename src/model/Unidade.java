@@ -2,7 +2,8 @@ package model;
 
 public class Unidade {
 
-	String idUnidade, nome, sigla, uf, idUnidadePagadora, unidadeGestora, unidadeAntecedente, hierarquia, idUnidadeFormatado;
+	String idUnidade, nome, sigla, uf, idUnidadePagadora, unidadeGestora, unidadeAntecedente, hierarquiaInicial,
+			hierarquiaFinal, idUnidadeFormatado;
 
 	public String getIdUnidade() {
 		return idUnidade;
@@ -60,12 +61,12 @@ public class Unidade {
 		this.unidadeAntecedente = unidadeAntecedente;
 	}
 
-	public String getHierarquia() {
-		return hierarquia;
+	public String getHierarquiaInicial() {
+		return hierarquiaInicial;
 	}
 
-	public void setHierarquia(String hierarquia) {
-		this.hierarquia = hierarquia;
+	public void setHierarquiaInicial(String hierarquiaInicial) {
+		this.hierarquiaInicial = hierarquiaInicial;
 	}
 
 	public String getIdUnidadeFormatado() {
@@ -74,6 +75,14 @@ public class Unidade {
 
 	public void setIdUnidadeFormatado(String idUnidadeFormatado) {
 		this.idUnidadeFormatado = idUnidadeFormatado;
+	}
+
+	public String getHierarquiaFinal() {
+		return hierarquiaFinal;
+	}
+
+	public void setHierarquiaFinal(String hierarquiaFinal) {
+		this.hierarquiaFinal = hierarquiaFinal;
 	}
 
 }

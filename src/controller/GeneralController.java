@@ -366,7 +366,7 @@ public class GeneralController {
 				unidade.setSigla(vector[2]);
 				unidade.setUf(vector[3]);
 				unidade.setIdUnidadePagadora("1"); // Seta a unidade raiz como pagadora.
-				unidade.setUnidadeGestora("158517"); // String fixa.
+				unidade.setUnidadeGestora("1"); // String fixa.
 				unidade.setUnidadeAntecedente(vector[4]);
 
 				// Adicionando unidade a lista de unidades.
