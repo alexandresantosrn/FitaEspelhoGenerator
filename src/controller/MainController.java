@@ -27,6 +27,16 @@ public class MainController {
 			apresentarMsgErroValidacao();
 		}
 	}
+	
+	public void carregarCargos() throws IOException, Exception {
+		controlador.carregarDadosCargos();
+
+		if (MensagensUtil.errosValidacao.isEmpty()) {
+			controlador.exportarArquivoCargos();
+		} else {
+			apresentarMsgErroValidacao();
+		}
+	}
 
 	public void apresentarMsgErroValidacao() {
 		for (String erro : MensagensUtil.errosValidacao) {

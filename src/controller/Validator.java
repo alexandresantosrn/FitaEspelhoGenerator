@@ -2,10 +2,12 @@ package controller;
 
 import java.util.List;
 
+import model.Cargo;
 import model.FitaEspelhoServidores;
 import model.Servidor;
 import model.TamanhoCamposFitaServidores;
 import model.TamanhoCamposFitaUnidades;
+import model.TamanhoFitaCargos;
 import model.Unidade;
 import util.MensagensUtil;
 
@@ -452,10 +454,10 @@ public class Validator {
 		String hierarquiaLocal = unidade.getHierarquiaInicial() + unidade.getIdUnidadeFormatado();
 
 		while (!hierarquiaLocal.contains(hierarquiaRaiz)) {
-			unidadePai = buscarUnidadePai(unidadePai, unidadesPopuladas);			
+			unidadePai = buscarUnidadePai(unidadePai, unidadesPopuladas);
 			hierarquiaLocal = unidadePai.getHierarquiaInicial() + hierarquiaLocal;
-		}		
-		
+		}
+
 		unidade.setHierarquiaFinal(hierarquiaLocal);
 		unidade.setUnidadeAntecedente(unidade.getHierarquiaFinal().replace(".", ""));
 	}
@@ -479,7 +481,10 @@ public class Validator {
 	 */
 	public void formatUnidadeAntecedente(Unidade unidade) {
 		if (unidade.getUnidadeAntecedente().length() <= TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
-			/* Percorre a unidade antecedente e adiciona os espaços em branco até o limite definido. */
+			/*
+			 * Percorre a unidade antecedente e adiciona os espaços em branco até o limite
+			 * definido.
+			 */
 			while (unidade.getUnidadeAntecedente().length() < TamanhoCamposFitaUnidades.UNIDADE_ANTECEDENTE) {
 				String brancos = " ";
 				String antecedente = unidade.getUnidadeAntecedente() + brancos;
@@ -490,6 +495,50 @@ public class Validator {
 			MensagensUtil.errosValidacao.add("Unidade antecedente da unidade: " + unidade.getNome() + " "
 					+ "ultrapassa o limite máximo de " + TamanhoCamposFitaUnidades.UF_UNIDADE + " caracteres.");
 		}
+	}
+
+	public void validateCargos(Cargo cargo) {
+		// Valida e atualiza tamanho do id (Adiciona zeros à esquerda).
+		if (cargo.getId().length() <= TamanhoFitaCargos.ID_CARGO) {
+			while (cargo.getId().length() < TamanhoFitaCargos.ID_CARGO) {
+				String zeros = "0";
+				String id = zeros + cargo.getId();
+
+				cargo.setId(id);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Código de identificação do cargo: " + cargo.getId()
+					+ " ultrapassa o limite de " + TamanhoFitaCargos.ID_CARGO + " caracteres.");
+		}
+
+		// Valida e atualiza tamanho da denominação do cargo (Adiciona espaços à
+		// direita).
+		if (cargo.getDenominacao().length() <= TamanhoFitaCargos.DENOMINACAO_CARGO) {
+			while (cargo.getDenominacao().length() < TamanhoFitaCargos.DENOMINACAO_CARGO) {
+				String brancos = " ";
+				String denominacao = cargo.getDenominacao() + brancos;
+
+				cargo.setDenominacao(denominacao);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Denominação do cargo: " + cargo.getDenominacao()
+					+ " ultrapassa o limite máximo de " + TamanhoFitaCargos.DENOMINACAO_CARGO + " caracteres.");
+		}
+
+		// Valida e atualiza tamanho da escolaridade do cargo (Adiciona espaços à
+		// direita).
+		if (cargo.getEscolaridade().length() <= TamanhoFitaCargos.ESCOLARIDADE_CARGO) {
+			while (cargo.getEscolaridade().length() < TamanhoFitaCargos.ESCOLARIDADE_CARGO) {
+				String brancos = " ";
+				String escolaridade = cargo.getEscolaridade() + brancos;
+
+				cargo.setEscolaridade(escolaridade);
+			}
+		} else {
+			MensagensUtil.errosValidacao.add("Escolaridade do cargo: " + cargo.getDenominacao()
+					+ " ultrapassa o limite máximo de " + TamanhoFitaCargos.ESCOLARIDADE_CARGO + " caracteres.");
+		}
+
 	}
 
 }

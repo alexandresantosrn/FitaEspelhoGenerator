@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Cargo;
+import model.FitaEspelhoCargos;
 import model.FitaEspelhoServidores;
 import model.FitaEspelhoUnidades;
 import model.Servidor;
@@ -21,6 +23,7 @@ public class GeneralController {
 
 	FitaEspelhoServidores fitaEspelhoServidores = new FitaEspelhoServidores();
 	FitaEspelhoUnidades fitaEspelhoUnidades = new FitaEspelhoUnidades();
+	FitaEspelhoCargos fitaEspelhoCargos = new FitaEspelhoCargos();
 	Validator validador = new Validator();
 	int qtdServidores;
 
@@ -395,13 +398,11 @@ public class GeneralController {
 
 		PrintWriter escritor = new PrintWriter(arquivo);
 
-		// Recuperando servidores da lista de servidores.
+		// Recuperando unidades da lista de unidades.
 		List<Unidade> unidades = new ArrayList<>();
 		unidades = fitaEspelhoUnidades.getUnidades();
 
-		// Registrando dados pessoais dos servidores nas próximas linhas
 		for (Unidade unidade : unidades) {
-			// Registro dos dados pessoais dos servidores (Linha 2).
 			escritor.print(unidade.getIdUnidade()); // Id da unidade.
 			escritor.print(unidade.getNome());
 			escritor.print(unidade.getSigla());
@@ -430,4 +431,73 @@ public class GeneralController {
 		System.out.println("Arquivo UNIDADES gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
 
 	}
+
+	public void carregarDadosCargos() throws IOException {
+		// Caminho de localização do arquivo de unidades.
+		final Path path = Paths.get("arquivo_entrada", "cargos.txt");
+
+		FileReader file = new FileReader(path.toString());
+		try (BufferedReader leitor = new BufferedReader(file)) {
+			// Variável de leitura da linha.
+			String linha = leitor.readLine();
+
+			while (linha != null) {
+
+				Cargo cargo = new Cargo();
+
+				String vector[] = linha.split(";");
+
+				cargo.setId(vector[0]);
+				cargo.setDenominacao(vector[1]);
+				cargo.setEscolaridade(vector[2]);
+
+				// Adicionando cargo a lista de cargos.
+				fitaEspelhoCargos.addCargo(cargo);
+
+				// Valida e atualiza dados dos cargos.
+				validador.validateCargos(cargo);
+
+				linha = leitor.readLine();
+			}
+		}
+	}
+
+	public void exportarArquivoCargos() throws IOException, InterruptedException {
+		String nomeArquivoSaida = "fita_espelho_cargos.txt";
+
+		Path caminhoSaida = Paths.get("arquivo_saida", nomeArquivoSaida);
+		FileWriter arquivo = new FileWriter(caminhoSaida.toString());
+
+		PrintWriter escritor = new PrintWriter(arquivo);
+
+		// Recuperando cargos da lista de cargos.
+		List<Cargo> cargos = new ArrayList<>();
+		cargos = fitaEspelhoCargos.getCargos();
+
+		// Registrando dados dos cargos
+		for (Cargo cargo : cargos) {
+			escritor.print(cargo.getId());
+			escritor.print(cargo.getDenominacao());
+			escritor.print(cargo.getEscolaridade());
+
+			escritor.print("\n");
+		}
+
+		arquivo.close();
+
+		String anim = "|/-\\";
+		System.out.println("\n");
+		System.out.flush();
+		for (int x = 0; x < 100; x++) {
+			String progresso = "\r processando arquivo ... " + anim.charAt(x % anim.length()) + " " + x + "%";
+			System.out.write(progresso.getBytes());
+			Thread.sleep(30);
+		}
+		System.out.flush();
+
+		Thread.sleep(1000);
+		System.out.println("\n");
+		System.out.println("Arquivo CARGOS gerado com SUCESSO!\nSalvo em: " + "/arquivo_saida");
+	}
+
 }
