@@ -17,11 +17,15 @@ OBS: O projeto foi desenvolvido na versão: **17** do Java, mas é provável que
 ## Preparação para criação das unidades
 O banco de referência disponibilizado pela UFRN já possui uma unidade com código = 1100 que deverá ser atualizado para a unidade raiz da instituição. Esta unidade possui o nome fictício: **Cooperação Técnica.**
 
-Neste ponto, o seguinte script realizar esta atualização:
+Neste ponto, o seguinte script realiza esta atualização:
 
-**UPDATE comum.unidade set nome = 'UNIVERSIDADE TESTE', nome_ascii = 'UNIVERSIDADE TESTE', nome_capa = 'UNIVERSIDADE TESTE', sigla = 'UNITESTE', codigo_siapecad = 1;**
+**UPDATE comum.unidade set nome = 'UNIVERSIDADE TESTE', nome_ascii = 'NOME UNIVERSIDADE', nome_capa = 'NOME UNIVERSIDADE', sigla = 'NOMEUNI', codigo_siapecad = 1;**
 
 Este script deverá ser executado junto aos bancos: administrativo, sistemas_comum e sigaa.
+
+Em seguida é interessante também atualizar a sequence de geração de ids da tabela: comum.unidade, a fim de se evitar conflitos durante geração das unidades. Para isto executar o seguinte comando junto ao banco sistemas_comum:
+
+**SELECT setval('comum.unidade_seq', (SELECT max(id_unidade) FROM comum.unidade), true);**
 
 ## Montagem do arquivo de unidades.
 Substituir o arquivo unidades.txt do diretório /arquivo_entrada presente na raiz do projeto.
