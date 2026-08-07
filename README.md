@@ -14,7 +14,7 @@ Para rodar a aplicação executar o seguinte comando na raiz do projeto:
 OBS: O projeto foi desenvolvido na versão: **17** do Java, mas é provável que o mesmo possa ser executado em versões mais antigas.
 
 ## Preparação para criação dos cargos
-O banco de referência disponibilizado pela possui o registro de vários cargos. Para instituições não-federais é importante realizar uma limpeza na base de dados antes de executar o procedimento de criação dos cargos.
+O banco de referência disponibilizado possui o registro de vários cargos. Para instituições não-federais é importante realizar uma limpeza na base de dados antes de executar o procedimento de criação dos cargos.
 
 Nos bancos, sigaa e sistemas_comum, executar o seguinte script de deleção de dados:
 
@@ -48,7 +48,7 @@ Após geração do arquivo de cargos, realizar a importação do arquivo junto a
 
 Após finalização do procedimento, os cargos serão criadas junto aos bancos: administrativo, sistemas_comum e sigaa. Pode ser executada a seguinte consulta via banco para observância desses dados: **select * from rh.cargo;**.
 
-**ATENÇÃO:** Infelizmente o arquivo de cargos não traz a informação da categoria funcional daquele cargo em específico. 
+**ATENÇÃO:** Infelizmente o arquivo de cargos não traz a informação da categoria funcional do cargo em específico. 
 
 Neste caso, após importação dos cargos é importante atualizar também a categoria funcional destes cargos. O script para atualização em lote está disponível a seguir. E este deverá ser executado junto aos bancos: administrativo, sistemas_comum e sigaa.
 
