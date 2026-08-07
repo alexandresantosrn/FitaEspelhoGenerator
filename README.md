@@ -42,6 +42,10 @@ O arquivo: **cargos.txt** deverá ter as seguintes informações dos cargos, sep
 - Identificador do cargo; (Valor numérico de até 6 dígitos) 
 - Denominação do cargo; (Valor alfanumérico de até 40 dígitos)
 - Nível de escolaridade do cargo; (Valor alfanumérico de até 2 dígitos - Valores possíveis: NS, NM, NI e NA), que corresponde respectivamente aos níveis: Superior, Médio, Intermediário e Auxiliar.
+
+Ao executar a aplicação, junto a classe: Index.java deve-se selecionar a opção: 3 - Gerar Fita Espelho CARGOS.
+
+Por fim, será gerado um arquivo de saída dentro do diretório: arquivo_saida, denominado: fita_espelho_cargos.txt.  
       
 ## Importando o arquivo de cargos no SIGRH
 Após geração do arquivo de cargos, realizar a importação do arquivo junto ao sistema através da operação presente em: **SIGRH -> Módulo: Administração de Pessoal -> Aba: Administração -> Fita-Espelho -> Arquivo-Espelho SIAPE -> Cargo -> Processar Arquivo Cargo.**
