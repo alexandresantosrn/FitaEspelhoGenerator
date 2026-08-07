@@ -13,13 +13,59 @@ Para rodar a aplicação executar o seguinte comando na raiz do projeto:
 
 OBS: O projeto foi desenvolvido na versão: **17** do Java, mas é provável que o mesmo possa ser executado em versões mais antigas.
 
+## Preparação para criação dos cargos
+O banco de referência disponibilizado pela possui o registro de vários cargos. Para instituições não-federais é importante realizar uma limpeza da base antes de executar o procedimento de criação das unidades.
+
+Nos bancos, sigaa e sistemas_comum, executar o seguinte script de deleção de dados:
+
+**DELETE FROM rh.cargo WHERE id NOT IN (1);**
+
+Neste caso, deve-se manter na base apenas o cargo de id = 1 (Cargo não informado).
+Em seguida, executar os seguintes scripts de deleção:
+
+**DELETE FROM funcional.atividade_cargo;**
+
+**DELETE FROM funcional.factory_regras_progressao;**
+
+**DELETE FROM fita_espelho.classe_funcional_cargos;** 
+
+E por fim: 
+
+**DELETE FROM rh.cargo WHERE id NOT IN (1);**
+
+## Montagem do arquivo de cargos.
+Substituir o arquivo cargos.txt do diretório /arquivo_entrada presente na raiz do projeto.
+
+O arquivo: **cargos.txt** deverá ter as seguintes informações dos cargos, separados por ponto e vírgula (;) na seguinte ORDEM:
+
+- Identificador do cargo; (Valor numérico de até 6 dígitos) 
+- Denominação do cargo; (Valor alfanumérico de até 40 dígitos)
+- Nível de escolaridade do cargo; (Valor alfanumérico de até 2 dígitos - Valores possíveis: NS, NM, NI e NA), que corresponde respectivamente aos níveis: Superior, Médio, Intermediário e Auxiliar.
+      
+## Importando o arquivo de cargos no SIGRH
+Após geração do arquivo de cargos, realizar a importação do arquivo junto ao sistema através da operação presente em: **SIGRH -> Módulo: Administração de Pessoal -> Aba: Administração -> Fita-Espelho -> Arquivo-Espelho SIAPE -> Cargo -> Processar Arquivo Cargo.**
+
+Após finalização do procedimento, os cargos serão criadas junto aos bancos: administrativo, sistemas_comum e sigaa. Pode ser executada a seguinte consulta via banco para observância desses dados: **select * from rh.cargo;**.
+
+**ATENÇÃO:** Infelizmente o arquivo de cargos não traz a informação da categoria funcional daquele cargo em específico. 
+
+Neste caso, após importação dos cargos é importante atualizar também a categoria funcional destes cargos. O script para atualização em lote está disponível a seguir. E este deverá ser executado nos bancos: administrativo, sistemas_comum e sigaa.
+
+**UPDATE rh.cargo**
+**SET id_tipo_categoria = 1**
+**WHERE id IN (????, ????);**
+
+Os valores possíveis para o id_tipo_categoria são:
+1 - Docente
+2 - Técnico-Administrativo
+3 - Não Especificado
 
 ## Preparação para criação das unidades
 O banco de referência disponibilizado pela UFRN já possui uma unidade com código = 1100 que deverá ser atualizado para a unidade raiz da instituição. Esta unidade possui o nome fictício: **Cooperação Técnica.**
 
 Neste ponto, o seguinte script realiza esta atualização:
 
-**UPDATE comum.unidade set nome = 'UNIVERSIDADE TESTE', nome_ascii = 'NOME UNIVERSIDADE', nome_capa = 'NOME UNIVERSIDADE', sigla = 'NOMEUNI', codigo_siapecad = 1;**
+**UPDATE comum.unidade SET nome = 'UNIVERSIDADE TESTE', nome_ascii = 'NOME UNIVERSIDADE', nome_capa = 'NOME UNIVERSIDADE', sigla = 'NOMEUNI', codigo_siapecad = 1;**
 
 Este script deverá ser executado junto aos bancos: administrativo, sistemas_comum e sigaa.
 
@@ -65,7 +111,7 @@ Na tela apresentada pelo sistema informar:
 
 **Refazer os códigos das unidades:** Deixar esta opção selecionada/marcada.
 
-Após finalização do procedimento, as unidades serão criadas, junto de sua hierarquia junto aos bancos: administrativo, sistemas_comum e sigaa.
+Após finalização do procedimento, as unidades serão criadas, junto de sua hierarquia junto aos bancos: administrativo, sistemas_comum e sigaa. Pode ser executada a seguinte consulta via banco para observância desses dados: **select * from comum.unidade;**.
 
 Por fim reativar as constraints removidas no início do procedimento junto aos bancos: sistemas_comum e sigaa:
 
@@ -144,4 +190,4 @@ Após geração do arquivo de servidores, realizar a importação do arquivo jun
 
 Após carregamento do arquivo, realizar o seu processamento em: **SIGRH -> Módulo: Administração de Pessoal -> Aba: Administração -> Fita-Espelho -> Fita Espelho SIAPE (Novo) -> Processamento -> Processar Fita-Espelho.** Os servidores importados serão apresentados com status: SUCESSO, e os não importados serão apresentados com status: FALHA.
 
-Após finalização do procedimento, os servidores serão criadas, junto de sua hierarquia junto aos bancos: administrativo, sistemas_comum e sigaa.
+Após finalização do procedimento, os servidores serão criadas junto aos bancos: administrativo, sistemas_comum e sigaa. Pode ser executada a seguinte consulta via banco para observância desses dados: **select * from rh.servidor;**.
