@@ -1,6 +1,6 @@
 # FitaEspelhoGenerator
 Aplicação de apoio para geração dos dados para fita-espelho SIAPE.
-Neste documento consta a descrição da geração do arquivo de importação de servidores e unidades.
+Neste documento consta a descrição da geração do arquivo de importação de cargos, unidades e servidores.
 
 ## Compilação
 Para compilar o projeto executar o seguinte comando na raiz do projeto: 
@@ -14,14 +14,15 @@ Para rodar a aplicação executar o seguinte comando na raiz do projeto:
 OBS: O projeto foi desenvolvido na versão: **17** do Java, mas é provável que o mesmo possa ser executado em versões mais antigas.
 
 ## Preparação para criação dos cargos
-O banco de referência disponibilizado pela possui o registro de vários cargos. Para instituições não-federais é importante realizar uma limpeza da base antes de executar o procedimento de criação das unidades.
+O banco de referência disponibilizado pela possui o registro de vários cargos. Para instituições não-federais é importante realizar uma limpeza na base de dados antes de executar o procedimento de criação dos cargos.
 
 Nos bancos, sigaa e sistemas_comum, executar o seguinte script de deleção de dados:
 
 **DELETE FROM rh.cargo WHERE id NOT IN (1);**
 
 Neste caso, deve-se manter na base apenas o cargo de id = 1 (Cargo não informado).
-Em seguida, executar os seguintes scripts de deleção:
+
+Em seguida, executar os seguintes scripts de deleção no banco administrativo:
 
 **DELETE FROM funcional.atividade_cargo;**
 
@@ -49,7 +50,7 @@ Após finalização do procedimento, os cargos serão criadas junto aos bancos: 
 
 **ATENÇÃO:** Infelizmente o arquivo de cargos não traz a informação da categoria funcional daquele cargo em específico. 
 
-Neste caso, após importação dos cargos é importante atualizar também a categoria funcional destes cargos. O script para atualização em lote está disponível a seguir. E este deverá ser executado nos bancos: administrativo, sistemas_comum e sigaa.
+Neste caso, após importação dos cargos é importante atualizar também a categoria funcional destes cargos. O script para atualização em lote está disponível a seguir. E este deverá ser executado junto aos bancos: administrativo, sistemas_comum e sigaa.
 
 **UPDATE rh.cargo**
 **SET id_tipo_categoria = 1**
@@ -65,7 +66,7 @@ O banco de referência disponibilizado pela UFRN já possui uma unidade com cód
 
 Neste ponto, o seguinte script realiza esta atualização:
 
-**UPDATE comum.unidade SET nome = 'UNIVERSIDADE TESTE', nome_ascii = 'NOME UNIVERSIDADE', nome_capa = 'NOME UNIVERSIDADE', sigla = 'NOMEUNI', codigo_siapecad = 1;**
+**UPDATE comum.unidade SET nome = 'NOME UNIVERSIDADE', nome_ascii = 'NOME UNIVERSIDADE', nome_capa = 'NOME UNIVERSIDADE', sigla = 'NOMEUNI', codigo_siapecad = 1;**
 
 Este script deverá ser executado junto aos bancos: administrativo, sistemas_comum e sigaa.
 
